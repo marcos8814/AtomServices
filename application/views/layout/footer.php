@@ -51,11 +51,11 @@
   <script src="<?php echo base_url('public/js/sb-admin-2.min.js'); ?>"></script>
 
    <?php if(isset($scripts)): ?>
-     <?php  foreach($scripts as $script):?>
+    <?php  foreach ($scripts as $script):?>
+        <!-- Alterado para o codigo abaixo-->
        <script src="<?php echo base_url('public/'. $script); ?>"></script>
-     <?php  endforeach;?>
-  <?php endif; ?>
-
+    <?php  endforeach;?>
+   <?php  endif;?>
 </body>
 
 </html>
