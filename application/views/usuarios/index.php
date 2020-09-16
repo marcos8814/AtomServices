@@ -34,7 +34,7 @@
                       <th>Usuário</th>
                       <th>Login</th>
                       <th>Ativo</th>
-                      <th class="text-right">Ações</th>
+                      <th class="text-right no-sort">Ações</th>
                     </tr>
                   </thead>
                  
