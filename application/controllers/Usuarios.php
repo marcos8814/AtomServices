@@ -38,9 +38,9 @@
   		$this->load->view('layout/footer');
   	}
     
-    public function edit($user_id = NULL) {
+    public function edit($usuario_id = NULL) {
 
-      if (!$user_id || !$this->ion_auth->user($user_id)->row()) {
+      if (!$usuario_id || !$this->ion_auth->user($usuario_id)->row()) {
         
         exit('Usuário não encontrado');
       
@@ -48,12 +48,15 @@
 
         $data = array(
          'titulo'=> 'Editar usuário',
-         'usuario'=> $this->ion_auth->user($user_id)->row(),
+          //o codigo abaixo busca o usuário no banco de dados
+         'usuario'=> $this->ion_auth->user($usuario_id)->row(),
+          //o codigo abaixo busca o perfil do usuario no banco de dados
+         'perfil_usuario'=> $this->ion_auth->get_users_groups($usuario_id)->row(),
        );
       
-
-      // echo '<pre>' ;
-       //print_r($data['usuario']);
+        //o codigo abaixo verifica o debug no sistema
+       //echo '<pre>' ;
+      // print_r($data['perfil_usuario']);
        //exit();
       
               $this->load->view('layout/header', $data);

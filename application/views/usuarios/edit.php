@@ -25,52 +25,66 @@
               <a title="Voltar"href="<?php echo base_url('usuarios');?>" class="btn btn-success btn-sm float-right"><i class="fas fa-arrow-left"></i>&nbsp;Voltar</a> <!-- neste campo vc altera o incon de voltar -->
             </div>
             <div class="card-body">
-             <form>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputEmail4">Email</label>
-      <input type="email" class="form-control" id="inputEmail4">
-    </div>
-    <div class="form-group col-md-6">
-      <label for="inputPassword4">Password</label>
-      <input type="password" class="form-control" id="inputPassword4">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="inputAddress">Address</label>
-    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-  </div>
-  <div class="form-group">
-    <label for="inputAddress2">Address 2</label>
-    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputCity">City</label>
-      <input type="text" class="form-control" id="inputCity">
-    </div>
-    <div class="form-group col-md-4">
-      <label for="inputState">State</label>
-      <select id="inputState" class="form-control">
-        <option selected>Choose...</option>
-        <option>...</option>
-      </select>
-    </div>
-    <div class="form-group col-md-2">
-      <label for="inputZip">Zip</label>
-      <input type="text" class="form-control" id="inputZip">
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="gridCheck">
-      <label class="form-check-label" for="gridCheck">
-        Check me out
-      </label>
-    </div>
-  </div>
-  <button type="submit" class="btn btn-primary">Sign in</button>
-</form>
+             <!--back end  -->
+            <form>
+                  <div class="form-group row"> <!--altera o tamanho do campo nome  -->
+                     <div class="col-md-4"> 
+                       <label>Nome</label>
+                          <input type="text" class="form-control" name="first_name" placeholder="Seu nome" value="<?php echo $usuario->first_name; ?>"> <!--first_name é o nome do campo da tabela que esta no banco de dados  -->
+                          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    </div>
+
+                    <div class="col-md-4"> 
+                       <label>Sobrenome</label>
+                          <input type="text" class="form-control" name="last_name" placeholder="Seu sobrenome" value="<?php echo $usuario->last_name; ?>"> <!--last_name é o sobrenome do campo da tabela que esta no banco de dados  -->
+                          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    </div>
+
+                    <div class="col-md-4"> 
+                       <label>E-mail</label>
+                          <input type="email" class="form-control" name="email" placeholder="Seu nome" value="<?php echo $usuario->email; ?>"> <!--email é o nome do campo da tabela que esta no banco de dados  -->
+                          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    </div>
+
+                  </div>
+                   <div class="form-group row">
+                       <div class="col-md-4"> 
+                       <label>Ativo</label>
+                        
+                       <select class="form-control" name="active">
+                         <option value="0"<?php echo ($usuario->active == 0) ?'selected' :'' ?>>Não</option>
+                         <!-- o codigo acima verifica no banco de dados se a opção esta ativo ou não -->
+                         <option value="1"<?php echo ($usuario->active == 1) ?'selected' :'' ?>>Sim</option>
+                         <!-- o codigo acima verifica no banco de dados se a opção esta ativo ou não -->
+                       </select>   
+                         
+                    </div>
+
+                     <div class="col-md-4"> 
+                       <label>Perfil de acesso</label>
+                        
+                       <select class="form-control" name="perfil_usuario">
+                         <option value="0"<?php echo ($perfil_usuario->id == 2) ?'selected' :'' ?>>Vendedor</option>
+                         <!-- o codigo acima verifica no banco de dados o perfil do usuário -->
+                         <option value="1"<?php echo ($perfil_usuario->id == 1) ?'selected' :'' ?>>Administrador</option>
+                         <!-- o codigo acima verifica no banco de dados o perfil do usuário -->
+                       </select>   
+                         
+                    </div>
+
+                   </div>
+
+
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1">
+                  </div>
+                  <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
             </div>
           </div>
 
