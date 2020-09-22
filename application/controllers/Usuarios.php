@@ -46,15 +46,7 @@
       
       } else {
 
-        $data = array(
-         'titulo'=> 'Editar usuário',
-          //o codigo abaixo busca o usuário no banco de dados
-         'usuario'=> $this->ion_auth->user($usuario_id)->row(),
-          //o codigo abaixo busca o perfil do usuario no banco de dados
-         'perfil_usuario'=> $this->ion_auth->get_users_groups($usuario_id)->row(),
-       );
-
-       /* [first_name] => Admin
+         /* [first_name] => Admin
           [last_name] => istrator
           [email] => admin@admin.com
           [username] => administrator
@@ -69,10 +61,31 @@
        /*echo '<pre>' ;
        print_r($this->input->post());
        exit();*/
-      
-              $this->load->view('layout/header', $data);
-              $this->load->view('usuarios/edit');
-              $this->load->view('layout/footer');
+
+        $this->form_validation->set_rules('first_name','','trim|required');//validando o campo nome do usuário
+
+
+
+        if ($this->form_validation->run()) {
+          
+             exit('Validado');
+
+        }else{
+            
+          $data = array(
+         'titulo'=> 'Editar usuário',
+          //o codigo abaixo busca o usuário no banco de dados
+         'usuario'=> $this->ion_auth->user($usuario_id)->row(),
+          //o codigo abaixo busca o perfil do usuario no banco de dados
+         'perfil_usuario'=> $this->ion_auth->get_users_groups($usuario_id)->row(),
+           );
+
+             $this->load->view('layout/header', $data);
+             $this->load->view('usuarios/edit');
+             $this->load->view('layout/footer');
+
+        }
+
       }
     }
   }
