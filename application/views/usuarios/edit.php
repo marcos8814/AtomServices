@@ -26,7 +26,7 @@
             </div>
             <div class="card-body">
              <!--back end  -->
-            <form>
+            <form method="POST" name="form_edit"> <!--metodo post reponsavel por proteger campo da url -->
                   <div class="form-group row"> <!--altera o tamanho do campo nome  -->
                      <div class="col-md-4"> 
                        <label>Nome</label>
@@ -48,6 +48,13 @@
 
                   </div>
                    <div class="form-group row">
+                        <div class="col-md-4"> 
+                       <label>Usuário</label>
+                          <input type="text" class="form-control" name="username" placeholder="Seu usuário" value="<?php echo $usuario->username; ?>"> <!--email é o nome do campo da tabela que esta no banco de dados  -->
+                          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    </div>
+
+
                        <div class="col-md-4"> 
                        <label>Ativo</label>
                         
@@ -73,17 +80,24 @@
                     </div>
 
                    </div>
+                   <div class="form-group row">
+                    <div class="col-md-6"> 
+                           <label>Senha</label>
+                          <input type="password" class="form-control" name="password" placeholder="Sua senha"> <!--password é o nome do campo da tabela que esta no banco de dados  -->
+                          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    </div>
+                       
+                       <div class="col-md-6"> 
+                           <label>Confirme</label>
+                          <input type="password" class="form-control" name="confirme_password" placeholder="Confirme sua senha"> <!--password é o nome do campo da tabela que esta no banco de dados  -->
+                          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    </div>
 
+                    <input type="hidden" name="usuario_id" value="<?php echo $usuario->id  ?>">
+                    
+                 </div> 
 
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
-                  </div>
-                  <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                  </div>
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
             </form>
             </div>
           </div>

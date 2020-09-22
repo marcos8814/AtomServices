@@ -53,11 +53,22 @@
           //o codigo abaixo busca o perfil do usuario no banco de dados
          'perfil_usuario'=> $this->ion_auth->get_users_groups($usuario_id)->row(),
        );
+
+       /* [first_name] => Admin
+          [last_name] => istrator
+          [email] => admin@admin.com
+          [username] => administrator
+          [active] => 1
+          [perfil_usuario] => 1
+          [password] => 
+          [confirme_password] => 
+          [usuario_id] => 1
+        */
       
         //o codigo abaixo verifica o debug no sistema
-       //echo '<pre>' ;
-      // print_r($data['perfil_usuario']);
-       //exit();
+       /*echo '<pre>' ;
+       print_r($this->input->post());
+       exit();*/
       
               $this->load->view('layout/header', $data);
               $this->load->view('usuarios/edit');
