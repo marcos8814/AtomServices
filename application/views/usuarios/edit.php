@@ -29,30 +29,34 @@
             <form method="POST" name="form_edit"> <!--metodo post reponsavel por proteger campo da url -->
                   <div class="form-group row"> <!--altera o tamanho do campo nome  -->
                      <div class="col-md-4"> 
-                       <label>Nome</label>
+                       <label>Nome *</label>
                           <input type="text" class="form-control" name="first_name" placeholder="Seu nome" value="<?php echo $usuario->first_name; ?>"> <!--first_name é o nome do campo da tabela que esta no banco de dados  -->
                           <?php echo form_error('first_name','<small class="form-text text-danger">','</small>'); ?>
-                           <!-- O codigo acima valida campo nome do usuario-->
+                           <!-- O codigo verifica se o campo obirgatorio esta preechido-->
                     </div>
 
                     <div class="col-md-4"> 
-                       <label>Sobrenome</label>
+                       <label>Sobrenome *</label>
                           <input type="text" class="form-control" name="last_name" placeholder="Seu sobrenome" value="<?php echo $usuario->last_name; ?>"> <!--last_name é o sobrenome do campo da tabela que esta no banco de dados  -->
-                          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                          <?php echo form_error('last_name','<small class="form-text text-danger">','</small>'); ?>
+                           <!-- O codigo verifica se o campo obirgatorio esta preechido-->
+
                     </div>
 
                     <div class="col-md-4"> 
-                       <label>E-mail</label>
+                       <label>E-mail *</label>
                           <input type="email" class="form-control" name="email" placeholder="Seu nome" value="<?php echo $usuario->email; ?>"> <!--email é o nome do campo da tabela que esta no banco de dados  -->
-                          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                          <?php echo form_error('email','<small class="form-text text-danger">','</small>'); ?>
+                           <!-- O codigo verifica se o campo obirgatorio esta preechido-->
                     </div>
 
                   </div>
                    <div class="form-group row">
                         <div class="col-md-4"> 
-                       <label>Usuário</label>
+                       <label>Usuário *</label>
                           <input type="text" class="form-control" name="username" placeholder="Seu usuário" value="<?php echo $usuario->username; ?>"> <!--email é o nome do campo da tabela que esta no banco de dados  -->
-                          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                          <?php echo form_error('username','<small class="form-text text-danger">','</small>'); ?>
+                           <!-- O codigo verifica se o campo obirgatorio esta preechido-->
                     </div>
 
 
@@ -83,15 +87,17 @@
                    </div>
                    <div class="form-group row">
                     <div class="col-md-6"> 
-                           <label>Senha</label>
+                           <label>Senha *</label>
                           <input type="password" class="form-control" name="password" placeholder="Sua senha"> <!--password é o nome do campo da tabela que esta no banco de dados  -->
-                          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                           <?php echo form_error('password','<small class="form-text text-danger">','</small>'); ?>
+                           <!-- O codigo verifica se o campo obirgatorio esta preechido-->
                     </div>
                        
                        <div class="col-md-6"> 
-                           <label>Confirme</label>
+                           <label>Confirme *</label>
                           <input type="password" class="form-control" name="confirme_password" placeholder="Confirme sua senha"> <!--password é o nome do campo da tabela que esta no banco de dados  -->
-                          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                           <?php echo form_error('confirme_password','<small class="form-text text-danger">','</small>'); ?>
+                           <!-- O codigo verifica se o campo obirgatorio esta preechido-->
                     </div>
 
                     <input type="hidden" name="usuario_id" value="<?php echo $usuario->id  ?>">

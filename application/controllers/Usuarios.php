@@ -42,8 +42,8 @@
 
       if (!$usuario_id || !$this->ion_auth->user($usuario_id)->row()) {
         
-        exit('Usuário não encontrado');
-      
+        $this->session->set_flashdata('error','Usuário não encontrado!');
+        redirect('usuarios');
       } else {
 
          /* [first_name] => Admin
@@ -62,7 +62,18 @@
        print_r($this->input->post());
        exit();*/
 
+
+        
+         //O CODIGO ABAIXO É RESPOSAVEL POR FAZER O ANTIGO SELECT*FROM NO BANCO DE DADOS!!
         $this->form_validation->set_rules('first_name','','trim|required');//validando o campo nome do usuário
+        $this->form_validation->set_rules('last_name','','trim|required');//validando o campo sobrenome do usuário
+        $this->form_validation->set_rules('email','','trim|required');//validando o campo email do usuário
+        $this->form_validation->set_rules('username','','trim|required');//validando o campo usuário do usuário
+        $this->form_validation->set_rules('password','','trim|required');//validando o campo usuário do usuário
+        $this->form_validation->set_rules('confirme_password','','trim|required');//validando o campo usuário do usuário
+        
+        
+
 
 
 
