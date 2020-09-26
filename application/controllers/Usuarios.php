@@ -67,10 +67,10 @@
          //O CODIGO ABAIXO É RESPOSAVEL POR FAZER O ANTIGO SELECT*FROM NO BANCO DE DADOS!!
         $this->form_validation->set_rules('first_name','','trim|required');//validando o campo nome do usuário
         $this->form_validation->set_rules('last_name','','trim|required');//validando o campo sobrenome do usuário
-        $this->form_validation->set_rules('email','','trim|required');//validando o campo email do usuário
-        $this->form_validation->set_rules('username','','trim|required');//validando o campo usuário do usuário
-        $this->form_validation->set_rules('password','','trim|required');//validando o campo usuário do usuário
-        $this->form_validation->set_rules('confirme_password','','trim|required');//validando o campo usuário do usuário
+        $this->form_validation->set_rules('email','','trim|required|valid_email|callback_email_check');//codigo  verifica se o campo email ja existe  no banco de dados
+        $this->form_validation->set_rules('username','','trim|required|callback_username_check');//codigo  verifica se o campo username ja existe  no banco de dados
+        $this->form_validation->set_rules('password','Senha','min_length[5]|max_length[255]');//validando o campo usuário do usuário
+        $this->form_validation->set_rules('confirme_password','Confirme','matches[password]');//validando o campo usuário do usuário
         
         
 
@@ -97,6 +97,38 @@
 
         }
 
+      }
+    }
+    //codigo abaixo verifica se o e-mail cadastrado ja existe  
+    public function email_check($email){
+
+      $usuario_id = $this->input->post('usuario_id');
+
+      if ($this->core_model->get_by_id('users', array('email' => $email, 'id !=' => $usuario_id))) {
+           
+           $this->form_validation->set_message('email_check', 'Esse e-mail já existe');
+
+           return FALSE;
+
+      }else{
+
+        return TRUE;
+      }
+    }
+     //codigo abaixo verifica se o campo usuario ja existe  
+    public function username_check($username){
+
+      $usuario_id = $this->input->post('usuario_id');
+
+      if ($this->core_model->get_by_id('users', array('username' => $username, 'id !=' => $usuario_id))) {
+           
+           $this->form_validation->set_message('email_check', 'Esse usuário já existe');
+
+           return FALSE;
+
+      }else{
+
+        return TRUE;
       }
     }
   }
