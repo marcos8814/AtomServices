@@ -122,7 +122,7 @@
 
       if ($this->core_model->get_by_id('users', array('username' => $username, 'id !=' => $usuario_id))) {
            
-           $this->form_validation->set_message('email_check', 'Esse usuário já existe');
+           $this->form_validation->set_message('username_check', 'Esse usuário já existe');
 
            return FALSE;
 
