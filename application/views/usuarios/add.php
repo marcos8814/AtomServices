@@ -26,18 +26,18 @@
             </div>
             <div class="card-body">
              <!--back end  -->
-            <form method="POST" name="form_edit"> <!--metodo post reponsavel por proteger campo da url -->
+            <form method="POST" name="form_add"> <!--altera para o form-add -->
                   <div class="form-group row"> <!--altera o tamanho do campo nome  -->
                      <div class="col-md-4"> 
                        <label>Nome *</label>
-                          <input type="text" class="form-control" name="first_name" placeholder="Seu nome" value="<?php echo $usuario->first_name; ?>"> <!--first_name é o nome do campo da tabela que esta no banco de dados  -->
+                          <input type="text" class="form-control" name="first_name" placeholder="Seu nome" value="<?php echo set_value('first_name');?>"> <!--o codigo acima deixa o campo com os caracteres que vc digitou  -->
                           <?php echo form_error('first_name','<small class="form-text text-danger">','</small>'); ?>
-                           <!-- O codigo verifica se o campo obirgatorio esta preechido-->
+                            <!--o codigo acima deixa o campo com os caracteres que vc digitou  -->
                     </div>
 
                     <div class="col-md-4"> 
                        <label>Sobrenome *</label>
-                          <input type="text" class="form-control" name="last_name" placeholder="Seu sobrenome" value="<?php echo $usuario->last_name; ?>"> <!--last_name é o sobrenome do campo da tabela que esta no banco de dados  -->
+                          <input type="text" class="form-control" name="last_name" placeholder="Seu sobrenome" value="<?php echo set_value('last_name');?>">  <!--o codigo acima deixa o campo com os caracteres que vc digitou  -->
                           <?php echo form_error('last_name','<small class="form-text text-danger">','</small>'); ?>
                            <!-- O codigo verifica se o campo obirgatorio esta preechido-->
 
@@ -45,7 +45,7 @@
 
                     <div class="col-md-4"> 
                        <label>E-mail *</label>
-                          <input type="email" class="form-control" name="email" placeholder="Seu E-mail(Login " value="<?php echo $usuario->email; ?>"> <!--email é o nome do campo da tabela que esta no banco de dados  -->
+                          <input type="email" class="form-control" name="email" placeholder="Seu E-mail(Login)" value="<?php echo set_value('email');?>">  <!--o codigo acima deixa o campo com os caracteres que vc digitou  -->
                           <?php echo form_error('email','<small class="form-text text-danger">','</small>'); ?>
                            <!-- O codigo verifica se o campo obirgatorio esta preechido-->
                     </div>
@@ -54,7 +54,7 @@
                    <div class="form-group row">
                         <div class="col-md-4"> 
                        <label>Usuário *</label>
-                          <input type="text" class="form-control" name="username" placeholder="Seu usuário" value="<?php echo $usuario->username; ?>"> <!--email é o nome do campo da tabela que esta no banco de dados  -->
+                          <input type="text" class="form-control" name="username" placeholder="Seu usuário" value="<?php echo set_value('username');?>">  <!--o codigo acima deixa o campo com os caracteres que vc digitou  -->
                           <?php echo form_error('username','<small class="form-text text-danger">','</small>'); ?>
                            <!-- O codigo verifica se o campo obirgatorio esta preechido-->
                     </div>
@@ -64,9 +64,9 @@
                        <label>Ativo</label>
                         
                        <select class="form-control" name="active">
-                         <option value="0"<?php echo ($usuario->active == 0) ?'selected' :'' ?>>Não</option>
+                         <option value="0">Não</option>
                          <!-- o codigo acima verifica no banco de dados se a opção esta ativo ou não -->
-                         <option value="1"<?php echo ($usuario->active == 1) ?'selected' :'' ?>>Sim</option>
+                         <option value="1">Sim</option>
                          <!-- o codigo acima verifica no banco de dados se a opção esta ativo ou não -->
                        </select>   
                          
@@ -76,9 +76,9 @@
                        <label>Perfil de acesso</label>
                         
                        <select class="form-control" name="perfil_usuario">
-                         <option value="2"<?php echo ($perfil_usuario->id == 2) ?'selected' :'' ?>>Vendedor</option>
+                         <option value="2">Vendedor</option>
                          <!-- o codigo acima verifica no banco de dados o perfil do usuário -->
-                         <option value="1"<?php echo ($perfil_usuario->id == 1) ?'selected' :'' ?>>Administrador</option>
+                         <option value="1">Administrador</option>
                          <!-- o codigo acima verifica no banco de dados o perfil do usuário -->
                        </select>   
                          
@@ -100,7 +100,6 @@
                            <!-- O codigo verifica se o campo obirgatorio esta preechido-->
                     </div>
 
-                    <input type="hidden" name="usuario_id" value="<?php echo $usuario->id  ?>">
                     
                  </div> 
 

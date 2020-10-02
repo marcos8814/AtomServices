@@ -37,6 +37,67 @@
   		$this->load->view('usuarios/index');
   		$this->load->view('layout/footer');
   	}
+     // a função abaixo adiciona um novo usuário no banco de dados
+    public function add(){
+      
+
+          //O CODIGO ABAIXO É RESPOSAVEL POR FAZER O ANTIGO  INSERT*FROM NO BANCO DE DADOS(Cadastrar)!!
+        $this->form_validation->set_rules('first_name','','trim|required');//validando o campo nome do usuário
+        $this->form_validation->set_rules('last_name','','trim|required');//validando o campo sobrenome do usuário
+        $this->form_validation->set_rules('email','','trim|required|valid_email|is_unique[users.email]');//codigo  verifica se o campo email ja existe  no banco de dados
+        $this->form_validation->set_rules('username','','trim|required|is_unique[users.username]');//codigo  verifica se o campo username ja existe  no banco de dados
+        $this->form_validation->set_rules('password','Senha','required|min_length[5]|max_length[255]');//validando o campo usuário do usuário
+        $this->form_validation->set_rules('confirme_password','Confirme','matches[password]');//validando o campo usuário do usuário
+
+        if ($this->form_validation->run()) {
+          
+          $username = $this->security->xss_clean($this->input->post('username'));
+          $password = $this->security->xss_clean($this->input->post('password'));
+          $email = $this->security->xss_clean($this->input->post('email'));
+         
+          $additional_data = array(
+            'username'=> $this->input->post('username'),
+            'first_name' => $this->input->post('first_name'),
+            'last_name' => $this->input->post('last_name'),
+            'active' => $this->input->post('active'),
+         );
+          
+          $group = array($this->input->post('perfil_usuario'));
+
+           $additional_data = $this->security->xss_clean($additional_data);
+
+           $group = $this->security->xss_clean($group);
+
+           
+         if ($this->ion_auth->register($username, $password, $email, $additional_data, $group)) {
+           
+           $this->session->set_flashdata('Sucesso','Dados salvos com sucesso');
+
+         }else{
+
+          $this->session->set_flashdata('error','Error ao salvar os dados');
+
+         }
+           
+          redirect('usuarios');
+
+        }else{
+
+         //Error de validação
+
+             $data = array(
+
+         'titulo'=> 'Cadastrar usuário',
+           );
+
+
+            $this->load->view('layout/header', $data);
+            $this->load->view('usuarios/add');
+            $this->load->view('layout/footer');
+        }
+
+     }
+        
     
     public function edit($usuario_id = NULL) {
 
@@ -65,7 +126,7 @@
 
      
 
-         //O CODIGO ABAIXO É RESPOSAVEL POR FAZER O ANTIGO SELECT*FROM NO BANCO DE DADOS!!
+         //O CODIGO ABAIXO É RESPOSAVEL POR FAZER O ANTIGO SELECT*FROM NO BANCO DE DADOS(Alterar)!!
         $this->form_validation->set_rules('first_name','','trim|required');//validando o campo nome do usuário
         $this->form_validation->set_rules('last_name','','trim|required');//validando o campo sobrenome do usuário
         $this->form_validation->set_rules('email','','trim|required|valid_email|callback_email_check');//codigo  verifica se o campo email ja existe  no banco de dados

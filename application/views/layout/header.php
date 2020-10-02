@@ -20,6 +20,7 @@
 
   <!-- Alterado para o codigo abaixo-->
   <link href="<?php echo base_url('public/css/sb-admin-2.min.css'); ?>" rel="stylesheet">
+  <link href="<?php echo base_url('public/css/app.css'); ?>" rel="stylesheet"><!--codigo que comtem o caminho para o css-->
 
   <?php if(isset($styles)): ?>
      <?php  foreach($styles as $style):?>
