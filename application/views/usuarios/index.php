@@ -73,6 +73,7 @@
                       <th>#</th>
                       <th>Usuário</th>
                       <th>Login</th>
+                      <th>Perfil</th>
                       <th class="text-center">Ativo</th>
                       <th class="text-right no-sort">Ações</th>
                     </tr>
@@ -84,12 +85,13 @@
                       <td> <?php echo $user->id ?></td>
                       <td> <?php echo $user->username ?></td>
                       <td> <?php echo $user->email ?></td>
+                      <td> <?php echo ($this->ion_auth->is_admin($user->id) ? 'Administrador' : 'Vendedor' );?></td>
                       <td class="text-center pr-4"> <?php echo ($user->active == 1 ? '<span class="badge badge-info btn-sm">Sim</span>' : '<span class="badge badge-danger btn-sm">Não</span>') ?>
                       </td> <!-- o codigo acima colocar um campo sim para ativo em cor azul e não para não ativo em cor vermelho, e colocar o campo ATIVO centralizado com o campo abaixo-->
                       <td class="text-right">
                         
                         <a title="Editar" href="<?php echo base_url('usuarios/edit/'.$user->id); ?>" class="btn btn-sm btn-primary"><i class="fas fa-user-plus"></i></a>
-                        <a title="Excluir" href="" class="btn btn-sm btn-danger"><i class="fas fa-user-times"></i></a>
+                        <a title="Excluir" href="<?php echo base_url('usuarios/del/'.$user->id); ?>" class="btn btn-sm btn-danger"><i class="fas fa-user-times"></i></a>
                       </td>
 
                     </tr>

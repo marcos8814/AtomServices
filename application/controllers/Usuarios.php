@@ -206,6 +206,34 @@
 
       }
     }
+       //Esta função e reposanvel por deletar os dados de um usuário. 
+     public function del($usuario_id = NULL) {
+
+      if (!$usuario_id || !$this->ion_auth->user($usuario_id)->row()) {
+        
+        $this->session->set_flashdata('error', 'Usuário não encontrado');
+        redirect('usuarios');
+      }
+
+      if ($this->ion_auth->is_admin($usuario_id)) {
+      
+       $this->session->set_flashdata('error', 'Administrador não pode ser excluido');
+        redirect('usuarios');
+      }
+
+      if ($this->ion_auth->delete_user($usuario_id)) {
+        $this->session->set_flashdata('sucesso', 'Usuário excluido com sucesso' );
+        redirect('usuarios');
+      }else{
+        
+        $this->session->set_flashdata('error', 'O administrador não pode ser excluido' );
+        redirect('usuarios');
+       
+
+      }
+      
+
+    }
     //codigo abaixo verifica se o e-mail cadastrado ja existe  
     public function email_check($email){
 
@@ -238,5 +266,7 @@
         return TRUE;
       }
     }
+    
+
   }
 ?>  	
