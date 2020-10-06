@@ -27,7 +27,7 @@
              <div class="col-md-12">
 
               <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong><i class="fas fa-smile-wink"></i>&nbsp;&nbsp;<?php echo $message;  ?></strong>
+                <strong><i class="far fa-smile-wink"></i>&nbsp;&nbsp;<?php echo $message;  ?></strong>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -46,7 +46,7 @@
            
              <div class="col-md-12">
 
-              <div class="alert alert-warning alert-dismissible fade show" role="alert">
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <strong><i class="fas fa-exclamation-circle"></i>&nbsp;&nbsp;<?php echo $message;  ?></strong>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
@@ -91,10 +91,30 @@
                       <td class="text-right">
                         
                         <a title="Editar" href="<?php echo base_url('usuarios/edit/'.$user->id); ?>" class="btn btn-sm btn-primary"><i class="fas fa-user-plus"></i></a>
-                        <a title="Excluir" href="<?php echo base_url('usuarios/del/'.$user->id); ?>" class="btn btn-sm btn-danger"><i class="fas fa-user-times"></i></a>
+                        <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#user-<?php echo $user->id; ?>" class="btn btn-sm btn-danger"><i class="fas fa-user-times"></i></a>
                       </td>
 
                     </tr>
+                    <!-- Codigo que chama o Modal(Tela pergunta se o usuário tem certeza que deseja excluir)-->
+                      <div class="modal fade" id="user-<?php echo $user->id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Tem certeza que deseja excluir este usuário?</h5>
+                              <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">Para excluir este usuário clique em <strong>"Sim"</strong></div>
+                            <div class="modal-footer">
+                              <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Não</button>
+                              <a class="btn btn-danger btn-sm" href="<?php echo base_url('usuarios/del/'.$user->id);?>">Sim</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+
                     <?php endforeach; ?>
 
                   </tbody>
