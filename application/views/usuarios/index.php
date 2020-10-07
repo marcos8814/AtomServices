@@ -19,7 +19,7 @@
                 <li class="breadcrumb-item active" aria-current="page"><?php  echo $titulo; ?></li>
            </ol>
         </nav>
-
+              <!-- o codigo abaixo mostra a menssagem de sucesso!  -->
          <?php if($message = $this->session->flashdata('sucesso')): ?>
 
           <div class="row">
@@ -39,7 +39,7 @@
           </div>
 
         <?php endif; ?>
-
+              <!-- o codigo abaixo mostra a menssagem de erro! -->
         <?php if($message = $this->session->flashdata('error')): ?>
 
           <div class="row">

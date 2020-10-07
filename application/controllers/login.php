@@ -6,8 +6,25 @@
    	  
    	  public function index(){
 
-   	    $this->load->view('layout/header');
-   	  	$this->load->view('login/index');
+       // [email] => marcos.svmota@gmail.com
+        //[password] => 12345
+           
+   	      
+   	  	    $identity = $this->security->xss_clean($this->input->post('email'));
+		    $password = $this->security->xss_clean($this->input->post('password'));
+		    $remember = FALSE; // remember the user
+		    if ($this->ion_auth->login($identity, $password, $remember)) {
+		    	redirect('home');
+		    }else{
+		    	 
+		    	$this->session->set_flashdata('error','e-mail ou senha invalido!');
+               
+		   	    $this->load->view('layout/header');
+		   	  	$this->load->view('login/index');
+		   	  	$this->load->view('layout/footer');
+
+		    }
+
    	  }
    
    } 
