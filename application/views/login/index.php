@@ -15,7 +15,8 @@
               
               <div class="col-lg-12">
                          <!-- o codigo abaixo mostra a menssagem de erro! -->
-                <?php if($message = $this->session->flashdata('error')): ?>
+               
+                <div class="p-5"> <?php if($message = $this->session->flashdata('error')): ?>
 
                   <div class="row">
                    
@@ -33,7 +34,25 @@
                   </div>
 
                 <?php endif; ?>
-                <div class="p-5">
+
+                 <?php if($message = $this->session->flashdata('info')): ?>
+
+                  <div class="row">
+                   
+                     <div class="col-md-12">
+
+                      <div class="alert alert-info alert-dismissible fade show" role="alert">
+                        <strong><i class="fas fa-exclamation-circle"></i>&nbsp;&nbsp;<?php echo $message;  ?></strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                       
+                     </div> 
+
+                  </div>
+
+                <?php endif; ?>
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Seja bem vindo!</h1>
                   </div>

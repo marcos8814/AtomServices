@@ -7,7 +7,10 @@
   	 public function __construct(){
   		parent::__construct();
 
-      //Definir se ha sessão
+      if (!$this->ion_auth->logged_in()){
+             $this->session->set_flashdata('info','Sua sessão expirou!');
+             redirect('login');
+          }
 
   	}
 
