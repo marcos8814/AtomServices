@@ -63,7 +63,7 @@
                      <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">           <!-- o codigo em php abaixo carrega ação do btn -->
-              <a title="Cadastrar novo usuário"href="<?php echo base_url('usuarios/add'); ?>" class="btn btn-success btn-sm float-right"><i class="fas fa-user-plus"></i>&nbsp;Novo</a>
+              <a title="Cadastrar novo cliente"href="<?php echo base_url('clientes/add'); ?>" class="btn btn-success btn-sm float-right"><i class="fas fa-user-tie"></i></i>&nbsp;Novo</a>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -71,44 +71,44 @@
                   <thead>
                     <tr>
                       <th>#</th>
-                      <th>Usuário</th>
-                      <th>Login</th>
-                      <th>Perfil</th>
+                      <th>Nome</th>
+                      <th>CPF/CNPJ</th>
+                      <th>Tipo Cliente</th>
                       <th class="text-center">Ativo</th>
                       <th class="text-right no-sort pr-2">Ações</th>
                     </tr>
                   </thead>
                  
                   <tbody>
-                    <?php foreach ($usuarios as $user): ?>
+                    <?php foreach ($clientes as $cliente): ?>
                     <tr>
-                      <td> <?php echo $user->id ?></td>
-                      <td> <?php echo $user->username ?></td>
-                      <td> <?php echo $user->email ?></td>
-                      <td> <?php echo ($this->ion_auth->is_admin($user->id) ? 'Administrador' : 'Vendedor' );?></td>
-                      <td class="text-center pr-4"> <?php echo ($user->active == 1 ? '<span class="badge badge-info btn-sm">Sim</span>' : '<span class="badge badge-danger btn-sm">Não</span>') ?>
+                      <td> <?php echo $cliente->cliente_id ?></td>
+                      <td> <?php echo $cliente->cliente_nome ?></td>
+                      <td> <?php echo $cliente->cliente_cpf_cnpj ?></td>
+                      <td> <?php echo ($cliente->cliente_tipo == 1 ? 'Pessoa física' : 'Pessoa jurídica') ?></td>
+                      <td class="text-center pr-4"> <?php echo ($cliente->cliente_ativo == 1 ? '<span class="badge badge-info btn-sm">Sim</span>' : '<span class="badge badge-danger btn-sm">Não</span>') ?>
                       </td> <!-- o codigo acima colocar um campo sim para ativo em cor azul e não para não ativo em cor vermelho, e colocar o campo ATIVO centralizado com o campo abaixo-->
                       <td class="text-right">
                         
-                        <a title="Editar" href="<?php echo base_url('usuarios/edit/'.$user->id); ?>" class="btn btn-sm btn-primary"><i class="fas fa-user-plus"></i></a>
-                        <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#user-<?php echo $user->id; ?>" class="btn btn-sm btn-danger"><i class="fas fa-user-times"></i></a>
+                        <a title="Editar" href="<?php echo base_url('clientes/edit/'.$cliente->cliente_id); ?>" class="btn btn-sm btn-primary"><i class="fas fa-user-plus"></i></a>
+                        <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#cliente-<?php echo $cliente->cliente_id; ?>" class="btn btn-sm btn-danger"><i class="fas fa-user-times"></i></a>
                       </td>
 
                     </tr>
                     <!-- Codigo que chama o Modal(Tela pergunta se o usuário tem certeza que deseja excluir)-->
-                      <div class="modal fade" id="user-<?php echo $user->id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal fade" id="cliente-<?php echo $cliente->cliente_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                           <div class="modal-content">
                             <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel">Tem certeza que deseja excluir este usuário?</h5>
+                              <h5 class="modal-title" id="exampleModalLabel">Tem certeza que deseja excluir este cliente?</h5>
                               <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">×</span>
                               </button>
                             </div>
-                            <div class="modal-body">Para excluir este usuário clique em <strong>"Sim"</strong></div>
+                            <div class="modal-body">Para excluir este cliente clique em <strong>"Sim"</strong></div>
                             <div class="modal-footer">
                               <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Não</button>
-                              <a class="btn btn-danger btn-sm" href="<?php echo base_url('usuarios/del/'.$user->id);?>">Sim</a>
+                              <a class="btn btn-danger btn-sm" href="<?php echo base_url('clientes/del/'.$cliente->cliente_id);?>">Sim</a>
                             </div>
                           </div>
                         </div>

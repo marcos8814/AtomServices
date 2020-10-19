@@ -13,7 +13,8 @@
                   	 $this->session->set_flashdata('info','Sua sessão expirou!');
 			       redirect('login');
 			    }
-  
+      
+         
 
 		   	}
 
@@ -88,7 +89,7 @@
                        'sistema_estado',
                        'sistema_txt_ordem_servico',
                        ), $this->input->post()
-				    );
+				       );
 
 
                   $data = html_escape($data);
@@ -99,14 +100,15 @@
 
             }else{
 
-         //Erro de validação
+               //Erro de validação
 
              $this->load->view('layout/header', $data);
              $this->load->view('sistema/index');
              $this->load->view('layout/footer');
 		   	
-            }
-        }
-
-    }
+              }
+            
+          }
+      
+      }
 ?>
