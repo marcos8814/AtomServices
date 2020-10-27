@@ -25,6 +25,8 @@
             <div class="card-body">
              <!--back end  -->
             <form class="user" method="POST" name="form_edit"> <!--metodo post reponsavel por proteger campo da url -->
+              <p><strong><i class="fas fa-user-clock"></i>&nbsp;&nbsp;Útima Alteração: </strong><?php echo formata_data_banco_com_hora( $cliente->cliente_data_alteracao);?></p>:
+
               <!--O codigo abaixo moldura dos dados pessoais   -->
                <fieldset class="mt-4 border p-2">          
                      <!--O codigo abaixo se refere os iconis dos dados pessoais -->
@@ -32,14 +34,14 @@
 
 
                   <div class="form-group row"> <!--altera o tamanho do campo nome  -->
-                       <div class="col-md-5"> 
+                       <div class="col-md-3"> 
                          <label>Nome *</label>
                             <input type="text" class="form-control form-control-user" name="cliente_nome" placeholder="Nome do cliente " value="<?php echo $cliente->cliente_nome; ?>"> <!--first_name é o nome do campo da tabela que esta no banco de dados  -->
                             <?php echo form_error('cliente_nome','<small class="form-text text-danger">','</small>'); ?>
                              <!-- O codigo verifica se o campo obirgatorio esta preechido-->
                       </div>
 
-                      <div class="col-md-5"> 
+                      <div class="col-md-6"> 
                          <label>Sobrenome *</label>
                             <input type="text" class="form-control form-control-user" name="cliente_sobrenome" placeholder="Sobrenome do clinte" value="<?php echo $cliente->cliente_sobrenome; ?>"> <!--last_name é o sobrenome do campo da tabela que esta no banco de dados  -->
                             <?php echo form_error('cliente_sobrenome','<small class="form-text text-danger">','</small>'); ?>
@@ -47,9 +49,9 @@
 
                       </div>
 
-                      <div class="col-md-2"> 
+                      <div class="col-md-3"> 
                        <label>Data de Nascimento</label>
-                          <input type="date" class="form-control form-control-user " name="cliente_data_nascimento"value="<?php echo $cliente->cliente_data_nascimento; ?>"> <!--email é o nome do campo da tabela que esta no banco de dados  -->
+                          <input type="date" class="form-control form-control-user-date " name="cliente_data_nascimento"value="<?php echo $cliente->cliente_data_nascimento; ?>"> <!--email é o nome do campo da tabela que esta no banco de dados  -->
                           <?php echo form_error('cliente_data_nascimento','<small class="form-text text-danger">','</small>'); ?>
                            <!-- O codigo verifica se o campo obirgatorio esta preechido-->
                     </div>
@@ -177,7 +179,7 @@
                    <div class="col-md-2"> 
                        <label>Cliente ativo</label>
                         
-                       <select class="form-control" name="cliente_ativo">
+                       <select class="custom-select" name="cliente_ativo">
                          <option value="0"<?php echo ($cliente->cliente_ativo == 0) ?'selected' :'' ?>>Não</option>
                          <!-- o codigo acima verifica no banco de dados se a opção esta ativo ou não -->
                          <option value="1"<?php echo ($cliente->cliente_ativo == 1) ?'selected' :'' ?>>Sim</option>
