@@ -63,15 +63,26 @@
                 <div class="form-group row">
                   
                   <div class="col-md-3"> 
-                         <label>CPF ou CNPJ*</label>
-                            <input type="text" class="form-control form-control-user cnpj" name="cliente_cpf_cnpj" placeholder="CPF ou CNPJ" value="<?php echo $cliente->cliente_cpf_cnpj; ?>"> <!--email é o nome do campo da tabela que esta no banco de dados  -->
+                         <?php if($cliente->cliente_tipo == 1): ?>
+                            <label>CPF</label>
+                         <?php else: ?>
+                            <label>CNPJ</label>
+                         <?php endif;  ?>   
+                        
+                            <input type="text" class="form-control form-control-user cpf" name="cliente_cpf_cnpj" placeholder="<?php echo ($cliente->cliente_tipo == 1 ? 'CPF do cliente' : 'CNPJ do cliente')  ?>" value="<?php echo $cliente->cliente_cpf_cnpj; ?>"> <!--email é o nome do campo da tabela que esta no banco de dados  -->
                             <?php echo form_error('cliente_cpf_cnpj','<small class="form-text text-danger">','</small>'); ?>
                              <!-- O codigo verifica se o campo obirgatorio esta preechido-->
                       </div>
 
                        <div class="col-md-3"> 
-                         <label>RG ou I.E*</label>
-                            <input type="text" class="form-control form-control-user" name="cliente_rg_ie" placeholder="RG ou I>E" value="<?php echo $cliente->cliente_rg_ie; ?>"> <!--email é o nome do campo da tabela que esta no banco de dados  -->
+
+                         <?php if($cliente->cliente_tipo == 1): ?>
+                            <label>RG</label>
+                         <?php else: ?>
+                            <label>Inscrição Estadual</label>
+                         <?php endif;  ?>  
+                        
+                            <input type="text" class="form-control form-control-user" name="cliente_rg_ie" placeholder="<?php echo ($cliente->cliente_tipo == 1 ? 'RG do cliente' : 'I.E do cliente')  ?>" value="<?php echo $cliente->cliente_rg_ie; ?>"> <!--email é o nome do campo da tabela que esta no banco de dados  -->
                             <?php echo form_error('cliente_rg_ie','<small class="form-text text-danger">','</small>'); ?>
                              <!-- O codigo verifica se o campo obirgatorio esta preechido-->
                       </div>
