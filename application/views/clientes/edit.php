@@ -65,13 +65,17 @@
                   <div class="col-md-3"> 
                          <?php if($cliente->cliente_tipo == 1): ?>
                             <label>CPF</label>
+                             <input type="text" class="form-control form-control-user cpf" name="cliente_cpf" placeholder="<?php echo ($cliente->cliente_tipo == 1 ? 'CPF do cliente' : 'CNPJ do cliente')  ?>" value="<?php echo $cliente->cliente_cpf_cnpj; ?>"> <!--email é o nome do campo da tabela que esta no banco de dados  -->
+                            <?php echo form_error('cliente_cpf','<small class="form-text text-danger">','</small>'); ?>
+                             <!-- O codigo verifica se o campo obirgatorio esta preechido-->
                          <?php else: ?>
                             <label>CNPJ</label>
+                             <input type="text" class="form-control form-control-user cnpj" name="cliente_cnpj" placeholder="<?php echo ($cliente->cliente_tipo == 1 ? 'CPF do cliente' : 'CNPJ do cliente')  ?>" value="<?php echo $cliente->cliente_cpf_cnpj; ?>"> <!--email é o nome do campo da tabela que esta no banco de dados  -->
+                            <?php echo form_error('cliente_cnpj','<small class="form-text text-danger">','</small>'); ?>
+                             <!-- O codigo verifica se o campo obirgatorio esta preechido-->
                          <?php endif;  ?>   
                         
-                            <input type="text" class="form-control form-control-user cpf" name="cliente_cpf_cnpj" placeholder="<?php echo ($cliente->cliente_tipo == 1 ? 'CPF do cliente' : 'CNPJ do cliente')  ?>" value="<?php echo $cliente->cliente_cpf_cnpj; ?>"> <!--email é o nome do campo da tabela que esta no banco de dados  -->
-                            <?php echo form_error('cliente_cpf_cnpj','<small class="form-text text-danger">','</small>'); ?>
-                             <!-- O codigo verifica se o campo obirgatorio esta preechido-->
+                           
                       </div>
 
                        <div class="col-md-3"> 
@@ -127,7 +131,7 @@
 
                      <div class="col-md-5"> 
                        <label>Endereço *</label>
-                          <input type="email" class="form-control form-control-user" name="cliente_endereco" placeholder="Endereço do cliente" value="<?php echo $cliente->cliente_endereco; ?>"> <!--first_name é o nome do campo da tabela que esta no banco de dados  -->
+                          <input type="text" class="form-control form-control-user" name="cliente_endereco" placeholder="Endereço do cliente" value="<?php echo $cliente->cliente_endereco; ?>"> <!--first_name é o nome do campo da tabela que esta no banco de dados  -->
                           <?php echo form_error('cliente_endereco','<small class="form-text text-danger">','</small>'); ?>
                            <!-- O codigo verifica se o campo obirgatorio esta preechido-->
                     </div>
@@ -167,14 +171,14 @@
 
                      <div class="col-md-4"> 
                        <label>Cidade*</label>
-                          <input type="text" class="form-control form-control-user" name="cliente_cidade" placeholder="Endereço do cliente" value="<?php echo $cliente->cliente_cidade; ?>"> <!--first_name é o nome do campo da tabela que esta no banco de dados  -->
+                          <input type="text" class="form-control form-control-user" name="cliente_cidade" placeholder="Endereço do cliente" value="<?php echo $cliente->cliente_cidade; ?>"> <!--cliente_cidade é o nome do campo da tabela que esta no banco de dados  -->
                           <?php echo form_error('cliente_cidade','<small class="form-text text-danger">','</small>'); ?>
                            <!-- O codigo verifica se o campo obirgatorio esta preechido-->
                     </div>
 
                     <div class="col-md-1"> 
                        <label>UF</label>
-                          <input type="text" class="form-control form-control-user uf" name="cliente_estado" placeholder="UF" value="<?php echo $cliente->cliente_estado; ?>"> <!--last_name é o sobrenome do campo da tabela que esta no banco de dados  -->
+                          <input type="text" class="form-control form-control-user uf" name="cliente_estado" placeholder="UF" value="<?php echo $cliente->cliente_estado; ?>"> <!--cliente_estado é o sobrenome do campo da tabela que esta no banco de dados  -->
                           <?php echo form_error('cliente_estado','<small class="form-text text-danger">','</small>'); ?>
                            <!-- O codigo verifica se o campo obirgatorio esta preechido-->
 
