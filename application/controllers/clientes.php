@@ -111,9 +111,41 @@
             [cliente_tipo] => 2
             [cliente_id] => 1
              */
-              //echo '<pre>';
-              //print_r($this->input->post());
-              //exit();
+            $data = elements(
+              array(
+                'cliente_nome',
+                'cliente_sobrenome',
+                'cliente_data_nascimento',
+                'cliente_rg_ie',
+                'cliente_email',
+                'cliente_telefone',
+                'cliente_celular',
+                'cliente_endereco',
+                'cliente_numero_endereco',
+                'cliente_bairro',
+                'cliente_cep',
+                'cliente_cidade',
+                'cliente_estado',
+                'cliente_ativo',
+                'cliente_obs',
+                'cliente_tipo',
+              ),$this->input->post()
+            );
+            if ($cliente_tipo == 1) {
+              
+               $data['cliente_cpf_cnpj'] = $this->input->post('cliente_cpf');
+            
+            }else{
+              
+               $data['cliente_cpf_cnpj'] = $this->input->post('cliente_cnpj');
+              //o campo abaixo coloca a sigla dos estado maiuscula no banco de dados. 
+            } $data['cliente_estado'] = strtoupper($this->input->post('cliente_estado'));
+              
+             $data = html_escape($data);
+
+             $this->core_model->update('clientes', $data, array('cliente_id'=> $cliente_id));
+
+             redirect('clientes');
 
              }else{
              	//erro de validação
