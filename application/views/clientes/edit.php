@@ -70,7 +70,7 @@
                              <!-- O codigo verifica se o campo obirgatorio esta preechido-->
                          <?php else: ?>
                             <label>CNPJ</label>
-                             <input type="text" class="form-control form-control-user cnpj" name="cliente_cnpj" placeholder="<?php echo ($cliente->cliente_tipo == 1 ? 'CPF do cliente' : 'CNPJ do cliente')  ?>" value="<?php echo $cliente->cliente_cpf_cnpj; ?>"> <!--email é o nome do campo da tabela que esta no banco de dados  -->
+                             <input type="text" class="form-control form-control-user cnpj" name="cliente_cnpj" placeholder="<?php echo ($cliente->cliente_tipo == 2 ? 'CNPJ do cliente' : 'CNPJ do cliente')  ?>" value="<?php echo $cliente->cliente_cpf_cnpj; ?>"> <!--email é o nome do campo da tabela que esta no banco de dados  -->
                             <?php echo form_error('cliente_cnpj','<small class="form-text text-danger">','</small>'); ?>
                              <!-- O codigo verifica se o campo obirgatorio esta preechido-->
                          <?php endif;  ?>   
