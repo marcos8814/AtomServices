@@ -83,7 +83,7 @@
      <div class="form-group row">
       <div class="col-md-4"> 
        <label>Telefone Movel </label>
-       <input type="text" class="form-control form-control-user sp_celphones" name="Telefone Movel" placeholder="Telefone Movel" value="<?php echo $fornecedor->fornecedor_celular; ?>"> <!--last_name é o sobrenome do campo da tabela que esta no banco de dados  -->
+       <input type="text" class="form-control form-control-user sp_celphones" name="fornecedor_celular" placeholder="Telefone Movel" value="<?php echo $fornecedor->fornecedor_celular; ?>"> <!--last_name é o sobrenome do campo da tabela que esta no banco de dados  -->
        <?php echo form_error('fornecedor_celular','<small class="form-text text-danger">','</small>'); ?>
        <!-- O codigo verifica se o campo obirgatorio esta preechido-->
 
