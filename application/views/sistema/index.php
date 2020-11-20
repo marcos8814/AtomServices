@@ -124,7 +124,7 @@
 
                          <div class="col-md-3"> 
                            <label>E-mail do contato*</label>
-                              <input type="email" class="form-control form-control-user" name="sistema_email" placeholder="CNPJ " value="<?php echo $sistema->sistema_email; ?>"> <!--email é o nome do campo da tabela que esta no banco de dados  -->
+                              <input type="email" class="form-control form-control-user" name="sistema_email" placeholder="E-mail do contato " value="<?php echo $sistema->sistema_email; ?>"> <!--email é o nome do campo da tabela que esta no banco de dados  -->
                               <?php echo form_error('sistema_email','<small class="form-text text-danger">','</small>'); ?>
                                <!-- O codigo verifica se o campo obirgatorio esta preechido-->
                         </div>
@@ -148,7 +148,7 @@
                             </div>
 
                             <div class="col-md-2"> 
-                               <label>Numero*</label>
+                               <label>Numero</label>
                                   <input type="text" class="form-control form-control-user" name="sistema_numero" placeholder="Numero" value="<?php echo $sistema->sistema_numero; ?>"> <!--email é o nome do campo da tabela que esta no banco de dados  -->
                                   <?php echo form_error('sistema_numero','<small class="form-text text-danger">','</small>'); ?>
                                    <!-- O codigo verifica se o campo obirgatorio esta preechido-->
@@ -171,7 +171,7 @@
                   <div class="form-group row mb-3">
                           <!--altera o tamanho do campo nome  -->
                              <div class="col-md-12"> 
-                               <label>Texto de ordem de serviço*</label>
+                               <label>Texto de ordem de serviço</label>
                                   <textarea class="form-control form-control-user" name="sistema_txt_ordem_servico" placeholder="Texto de ordem de serviço e venda"><?php echo $sistema->sistema_txt_ordem_servico;?></textarea>  <!--first_name é o nome do campo da tabela que esta no banco de dados  -->
                                   <?php echo form_error('sistema_txt_ordem_servico','<small class="form-text text-danger">','</small>'); ?>
                                    <!-- O codigo verifica se o campo obirgatorio esta preechido-->

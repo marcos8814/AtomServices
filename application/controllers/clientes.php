@@ -195,26 +195,7 @@
              if ($this->form_validation->run()) {
             
              
-            /**[cliente_nome] => Maria
-            [cliente_sobrenome] => Alencar
-            [cliente_data_nascimento] => 2009-05-01
-            [cliente_cnpj] => 12.086.699/0771-37
-            [cliente_rg_ie] => 38.462.656-4
-            [cliente_email] => maria@gmail.com
-            [cliente_telefone] => (92) 3344-9546
-            [cliente_celular] => (92) 98814-3547
-            [cliente_endereco] => rua das palmeiras
-            [cliente_numero_endereco] => 33
-            [cliente_complemento] => 
-            [cliente_bairro] => são jose 3
-            [cliente_cep] => 69000-000
-            [cliente_cidade] => manaus
-            [cliente_estado] => am
-            [cliente_ativo] => 0
-            [cliente_obs] => Até aqui nos ajudou o senhor!!!
-            [cliente_tipo] => 2
-            [cliente_id] => 1
-             */
+    
             $data = elements(
               array(
                 'cliente_nome',
@@ -265,9 +246,7 @@
               'cliente' => $this->core_model->get_by_id('clientes', array('cliente_id' => $cliente_id)),
   		      );
 
-  		       // echo'<pre>';
-  		        //print_r($data['cliente']);
-  		        //exit();
+  		       
 
         	     $this->load->view('layout/header', $data);	
         	     $this->load->view('clientes/edit');	

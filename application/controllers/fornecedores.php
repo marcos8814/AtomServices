@@ -33,44 +33,124 @@ public function index(){
    'fornecedores'=> $this->core_model->get_all('fornecedores'),
  );
 
-        		        //echo'<pre>';
-        		        //print_r($data['fornecedores']);
-        		        //exit();
+
 
   $this->load->view('layout/header', $data);	
   $this->load->view('fornecedores/index');	
   $this->load->view('layout/footer');	
+
+
+}
+
+public function add(){
+
+  $this->form_validation->set_rules('fornecedor_razao','','trim|required|max_length[200]|is_unique[fornecedores.fornecedor_razao]');
+  $this->form_validation->set_rules('fornecedor_nome_fantasia','','trim|required|max_length[145]|is_unique[fornecedores.fornecedor_nome_fantasia]');
+
+  $this->form_validation->set_rules('fornecedor_cnpj','','trim|required|exact_length[18]|is_unique[fornecedores.fornecedor_cnpj]|callback_valida_cnpj');
+
+  $this->form_validation->set_rules('fornecedor_ie','','trim|required|max_length[20]|is_unique[fornecedores.fornecedor_ie]');
+
+
+  $this->form_validation->set_rules('fornecedor_email','','trim|required|valid_email|max_length[50]|is_unique[fornecedores.fornecedor_email]');
+
+  $this->form_validation->set_rules('fornecedor_telefone','','trim|required|max_length[14] |is_unique[fornecedores.fornecedor_telefone]');
+
+  $this->form_validation->set_rules('fornecedor_celular','','trim|required|max_length[16]|is_unique[fornecedores.fornecedor_celular]');
+  $this->form_validation->set_rules('fornecedor_cep','','trim|required|exact_length[9]');
+  $this->form_validation->set_rules('fornecedor_endereco','','trim|required|max_length[155]');
+  $this->form_validation->set_rules('fornecedor_numero_endereco','','trim|max_length[20]');
+  $this->form_validation->set_rules('fornecedor_bairro','','trim|required|max_length[45]');
+  $this->form_validation->set_rules('fornecedor_complemento','','trim|max_length[145]');
+  $this->form_validation->set_rules('fornecedor_cidade','','trim|required|max_length[50]');
+  $this->form_validation->set_rules('fornecedor_estado','','trim|required|exact_length[2]');
+  $this->form_validation->set_rules('fornecedor_obs','','max_length[500]');
+
+
+         //inicio do codigo Update para fazer alteração nos campos abaixo
+  if ($this->form_validation->run()) {
+
+   $data = elements(
+    array(
+      'fornecedor_razao',
+      'fornecedor_nome_fantasia',
+      'fornecedor_cnpj',
+      'fornecedor_ie',
+      'fornecedor_email',
+      'fornecedor_telefone',
+      'fornecedor_celular',
+      'fornecedor_endereco',
+      'fornecedor_numero_endereco',
+      'fornecedor_complemento',
+      'fornecedor_bairro',
+      'fornecedor_cep',
+      'fornecedor_cidade',
+      'fornecedor_estado',
+      'fornecedor_ativo',
+      'fornecedor_obs',
+
+    ),$this->input->post()
+  );
+   $data['fornecedor_estado'] = strtoupper($this->input->post('fornecedor_estado'));
+
+   $data = html_escape($data);
+
+   $this->core_model->insert('fornecedores', $data, array('fornecedor_id'=> $fornecedor_id));
+
+   redirect('fornecedores');
+             //fim do codigo 
+
+
+ }else{
+                      // Erro de validação
+
+  $data = array(
+
+   'titulo'=>'Cadastrar fornecedor',
+
+   'scripts'=> array(
+    'vendor/mask/jquery.mask.min.js',
+    'vendor/mask/app.js',
+  ),
+
+
+ );
+
+
+  $this->load->view('layout/header', $data);  
+  $this->load->view('fornecedores/add'); 
+  $this->load->view('layout/footer');
 }
          //o codigo abaixo verifica se o fornecedor se encontra cadastrado no banco de dados 
-        // caso não esteja ele envia uma messagem de erro .
-public function edit($fornecedor_id = NULL){
+ }       // caso não esteja ele envia uma messagem de erro .
+ public function edit($fornecedor_id = NULL){
         if (!$fornecedor_id || !$this->core_model->get_by_id('fornecedores', array('fornecedor_id' => $fornecedor_id))) {
           $this->session->set_flashdata('error', 'Fornecedor não encontrado');
           redirect('fornecedores');
        }else{
 
 
-  $this->form_validation->set_rules('fornecedor_razao','','trim|required|max_length[200]|callback_check_razao_social');
-   $this->form_validation->set_rules('fornecedor_nome_fantasia','','trim|required|max_length[145]|callback_check_nome_fantasia');
+              $this->form_validation->set_rules('fornecedor_razao','','trim|required|max_length[200]|callback_check_razao_social');
+               $this->form_validation->set_rules('fornecedor_nome_fantasia','','trim|required|max_length[145]|callback_check_nome_fantasia');
 
-   $this->form_validation->set_rules('fornecedor_cnpj','','trim|required|exact_length[18]|callback_valida_cnpj');
+               $this->form_validation->set_rules('fornecedor_cnpj','','trim|required|exact_length[18]|callback_valida_cnpj');
 
-   $this->form_validation->set_rules('fornecedor_ie','','trim|required|max_length[20]|callback_check_ie');
+               $this->form_validation->set_rules('fornecedor_ie','','trim|required|max_length[20]|callback_check_ie');
 
 
-   $this->form_validation->set_rules('fornecedor_email','','trim|required|valid_email|max_length[50]|callback_check_email');
+               $this->form_validation->set_rules('fornecedor_email','','trim|required|valid_email|max_length[50]|callback_check_email');
 
-   $this->form_validation->set_rules('fornecedor_telefone','','trim|required|max_length[14] |callback_check_fornecedor_telefone');
+               $this->form_validation->set_rules('fornecedor_telefone','','trim|required|max_length[14] |callback_check_fornecedor_telefone');
 
-   $this->form_validation->set_rules('fornecedor_celular','','trim|required|max_length[16]|callback_check_fornecedor_celular');
-   $this->form_validation->set_rules('fornecedor_cep','','trim|required|exact_length[9]');
-   $this->form_validation->set_rules('fornecedor_endereco','','trim|required|max_length[155]');
-   $this->form_validation->set_rules('fornecedor_numero_endereco','','trim|max_length[20]');
-   $this->form_validation->set_rules('fornecedor_bairro','','trim|required|max_length[45]');
-   $this->form_validation->set_rules('fornecedor_complemento','','trim|max_length[145]');
-   $this->form_validation->set_rules('fornecedor_cidade','','trim|required|max_length[50]');
-   $this->form_validation->set_rules('fornecedor_estado','','trim|required|exact_length[2]');
-   $this->form_validation->set_rules('fornecedor_obs','','max_length[500]');
+               $this->form_validation->set_rules('fornecedor_celular','','trim|required|max_length[16]|callback_check_fornecedor_celular');
+               $this->form_validation->set_rules('fornecedor_cep','','trim|required|exact_length[9]');
+               $this->form_validation->set_rules('fornecedor_endereco','','trim|required|max_length[155]');
+               $this->form_validation->set_rules('fornecedor_numero_endereco','','trim|max_length[20]');
+               $this->form_validation->set_rules('fornecedor_bairro','','trim|required|max_length[45]');
+               $this->form_validation->set_rules('fornecedor_complemento','','trim|max_length[145]');
+               $this->form_validation->set_rules('fornecedor_cidade','','trim|required|max_length[50]');
+               $this->form_validation->set_rules('fornecedor_estado','','trim|required|exact_length[2]');
+               $this->form_validation->set_rules('fornecedor_obs','','max_length[500]');
 
 
        if ($this->form_validation->run()) {
@@ -93,11 +173,11 @@ public function edit($fornecedor_id = NULL){
                 'fornecedor_estado',
                 'fornecedor_ativo',
                 'fornecedor_obs',
-               
+
               ),$this->input->post()
             );
            $data['fornecedor_estado'] = strtoupper($this->input->post('fornecedor_estado'));
-              
+
              $data = html_escape($data);
 
              $this->core_model->update('fornecedores', $data, array('fornecedor_id'=> $fornecedor_id));
@@ -129,141 +209,140 @@ public function edit($fornecedor_id = NULL){
 
 
       }
-    }
+    }    //o codigo abaixo verifica se o campo preenchido e valido e unico.
+public function check_nome_fantasia($fornecedor_nome_fantasia){
+ $fornecedor_id = $this->input->post('fornecedor_id');
+
+ if($this->core_model->get_by_id('fornecedores', array ('fornecedor_nome_fantasia'=> $fornecedor_nome_fantasia,'fornecedor_id !=' => $fornecedor_id))){
+   $this->form_validation->set_message('check_nome_fantasia','Este nome fantasia ja existe');
+   return FALSE;
+ }else{
+  return TRUE;
+
+}
+
+}    
+
     //o codigo abaixo verifica se o campo preenchido e valido e unico.
-     public function check_nome_fantasia($fornecedor_nome_fantasia){
-               $fornecedor_id = $this->input->post('fornecedor_id');
+public function check_razao_social($fornecedor_razao){
+ $fornecedor_id = $this->input->post('fornecedor_id');
 
-               if($this->core_model->get_by_id('fornecedores', array ('fornecedor_nome_fantasia'=> $fornecedor_nome_fantasia,'fornecedor_id !=' => $fornecedor_id))){
-                 $this->form_validation->set_message('check_nome_fantasia','Este nome fantasia ja existe');
-                return FALSE;
-               }else{
-                return TRUE;
+ if($this->core_model->get_by_id('fornecedores', array ('fornecedor_razao'=> $fornecedor_razao,'fornecedor_id !=' => $fornecedor_id))){
+   $this->form_validation->set_message('check_razao_social','Esta razão social ja existe');
+   return FALSE;
+ }else{
+  return TRUE;
 
-               }
-               
-      }    
+}
 
-    //o codigo abaixo verifica se o campo preenchido e valido e unico.
-     public function check_razao_social($fornecedor_razao){
-               $fornecedor_id = $this->input->post('fornecedor_id');
-
-               if($this->core_model->get_by_id('fornecedores', array ('fornecedor_razao'=> $fornecedor_razao,'fornecedor_id !=' => $fornecedor_id))){
-                 $this->form_validation->set_message('check_razao_social','Esta razão social ja existe');
-                return FALSE;
-               }else{
-                return TRUE;
-
-               }
-               
-      }         
+}         
      //o codigo abaixo verifica se o campo preenchido e valido e unico.          
-    public function check_ie($fornecedor_ie){
-               $fornecedor_id = $this->input->post('fornecedor_id');
+public function check_ie($fornecedor_ie){
+ $fornecedor_id = $this->input->post('fornecedor_id');
 
-               if($this->core_model->get_by_id('fornecedores', array ('fornecedor_ie'=> $fornecedor_ie,'fornecedor_id !=' => $fornecedor_id))){
-                 $this->form_validation->set_message('check_ie','Esta inscrição estadual já existe');
-                return FALSE;
-               }else{
-                return TRUE;
+ if($this->core_model->get_by_id('fornecedores', array ('fornecedor_ie'=> $fornecedor_ie,'fornecedor_id !=' => $fornecedor_id))){
+   $this->form_validation->set_message('check_ie','Esta inscrição estadual já existe');
+   return FALSE;
+ }else{
+  return TRUE;
 
-               }
-    }
+}
+}
     //o codigo abaixo verifica se o campo preenchido e valido e unico.
-    public function check_email($fornecedor_email){
-                 $fornecedor_id = $this->input->post('fornecedor_id');
+public function check_email($fornecedor_email){
+ $fornecedor_id = $this->input->post('fornecedor_id');
 
-                 if($this->core_model->get_by_id('fornecedores', array ('fornecedor_email'=> $fornecedor_email,'fornecedor_id!=' => $fornecedor_id))){
-                   $this->form_validation->set_message('check_email','Esse email já exite');
-                  return FALSE;
-                 }else{
-                  return TRUE;
+ if($this->core_model->get_by_id('fornecedores', array ('fornecedor_email'=> $fornecedor_email,'fornecedor_id!=' => $fornecedor_id))){
+   $this->form_validation->set_message('check_email','Esse email já exite');
+   return FALSE;
+ }else{
+  return TRUE;
 
-                 }
-             }
+}
+}
      //o codigo abaixo verifica se o campo preenchido e valido e unico.        
-    public function check_fornecedor_telefone($fornecedor_telefone){
-                 $fornecedor_id = $this->input->post('fornecedor_id');
+public function check_fornecedor_telefone($fornecedor_telefone){
+ $fornecedor_id = $this->input->post('fornecedor_id');
 
-                 if($this->core_model->get_by_id('fornecedores', array ('fornecedor_telefone'=> $fornecedor_telefone,'fornecedor_id!=' => $fornecedor_id))){
-                   $this->form_validation->set_message('check_fornecedor_telefone','Esse telefone já existe');
-                  return FALSE;
-                 }else{
-                  return TRUE;
+ if($this->core_model->get_by_id('fornecedores', array ('fornecedor_telefone'=> $fornecedor_telefone,'fornecedor_id!=' => $fornecedor_id))){
+   $this->form_validation->set_message('check_fornecedor_telefone','Esse telefone já existe');
+   return FALSE;
+ }else{
+  return TRUE;
 
-                 }
-             }
+}
+}
 
     //o codigo abaixo verifica se o campo preenchido e valido e unico.        
-    public function check_fornecedor_celular($fornecedor_celular){
-                 $fornecedor_id = $this->input->post('fornecedor_id');
+public function check_fornecedor_celular($fornecedor_celular){
+ $fornecedor_id = $this->input->post('fornecedor_id');
 
-                 if($this->core_model->get_by_id('fornecedores', array ('fornecedor_celular'=> $fornecedor_celular,'fornecedor_id!=' => $fornecedor_id))){
-                   $this->form_validation->set_message('check_fornecedor_telefone','Esse telefone já existe');
-                  return FALSE;
-                 }else{
-                  return TRUE;
+ if($this->core_model->get_by_id('fornecedores', array ('fornecedor_celular'=> $fornecedor_celular,'fornecedor_id!=' => $fornecedor_id))){
+   $this->form_validation->set_message('check_fornecedor_telefone','Esse telefone já existe');
+   return FALSE;
+ }else{
+  return TRUE;
 
-                 }
-             }
+}
+}
      //o codigo abaixo verifica se o campo preenchido e valido e unico.        
-     public function valida_cnpj($cnpj) {
+public function valida_cnpj($cnpj) {
 
         // Verifica se um número foi informado
-        if (empty($cnpj)) {
-            $this->form_validation->set_message('valida_cnpj', 'Por favor digite um CNPJ válido');
-            return false;
-        }
+  if (empty($cnpj)) {
+    $this->form_validation->set_message('valida_cnpj', 'Por favor digite um CNPJ válido');
+    return false;
+  }
 
-        if ($this->input->post('fornecedor_id')) {
+  if ($this->input->post('fornecedor_id')) {
 
-            $fornecedor_id = $this->input->post('fornecedor_id');
+    $fornecedor_id = $this->input->post('fornecedor_id');
 
-            if ($this->core_model->get_by_id('fornecedores', array('fornecedor_id !=' => $fornecedor_id, 'fornecedor_cnpj' => $cnpj))) {
-                $this->form_validation->set_message('valida_cnpj', 'Esse CNPJ já existe');
-                return FALSE;
-            }
-        }
+    if ($this->core_model->get_by_id('fornecedores', array('fornecedor_id !=' => $fornecedor_id, 'fornecedor_cnpj' => $cnpj))) {
+      $this->form_validation->set_message('valida_cnpj', 'Esse CNPJ já existe');
+      return FALSE;
+    }
+  }
 
         // Elimina possivel mascara
-        $cnpj = preg_replace("/[^0-9]/", "", $cnpj);
-        $cnpj = str_pad($cnpj, 14, '0', STR_PAD_LEFT);
+  $cnpj = preg_replace("/[^0-9]/", "", $cnpj);
+  $cnpj = str_pad($cnpj, 14, '0', STR_PAD_LEFT);
 
 
         // Verifica se o numero de digitos informados é igual a 11 
-        if (strlen($cnpj) != 14) {
-            $this->form_validation->set_message('valida_cnpj', 'Por favor digite um CNPJ válido');
-            return false;
-        }
+  if (strlen($cnpj) != 14) {
+    $this->form_validation->set_message('valida_cnpj', 'Por favor digite um CNPJ válido');
+    return false;
+  }
 
         // Verifica se nenhuma das sequências invalidas abaixo 
         // foi digitada. Caso afirmativo, retorna falso
-        else if ($cnpj == '00000000000000' ||
-                $cnpj == '11111111111111' ||
-                $cnpj == '22222222222222' ||
-                $cnpj == '33333333333333' ||
-                $cnpj == '44444444444444' ||
-                $cnpj == '55555555555555' ||
-                $cnpj == '66666666666666' ||
-                $cnpj == '77777777777777' ||
-                $cnpj == '88888888888888' ||
-                $cnpj == '99999999999999') {
-            $this->form_validation->set_message('valida_cnpj', 'Por favor digite um CNPJ válido');
-            return false;
+  else if ($cnpj == '00000000000000' ||
+    $cnpj == '11111111111111' ||
+    $cnpj == '22222222222222' ||
+    $cnpj == '33333333333333' ||
+    $cnpj == '44444444444444' ||
+    $cnpj == '55555555555555' ||
+    $cnpj == '66666666666666' ||
+    $cnpj == '77777777777777' ||
+    $cnpj == '88888888888888' ||
+    $cnpj == '99999999999999') {
+    $this->form_validation->set_message('valida_cnpj', 'Por favor digite um CNPJ válido');
+  return false;
 
             // Calcula os digitos verificadores para verificar se o
             // CPF é válido
-        } else {
+} else {
 
-            $j = 5;
-            $k = 6;
-            $soma1 = "";
-            $soma2 = "";
+  $j = 5;
+  $k = 6;
+  $soma1 = "";
+  $soma2 = "";
 
-            for ($i = 0; $i < 13; $i++) {
+  for ($i = 0; $i < 13; $i++) {
 
-                $j = $j == 1 ? 9 : $j;
-                $k = $k == 1 ? 9 : $k;
+    $j = $j == 1 ? 9 : $j;
+    $k = $k == 1 ? 9 : $k;
 
                 //$soma2 += ($cnpj{$i} * $k);
 
@@ -273,23 +352,23 @@ public function edit($fornecedor_id = NULL){
                 if ($i < 12) {
                     //$soma1 = intval($soma1) + ($cnpj{$i} * $j); //Para PHP com versão < 7.4
                     $soma1 = intval($soma1) + ($cnpj[$i] * $j); //Para PHP com versão > 7.4
+                  }
+
+                  $k--;
+                  $j--;
                 }
 
-                $k--;
-                $j--;
-            }
+                $digito1 = $soma1 % 11 < 2 ? 0 : 11 - $soma1 % 11;
+                $digito2 = $soma2 % 11 < 2 ? 0 : 11 - $soma2 % 11;
 
-            $digito1 = $soma1 % 11 < 2 ? 0 : 11 - $soma1 % 11;
-            $digito2 = $soma2 % 11 < 2 ? 0 : 11 - $soma2 % 11;
-
-            if (!($cnpj{12} == $digito1) and ( $cnpj{13} == $digito2)) {
-                $this->form_validation->set_message('valida_cnpj', 'Por favor digite um CNPJ válido');
-                return false;
-            } else {
-                return true;
+                if (!($cnpj{12} == $digito1) and ( $cnpj{13} == $digito2)) {
+                  $this->form_validation->set_message('valida_cnpj', 'Por favor digite um CNPJ válido');
+                  return false;
+                } else {
+                  return true;
+                }
+              }
             }
-        }
-    }
-  }
-?>
+          }
+          ?>
 

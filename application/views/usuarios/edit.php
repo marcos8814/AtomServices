@@ -22,7 +22,7 @@
                      <!--  -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <a title="Voltar"href="<?php echo base_url('usuarios');?>" class="btn btn-success btn-sm float-right"><i class="fas fa-arrow-left"></i>&nbsp;Voltar</a> <!-- neste campo vc altera o incon de voltar -->
+              
             </div>
             <div class="card-body">
              <!--back end  -->
@@ -106,6 +106,7 @@
                  </div> 
 
                   <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+                  <a title="Voltar"href="<?php echo base_url($this->router->fetch_class());?>" class="btn btn-success btn-sm ml-2"><i>Voltar</a> <!-- neste campo vc altera o incon de voltar -->
             </form>
             </div>
           </div>

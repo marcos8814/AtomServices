@@ -221,7 +221,7 @@
                 </div> 
 
                   <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
-                  <a title="Voltar"href="<?php echo base_url('clientes');?>" class="btn btn-success btn-sm ml-2">Voltar</a> <!-- neste campo vc altera o incon de voltar -->
+                  <a title="Voltar"href="<?php echo base_url($this->router->fetch_class());?>" class="btn btn-success btn-sm ml-2">Voltar</a> <!-- neste campo vc altera o incon de voltar -->
             </form>
             </div>
           </div>
