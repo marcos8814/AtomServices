@@ -369,6 +369,19 @@ public function valida_cnpj($cnpj) {
                 }
               }
             }
-          }
-          ?>
+              public function del($fornecedor_id='NULL'){
+      
+              if (!$fornecedor_id||!$this->core_model->get_by_id('fornecedores',array('fornecedor_id'=>$fornecedor_id))) {
+                
+                $this->session->set_flashdata('error,','fornecedor não encontrado');
+                redirect('fornecedores');
+              }else{
+                 $this->core_model->delete('fornecedores', array('fornecedor_id'=>$fornecedor_id));
+                 redirect('fornecedores');
+            }
+       }
+
+    }
+
+?>
 
