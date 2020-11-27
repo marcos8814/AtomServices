@@ -50,14 +50,14 @@ class vendedores extends CI_Controller{
 
               $this->form_validation->set_rules('vendedor_nome_completo','','trim|required|max_length[200]');
 
-               $this->form_validation->set_rules('vendedor_cpf','','trim|required|exact_length[18]|callback_valida_cpf');
+               $this->form_validation->set_rules('vendedor_cpf','','trim|required|exact_length[14]|callback_valida_cpf');
 
                $this->form_validation->set_rules('vendedor_rg','','trim|required|max_length[20]|callback_check_vendedor_rg');
 
 
                $this->form_validation->set_rules('vendedor_email','','trim|required|valid_email|max_length[50]|callback_check_email');
 
-               $this->form_validation->set_rules('vendedor_telefone','','trim|required|max_length[14] |callback_check_vendedor_telefone');
+               $this->form_validation->set_rules('vendedor_telefone','','trim|required|max_length[15] |callback_check_vendedor_telefone');
 
                $this->form_validation->set_rules('vendedor_celular','','trim|required|max_length[16]|callback_check_vendedor_celular');
 
@@ -73,6 +73,9 @@ class vendedores extends CI_Controller{
 
 
        if ($this->form_validation->run()) {
+
+
+        
          //o codigo abaixo permite que faça alteração no campo 
          $data = elements(
               array(
@@ -129,35 +132,45 @@ class vendedores extends CI_Controller{
 
       }
     }
+            public function check_vendedor_rg($vendedor_rg){
+           $vendedor_id = $this->input->post('vendedor_id');
 
+           if($this->core_model->get_by_id('vendedores', array ('vendedor_rg'=> $vendedor_rg,'vendedor_id !=' => $vendedor_id))){
+             $this->form_validation->set_message('check_rg','Este rg já existe');
+             return FALSE;
+           }else{
+            return TRUE;
+
+          }
+          }
               
              public function check_email($vendedor_email){
                  $vendedor_id = $this->input->post('vendedor_id');
 
                  if($this->core_model->get_by_id('vendedores', array ('vendedor_email'=> $vendedor_email,'vendedor_id!=' => $vendedor_id))){
-                   $this->form_validation->set_message('check_email','Esse email já exite');
+                   $this->form_validation->set_message('check_email','Esse email já existe');
                   return FALSE;
                  }else{
                   return TRUE;
 
                  }
              }
-             public function check_telefone($vendedor_telefone){
+             public function check_vendedor_telefone($vendedor_telefone){
                  $vendedor_id = $this->input->post('vendedor_id');
 
                  if($this->core_model->get_by_id('vendedores', array ('vendedor_telefone'=> $vendedor_telefone,'vendedor_id!=' => $vendedor_id))){
-                   $this->form_validation->set_message('check_telefone','Esse tekefone já existe');
+                   $this->form_validation->set_message('check_vendedor_telefone','Esse telefone já existe');
                   return FALSE;
                  }else{
                   return TRUE;
 
                  }
              }
-             public function check_celular($vendedor_celular){
+             public function check_vendedor_celular($vendedor_celular){
                  $vendedor_id = $this->input->post('vendedor_id');
 
                  if($this->core_model->get_by_id('vendedores', array ('vendedor_celular'=> $vendedor_celular,'vendedor_id!=' => $vendedor_id))){
-                   $this->form_validation->set_message('check_celular','Esse celular já existe');
+                   $this->form_validation->set_message('check_vendedor_celular','Esse celular já existe');
                   return FALSE;
                  }else{
                   return TRUE;
@@ -171,7 +184,7 @@ class vendedores extends CI_Controller{
 
             $vendedor_id = $this->input->post('vendedor_id');
 
-            if ($this->core_model->get_by_id('vendedores', array('vendedor_id !=' => $vendedor_id, 'vendedor_cpf_cnpj' => $cpf))) {
+            if ($this->core_model->get_by_id('vendedores', array('vendedor_id !=' => $vendedor_id, 'vendedor_cpf' => $cpf))) {
                 $this->form_validation->set_message('valida_cpf', 'Este CPF já existe');
                 return FALSE;
             }
