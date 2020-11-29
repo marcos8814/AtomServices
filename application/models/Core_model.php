@@ -129,6 +129,8 @@
      * @param string $field_seach
      * @return int
      */
+    //o codigo abaixo gera o codigo do vendedor automaticamente.
+
     public function generate_unique_code($table = NULL, $type_of_code = NULL, $size_of_code, $field_search) {
 
         do {
