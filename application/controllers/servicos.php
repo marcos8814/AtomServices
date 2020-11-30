@@ -40,6 +40,68 @@
         	     $this->load->view('servicos/index');	
         	     $this->load->view('layout/footer');	
        }
+
+    public function edit($servico_id = NULL){
+        if (!$servico_id || !$this->core_model->get_by_id('servicos', array('servico_id' => $servico_id))) {
+          $this->session->set_flashdata('error', 'servico não encontrado');
+          redirect('servicos');
+       }else{
+
+
+              $this->form_validation->set_rules('servico_nome','','trim|required|max_length[145]');
+
+               $this->form_validation->set_rules('servico_preco','','trim|required');
+
+               $this->form_validation->set_rules('servico_descricao','','trim|required|max_length[700]');
+
+
+       if ($this->form_validation->run()) {
+
+
+        
+         //o codigo abaixo permite que faça alteração no campo 
+         $data = elements(
+              array(
+                'servico_nome',
+                'servico_preco',
+                'servico_descricao',
+                'servico_ativo',
+                
+              ),$this->input->post()
+            );
+
+             $data = html_escape($data);
+
+             $this->core_model->update('servicos', $data, array('servico_id'=> $servico_id));
+
+             redirect('servicos');
+      }else{
+                      // Erro de validação
+
+          $data = array(
+
+           'titulo'=>'Atualizar serviço',
+
+           'scripts'=> array(
+            'vendor/mask/jquery.mask.min.js',
+            'vendor/mask/app.js',
+          ),
+
+           'servico' => $this->core_model->get_by_id('servicos', array('servico_id' => $servico_id)),
+         );
+
+
+                  $this->load->view('layout/header', $data);  
+                  $this->load->view('servicos/edit'); 
+                  $this->load->view('layout/footer');
+                }
+
+
+
+
+
+      }
+    }
      }
 
 ?>

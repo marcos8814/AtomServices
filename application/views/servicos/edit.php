@@ -14,7 +14,7 @@
 
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="<?php echo base_url('fornecedores'); ?>">fornecedores</a></li>
+      <li class="breadcrumb-item"><a href="<?php echo base_url('servicos'); ?>">servicos</a></li>
       <li class="breadcrumb-item active" aria-current="page"><?php  echo $titulo; ?></li>
     </ol>
   </nav>
@@ -25,184 +25,62 @@
     <div class="card-body">
      <!--back end  -->
      <form class="user" method="POST" name="form_edit"> <!--metodo post reponsavel por proteger campo da url -->
-      <p><strong><i class="fas fa-user-clock"></i>&nbsp;&nbsp;Útima Alteração: </strong><?php echo formata_data_banco_com_hora( $fornecedor->fornecedor_data_alteracao);?></p>:
+      <p><strong><i class="fas fa-tools"></i>&nbsp;&nbsp;Útima Alteração: </strong><?php echo formata_data_banco_com_hora( $servico->servico_data_alteracao);?></p>:
 
       <!--O codigo abaixo moldura dos dados pessoais   -->
       <fieldset class="mt-4 border p-2">          
        <!--O codigo abaixo se refere os iconis dos dados pessoais -->
-       <legend class="font-small"><i class="fas fa-user-tag"></i>&nbsp;Dados do Fornecedor</legend>
+       <legend class="font-small"><i class="fas fa-tools"></i>&nbsp;Dados do servico</legend>
 
 
        <div class="form-group row"> <!--altera o tamanho do campo nome  -->
-         <div class="col-md-6"> 
-           <label>Razão Social *</label>
-           <input type="text" class="form-control form-control-user" name="fornecedor_razao" placeholder="Razão Social " value="<?php echo $fornecedor->fornecedor_razao; ?>"> <!--first_name é o nome do campo da tabela que esta no banco de dados  -->
-           <?php echo form_error('fornecedor_razao','<small class="form-text text-danger">','</small>'); ?>
+         <div class="col-md-5"> 
+           <label>Serviço*</label>
+           <input type="text" class="form-control form-control-user" name="servico_nome" placeholder="Tipo de serviço " value="<?php echo $servico->servico_nome; ?>"> <!--first_name é o nome do campo da tabela que esta no banco de dados  -->
+           <?php echo form_error('servico_nome','<small class="form-text text-danger">','</small>'); ?>
            <!-- O codigo verifica se o campo obirgatorio esta preechido-->
          </div>
 
-         <div class="col-md-6"> 
-           <label>Nome Fantasia *</label>
-           <input type="text" class="form-control form-control-user" name="fornecedor_nome_fantasia" placeholder="Nome Fantasia" value="<?php echo $fornecedor->fornecedor_nome_fantasia; ?>"> <!--last_name é o sobrenome do campo da tabela que esta no banco de dados  -->
-           <?php echo form_error('fornecedor_nome_fantasia','<small class="form-text text-danger">','</small>'); ?>
+         <div class="col-md-4"> 
+           <label>Preço *</label>
+           <input type="text" class="form-control form-control-user .money" name="servico_preco" placeholder="Preço" value="<?php echo $servico->servico_preco; ?>"> <!--last_name é o sobrenome do campo da tabela que esta no banco de dados  -->
+           <?php echo form_error('servico_preco','<small class="form-text text-danger">','</small>'); ?>
            <!-- O codigo verifica se o campo obirgatorio esta preechido-->
 
          </div>
-       </div> 
-       <div class="form-group row">
 
-        <div class="col-md-4"> 
-         <label>CNPJ </label>
-         <input type="text" class="form-control form-control-user cnpj" name="fornecedor_cnpj" placeholder="Telefone fixo" value="<?php echo $fornecedor->fornecedor_cnpj; ?>"> <!--last_name é o sobrenome do campo da tabela que esta no banco de dados  -->
-         <?php echo form_error('fornecedor_cnpj','<small class="form-text text-danger">','</small>'); ?>
-         <!-- O codigo verifica se o campo obirgatorio esta preechido-->
+         <div class="col-md-2"> 
+           <label>servico ativo</label>
 
+           <select class="custom-select" name="servico_ativo">
+             <option value="0"<?php echo ($servico->servico_ativo == 0) ?'selected' :'' ?>>Não</option>
+             <!-- o codigo acima verifica no banco de dados se a opção esta ativo ou não -->
+             <option value="1"<?php echo ($servico->servico_ativo == 1) ?'selected' :'' ?>>Sim</option>
+              <!-- o codigo acima verifica no banco de dados se a opção esta ativo ou não -->
+           </select>   
+
+          </div>
+
+      </div>
+       <div class="form-group row"> 
+          <div class="col-md-10"> 
+               <label>Descrição do serviço*</label>
+               <textarea class="form-control form-control-user " name="servico_descricao" style="min-height: 100px!important"><?php echo $servico->servico_descricao; ?></textarea> <!--email é o nome do campo da tabela que esta no banco de dados  -->
+               <?php echo form_error('servico_descricao','<small class="form-text text-danger">','</small>'); ?>
+               <!-- O codigo verifica se o campo obirgatorio esta preechido-->
+          </div>
+
+          
        </div>
-
-       <div class="col-md-4"> 
-         <label>Inscrição Estadual</label>
-         <input type="text" class="form-control form-control-user " name="fornecedor_ie" placeholder="Inscrição Estadual" value="<?php echo $fornecedor->fornecedor_ie; ?>"> <!--last_name é o sobrenome do campo da tabela que esta no banco de dados  -->
-         <?php echo form_error('fornecedor_ie','<small class="form-text text-danger">','</small>'); ?>
-         <!-- O codigo verifica se o campo obirgatorio esta preechido-->
-
-       </div>
-
-
-       <div class="col-md-4"> 
-         <label>Telefone Fixo </label>
-         <input type="text" class="form-control form-control-user sp_celphones" name="fornecedor_telefone" placeholder="Telefone fixo" value="<?php echo $fornecedor->fornecedor_telefone; ?>"> <!--last_name é o sobrenome do campo da tabela que esta no banco de dados  -->
-         <?php echo form_error('fornecedor_telefone','<small class="form-text text-danger">','</small>'); ?>
-         <!-- O codigo verifica se o campo obirgatorio esta preechido-->
-
-       </div>
+      
+      
+        </fieldset>
 
 
 
-     </div>     
-
-     <div class="form-group row">
-      <div class="col-md-4"> 
-       <label>Telefone Movel </label>
-       <input type="text" class="form-control form-control-user sp_celphones" name="fornecedor_celular" placeholder="Telefone Movel" value="<?php echo $fornecedor->fornecedor_celular; ?>"> <!--last_name é o sobrenome do campo da tabela que esta no banco de dados  -->
-       <?php echo form_error('fornecedor_celular','<small class="form-text text-danger">','</small>'); ?>
-       <!-- O codigo verifica se o campo obirgatorio esta preechido-->
-
-     </div>
-
-     <div class="col-md-4"> 
-       <label>E-mail*</label>
-       <input type="email" class="form-control form-control-user " name="fornecedor_email" placeholder="Email do fornecedor" value="<?php echo $fornecedor->fornecedor_email; ?>"> <!--email é o nome do campo da tabela que esta no banco de dados  -->
-       <?php echo form_error('fornecedor_email','<small class="form-text text-danger">','</small>'); ?>
-       <!-- O codigo verifica se o campo obirgatorio esta preechido-->
-     </div>
-
-     <div class="col-md-4"> 
-      <label>Nome do contato*</label>
-       <input type="text" class="form-control form-control-user " name="fornecedor_contato" placeholder="Nome do vendedor" value="<?php echo $fornecedor->fornecedor_contato; ?>"> <!--email é o nome do campo da tabela que esta no banco de dados  -->
-       <?php echo form_error('fornecedor_contato','<small class="form-text text-danger">','</small>'); ?>
-       <!-- O codigo verifica se o campo obirgatorio esta preechido-->
-     </div>
-
-   </div>
-
-</fieldset>
-
-<fieldset class="mt-4 border p-2">          
- <!--O codigo abaixo se refere os iconis dos dados pessoais -->
- <legend class="font-small"><i class="fas fa-map-marker-alt"></i></i>&nbsp;Dados de Endereço</legend>
-
- <div class="form-group row"> <!--altera o tamanho do campo nome  -->
-
-
-   <div class="col-md-5"> 
-     <label>Endereço *</label>
-     <input type="text" class="form-control form-control-user" name="fornecedor_endereco" placeholder="Endereço do fornecedor" value="<?php echo $fornecedor->fornecedor_endereco; ?>"> <!--first_name é o nome do campo da tabela que esta no banco de dados  -->
-     <?php echo form_error('fornecedor_endereco','<small class="form-text text-danger">','</small>'); ?>
-     <!-- O codigo verifica se o campo obirgatorio esta preechido-->
-   </div>
-
-   <div class="col-md-2"> 
-     <label>Número</label>
-     <input type="text" class="form-control form-control-user " name="fornecedor_numero_endereco" placeholder="Numero" value="<?php echo $fornecedor->fornecedor_numero_endereco; ?>"> <!--last_name é o sobrenome do campo da tabela que esta no banco de dados  -->
-     <?php echo form_error('fornecedor_numero_endereco','<small class="form-text text-danger">','</small>'); ?>
-     <!-- O codigo verifica se o campo obirgatorio esta preechido-->
-
-   </div>
-
-   <div class="col-md-5"> 
-     <label>Complemento</label>
-     <input type="text" class="form-control form-control-user " name="fornecedor_complemento" placeholder="Complemento" value="<?php echo $fornecedor->fornecedor_complemento; ?>"> <!--last_name é o sobrenome do campo da tabela que esta no banco de dados  -->
-     <?php echo form_error('fornecedor_complemento','<small class="form-text text-danger">','</small>'); ?>
-     <!-- O codigo verifica se o campo obirgatorio esta preechido-->
-
-   </div>
-
- </div> 
-
- <div class="form-group row"> <!--altera o tamanho do campo nome  -->
-   <div class="col-md-5"> 
-     <label>Bairro*</label>
-     <input type="text" class="form-control form-control-user " name="fornecedor_bairro" placeholder="Bairro" value="<?php echo $fornecedor->fornecedor_bairro; ?>"> <!--email é o nome do campo da tabela que esta no banco de dados  -->
-     <?php echo form_error('fornecedor_bairro','<small class="form-text text-danger">','</small>'); ?>
-     <!-- O codigo verifica se o campo obirgatorio esta preechido-->
-   </div>
-   <div class="col-md-2"> 
-     <label>CEP</label>
-     <input type="text" class="form-control form-control-user cep" name="fornecedor_cep" placeholder="CEP" value="<?php echo $fornecedor->fornecedor_cep; ?>"> <!--email é o nome do campo da tabela que esta no banco de dados  -->
-     <?php echo form_error('fornecedor_cep','<small class="form-text text-danger">','</small>'); ?>
-     <!-- O codigo verifica se o campo obirgatorio esta preechido-->
-   </div>  
-
-
-   <div class="col-md-4"> 
-     <label>Cidade*</label>
-     <input type="text" class="form-control form-control-user" name="fornecedor_cidade" placeholder="Endereço do fornecedor" value="<?php echo $fornecedor->fornecedor_cidade; ?>"> <!--fornecedor_cidade é o nome do campo da tabela que esta no banco de dados  -->
-     <?php echo form_error('fornecedor_cidade','<small class="form-text text-danger">','</small>'); ?>
-     <!-- O codigo verifica se o campo obirgatorio esta preechido-->
-   </div>
-
-   <div class="col-md-1"> 
-     <label>UF</label>
-     <input type="text" class="form-control form-control-user uf" name="fornecedor_estado" placeholder="UF" value="<?php echo $fornecedor->fornecedor_estado; ?>"> <!--fornecedor_estado é o sobrenome do campo da tabela que esta no banco de dados  -->
-     <?php echo form_error('fornecedor_estado','<small class="form-text text-danger">','</small>'); ?>
-     <!-- O codigo verifica se o campo obirgatorio esta preechido-->
-
-   </div>
-
- </fieldset> 
-
- <fieldset class="mt-4 border p-2">          
-   <!--O codigo abaixo se refere os iconis dos dados pessoais -->
-   <legend class="font-small"><i class="fas fa-user-cog"></i></i></i>&nbsp;Configurações</legend>
-   <div class="form-group row">  
-
-     <div class="col-md-2"> 
-       <label>fornecedor ativo</label>
-
-       <select class="custom-select" name="fornecedor_ativo">
-         <option value="0"<?php echo ($fornecedor->fornecedor_ativo == 0) ?'selected' :'' ?>>Não</option>
-         <!-- o codigo acima verifica no banco de dados se a opção esta ativo ou não -->
-         <option value="1"<?php echo ($fornecedor->fornecedor_ativo == 1) ?'selected' :'' ?>>Sim</option>
-         <!-- o codigo acima verifica no banco de dados se a opção esta ativo ou não -->
-       </select>   
-
-     </div>
-     <div class="col-md-10"> 
-       <label>Observação*</label>
-       <textarea class="form-control form-control-user " name="fornecedor_obs"><?php echo $fornecedor->fornecedor_obs; ?></textarea> <!--email é o nome do campo da tabela que esta no banco de dados  -->
-       <?php echo form_error('fornecedor_obs','<small class="form-text text-danger">','</small>'); ?>
-       <!-- O codigo verifica se o campo obirgatorio esta preechido-->
-     </div>
-   </div>
-
- </fieldset> 
 
  <div class="form-group row">  
-
-
-
-   <input type="hidden" name="fornecedor_id" value="<?php echo $fornecedor->fornecedor_id;?>"/>
-
+   <input type="hidden" name="servico_id" value="<?php echo $servico->servico_id;?>"/>
  </div> 
 
  <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
