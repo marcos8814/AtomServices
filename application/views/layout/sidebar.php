@@ -33,6 +33,23 @@
           </div>
         </div>
       </li>
+
+      
+
+         <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTres" aria-expanded="true" aria-controls="collapseTres">
+         
+         <i class="fas fa-box-open"></i>
+          <span>Estoque</span>
+        </a>
+        <div id="collapseTres" class="collapse" aria-labelledby="headingTres" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Escolha uma opção:</h6>
+            <a  title="Gerenciar Marcas" class="collapse-item" href="<?php echo base_url('marcas') ?>"> <i class="fas fa-copyright"></i></i>&nbsp;&nbsp; Marcas</a>
+            
+          </div>
+        </div>
+      </li>
        
       
     
