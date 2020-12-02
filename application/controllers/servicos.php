@@ -41,6 +41,58 @@
         	     $this->load->view('layout/footer');	
        }
 
+       public function add(){
+        
+
+              $this->form_validation->set_rules('servico_nome','','trim|required|max_length[145]|is_unique[servicos.servico_nome]');
+
+               $this->form_validation->set_rules('servico_preco','','trim|required');
+
+               $this->form_validation->set_rules('servico_descricao','','trim|required|max_length[700]');
+
+
+       if ($this->form_validation->run()) {
+
+
+        
+         //o codigo abaixo permite que faça alteração no campo 
+         $data = elements(
+              array(
+                'servico_nome',
+                'servico_preco',
+                'servico_ativo',
+                'servico_descricao',
+                
+              ),$this->input->post()
+            );
+
+             $data = html_escape($data);
+
+             $this->core_model->insert('servicos', $data);
+
+             redirect('servicos');
+      }else{
+                      // Erro de validação
+
+          $data = array(
+
+           'titulo'=>'Cadastrar serviço',
+
+           'scripts'=> array(
+            'vendor/mask/jquery.mask.min.js',
+            'vendor/mask/app.js',
+          ),
+
+         );
+
+
+                  $this->load->view('layout/header', $data);  
+                  $this->load->view('servicos/add'); 
+                  $this->load->view('layout/footer');
+                }
+      }
+    
+
     public function edit($servico_id = NULL){
         if (!$servico_id || !$this->core_model->get_by_id('servicos', array('servico_id' => $servico_id))) {
           $this->session->set_flashdata('error', 'servico não encontrado');
@@ -48,7 +100,7 @@
        }else{
 
 
-              $this->form_validation->set_rules('servico_nome','','trim|required|max_length[145]');
+              $this->form_validation->set_rules('servico_nome','','trim|required|max_length[145]|callback_check_nome_serviço');
 
                $this->form_validation->set_rules('servico_preco','','trim|required');
 
@@ -94,14 +146,37 @@
                   $this->load->view('layout/header', $data);  
                   $this->load->view('servicos/edit'); 
                   $this->load->view('layout/footer');
-                }
+        }
+      }
+    }
 
+    public function check_nome_serviço ($servico_nome)
+    {
+      $servico_id = $this->input->post('servico_id');
 
+      if($this->core_model->get_by_id('servicos',array('servico_nome'=>$servico_nome,'servico_id !=' => $servico_id))){
 
+          $this->form_validation->set_message('check_nome_serviço', 'Este serviço já existe');
+        
+        return FALSE; 
 
+      }else{
+        return TRUE; 
 
       }
     }
-     }
+
+    public function del($servico_id='NULL'){
+      
+      if (!$servico_id||!$this->core_model->get_by_id('servicos',array('servico_id'=>$servico_id))) {
+        
+        $this->session->set_flashdata('error,','servico não encontrado');
+        redirect('servicos');
+      }else{
+         $this->core_model->delete('servicos', array('servico_id'=>$servico_id));
+         redirect('servicos');
+      }
+    }
+  }
 
 ?>
