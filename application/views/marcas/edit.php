@@ -14,7 +14,7 @@
 
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="<?php echo base_url('servicos'); ?>">servicos</a></li>
+      <li class="breadcrumb-item"><a href="<?php echo base_url('marcas'); ?>">marcas</a></li>
       <li class="breadcrumb-item active" aria-current="page"><?php  echo $titulo; ?></li>
     </ol>
   </nav>
@@ -25,62 +25,44 @@
     <div class="card-body">
      <!--back end  -->
      <form class="user" method="POST" name="form_edit"> <!--metodo post reponsavel por proteger campo da url -->
-      <p><strong><i class="fas fa-tools"></i>&nbsp;&nbsp;Útima Alteração: </strong><?php echo formata_data_banco_com_hora( $servico->servico_data_alteracao);?></p>:
+      <p><strong><i class="fas fa-clock"></i></i>&nbsp;&nbsp;Útima Alteração: </strong><?php echo formata_data_banco_com_hora( $marca->marca_data_alteracao);?></p>:
 
       <!--O codigo abaixo moldura dos dados pessoais   -->
       <fieldset class="mt-4 border p-2">          
        <!--O codigo abaixo se refere os iconis dos dados pessoais -->
-       <legend class="font-small"><i class="fas fa-tools"></i>&nbsp;Dados do servico</legend>
+       <legend class="font-small"><i class="fas fa-copyright"></i>&nbsp;Dados do marca</legend>
 
 
        <div class="form-group row"> <!--altera o tamanho do campo nome  -->
-         <div class="col-md-5"> 
-           <label>Serviço*</label>
-           <input type="text" class="form-control form-control-user" name="servico_nome" placeholder="Tipo de serviço " value="<?php echo $servico->servico_nome; ?>"> <!--first_name é o nome do campo da tabela que esta no banco de dados  -->
-           <?php echo form_error('servico_nome','<small class="form-text text-danger">','</small>'); ?>
+         <div class="col-md-8"> 
+           <label>Marca*</label>
+           <input type="text" class="form-control form-control-user" name="marca_nome" placeholder="Nome da marca " value="<?php echo $marca->marca_nome; ?>"> <!--first_name é o nome do campo da tabela que esta no banco de dados  -->
+           <?php echo form_error('marca_nome','<small class="form-text text-danger">','</small>'); ?>
            <!-- O codigo verifica se o campo obirgatorio esta preechido-->
-         </div>
-
-         <div class="col-md-4"> 
-           <label>Preço *</label>
-           <input type="text" class="form-control form-control-user .money" name="servico_preco" placeholder="Preço" value="<?php echo $servico->servico_preco; ?>"> <!--last_name é o sobrenome do campo da tabela que esta no banco de dados  -->
-           <?php echo form_error('servico_preco','<small class="form-text text-danger">','</small>'); ?>
-           <!-- O codigo verifica se o campo obirgatorio esta preechido-->
-
          </div>
 
          <div class="col-md-2"> 
-           <label>servico ativo</label>
+           <label>marca ativo</label>
 
-           <select class="custom-select" name="servico_ativo">
-             <option value="0"<?php echo ($servico->servico_ativo == 0) ?'selected' :'' ?>>Não</option>
+           <select class="custom-select" name="marca_ativa">
+             <option value="0"<?php echo ($marca->marca_ativa == 0) ?'selected' :'' ?>>Não</option>
              <!-- o codigo acima verifica no banco de dados se a opção esta ativo ou não -->
-             <option value="1"<?php echo ($servico->servico_ativo == 1) ?'selected' :'' ?>>Sim</option>
+             <option value="1"<?php echo ($marca->marca_ativa == 1) ?'selected' :'' ?>>Sim</option>
               <!-- o codigo acima verifica no banco de dados se a opção esta ativo ou não -->
            </select>   
 
           </div>
 
-      </div>
-       <div class="form-group row"> 
-          <div class="col-md-10"> 
-               <label>Descrição do serviço*</label>
-               <textarea class="form-control form-control-user " name="servico_descricao" style="min-height: 100px!important"><?php echo $servico->servico_descricao; ?></textarea> <!--email é o nome do campo da tabela que esta no banco de dados  -->
-               <?php echo form_error('servico_descricao','<small class="form-text text-danger">','</small>'); ?>
-               <!-- O codigo verifica se o campo obirgatorio esta preechido-->
-          </div>
-
-          
-       </div>
+        </div>
+     
       
-      
-        </fieldset>
+      </fieldset>
 
 
 
 
  <div class="form-group row">  
-   <input type="hidden" name="servico_id" value="<?php echo $servico->servico_id;?>"/>
+   <input type="hidden" name="marca_id" value="<?php echo $marca->marca_id;?>"/>
  </div> 
 
  <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
