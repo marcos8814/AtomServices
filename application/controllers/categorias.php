@@ -1,7 +1,7 @@
 <?php
   defined('BASEPATH') OR exit('Ação não permitida');
 
-   class marcas extends CI_Controller{
+   class categorias extends CI_Controller{
    	  
    	  public function __construct(){
 
@@ -14,11 +14,11 @@
 			    }
 
 			 }
-       //o codigo abaixo lista as marcas na tabela
+       //o codigo abaixo lista as categorias na tabela
       public function index(){
         		$data = array(
           
-               'titulo'=>'Marca cadastrados',
+               'titulo'=>'categoria cadastrados',
 
                 'styles'=> array(
                 'vendor/datatables/dataTables.bootstrap4.min.css',
@@ -30,18 +30,18 @@
                 'vendor/datatables/app.js'
                 ),
     
-  			    'marcas'=> $this->core_model->get_all('marcas'),
+  			    'categorias'=> $this->core_model->get_all('categorias'),
   		        );
 
         	     $this->load->view('layout/header', $data);	
-        	     $this->load->view('marcas/index');	
+        	     $this->load->view('categorias/index');	
         	     $this->load->view('layout/footer');	
        }
 
         public function add(){
         
 
-              $this->form_validation->set_rules('marca_nome','','trim|required|max_length[145]|is_unique[marcas.marca_nome]');
+              $this->form_validation->set_rules('categoria_nome','','trim|required|max_length[145]|is_unique[categorias.categoria_nome]');
 
 
        if ($this->form_validation->run()) {
@@ -51,24 +51,24 @@
          //o codigo abaixo permite que faça alteração no campo 
          $data = elements(
               array(
-                'marca_nome',
+                'categoria_nome',
                
-                'marca_ativa',   
+                'categoria_ativa',   
                 
               ),$this->input->post()
             );
 
              $data = html_escape($data);
 
-             $this->core_model->insert('marcas', $data);
+             $this->core_model->insert('categorias', $data);
 
-             redirect('marcas');
+             redirect('categorias');
       }else{
                       // Erro de validação
 
           $data = array(
 
-           'titulo'=>'Cadastrar marcas',
+           'titulo'=>'Cadastrar categorias',
 
            'scripts'=> array(
             'vendor/mask/jquery.mask.min.js',
@@ -79,20 +79,20 @@
 
 
                   $this->load->view('layout/header', $data);  
-                  $this->load->view('marcas/add'); 
+                  $this->load->view('categorias/add'); 
                   $this->load->view('layout/footer');
                 }
       }
     
 
-       public function edit($marca_id = NULL){
-            if (!$marca_id || !$this->core_model->get_by_id('marcas', array('marca_id'  => $marca_id))) {
-               $this->session->set_flashdata('error', 'marca não encontrado');
-                redirect('marcas');
+       public function edit($categoria_id = NULL){
+            if (!$categoria_id || !$this->core_model->get_by_id('categorias', array('categoria_id'  => $categoria_id))) {
+               $this->session->set_flashdata('error', 'categoria não encontrado');
+                redirect('categorias');
               }else{
 
 
-              $this->form_validation->set_rules('marca_nome','','trim|required|max_length[145]|callback_check_nome_marca');
+              $this->form_validation->set_rules('categoria_nome','','trim|required|max_length[145]|callback_check_nome_categoria');
 
 
 
@@ -103,47 +103,47 @@
              //o codigo abaixo permite que faça alteração no campo 
              $data = elements(
               array(
-                'marca_nome',
-                'marca_ativa',
+                'categoria_nome',
+                'categoria_ativa',
                 
               ),$this->input->post()
             );
 
              $data = html_escape($data);
 
-             $this->core_model->update('marcas', $data, array('marca_id'=> $marca_id));
+             $this->core_model->update('categorias', $data, array('categoria_id'=> $categoria_id));
 
-             redirect('marcas');
+             redirect('categorias');
               }else{
                       // Erro de validação
 
               $data = array(
 
-               'titulo'=>'Atualizar Marca',
+               'titulo'=>'Atualizar categoria',
 
                 'scripts'=> array(
                 'vendor/mask/jquery.mask.min.js',
                 'vendor/mask/app.js',
               ),
 
-                'marca' => $this->core_model->get_by_id('marcas', array('marca_id' => $marca_id)),
+                'categoria' => $this->core_model->get_by_id('categorias', array('categoria_id' => $categoria_id)),
              );
 
 
                   $this->load->view('layout/header', $data);  
-                  $this->load->view('marcas/edit'); 
+                  $this->load->view('categorias/edit'); 
                   $this->load->view('layout/footer');
         }
       }
     }
 
-    public function check_nome_marca ($marca_nome)
+    public function check_nome_categoria ($categoria_nome)
        {
-        $marca_id = $this->input->post('marca_id');
+        $categoria_id = $this->input->post('categoria_id');
   
-          if($this->core_model->get_by_id('marcas',array('marca_nome'=>$marca_nome,'marca_id !=' => $marca_id))){
+          if($this->core_model->get_by_id('categorias',array('categoria_nome'=>$categoria_nome,'categoria_id !=' => $categoria_id))){
 
-          $this->form_validation->set_message('check_nome_marca', 'Esta marca já existe');
+          $this->form_validation->set_message('check_nome_categoria', 'Esta categoria já existe');
         
         return FALSE; 
 
@@ -152,15 +152,15 @@
 
          }
        }
-    public function del($marca_id='NULL'){
+    public function del($categoria_id='NULL'){
       
-      if (!$marca_id||!$this->core_model->get_by_id('marcas',array('marca_id'=>$marca_id))) {
+      if (!$categoria_id||!$this->core_model->get_by_id('categorias',array('categoria_id'=>$categoria_id))) {
         
-        $this->session->set_flashdata('error,','marca não encontrado');
-        redirect('marcas');
+        $this->session->set_flashdata('error,','categoria não encontrado');
+        redirect('categorias');
       }else{
-         $this->core_model->delete('marcas', array('marca_id'=>$marca_id));
-         redirect('marcas');
+         $this->core_model->delete('categorias', array('categoria_id'=>$categoria_id));
+         redirect('categorias');
       }
     }
 
