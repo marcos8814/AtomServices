@@ -30,7 +30,7 @@
       <!--O codigo abaixo moldura dos dados pessoais   -->
       <fieldset class="mt-4 border p-2">          
        <!--O codigo abaixo se refere os iconis dos dados pessoais -->
-       <legend class="font-small"><i class="fas fa-copyright"></i>&nbsp;Dados do categoria</legend>
+       <legend class="font-small"><i class="fas fa-layer-group"></i></i>&nbsp;Dados do categoria</legend>
 
 
        <div class="form-group row"> <!--altera o tamanho do campo nome  -->

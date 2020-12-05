@@ -46,7 +46,9 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Escolha uma opção:</h6>
             <a  title="Gerenciar Marcas" class="collapse-item" href="<?php echo base_url('marcas') ?>"> <i class="fas fa-copyright"></i></i>&nbsp;&nbsp; Marcas</a>
-            <a  title="Gerenciar Categorias" class="collapse-item" href="<?php echo base_url('categorias') ?>"> <i class="fas fa-copyright"></i></i>&nbsp;&nbsp; Categorias</a>
+             <a  title="Gerenciar Produtos" class="collapse-item" href="<?php echo base_url('produtos') ?>"> <i class="fab fa-product-hunt"></i></i>&nbsp;&nbsp; Produtos</a>
+
+            <a  title="Gerenciar Categorias" class="collapse-item" href="<?php echo base_url('categorias') ?>"> <i class="fas fa-layer-group"></i></i>&nbsp;&nbsp; Categorias</a>
             
           </div>
         </div>
