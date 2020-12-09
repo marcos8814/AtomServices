@@ -97,7 +97,17 @@
 
 
             if ($this->form_validation->run()) {
-
+            
+                $categoria_ativa = $this->input->post('categoria_ativa');
+                
+                if ($this->db->table_exists('produtos')) {
+                  
+                   if ($categoria_ativa == 0 && $this->core_model->get_by_id('produtos', 
+                     array('produto_categoria_id' => $categoria_id, 'produto_ativo' => 1))) {
+                           $this->session->set_flashdata('error','Esta categoria não poder ser desativada, pois está sendo ultilizada em produtos');
+                           redirect('categorias');
+                       }
+                }
 
         
              //o codigo abaixo permite que faça alteração no campo 

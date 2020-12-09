@@ -153,7 +153,20 @@ public function add(){
                $this->form_validation->set_rules('fornecedor_obs','','max_length[500]');
 
 
-       if ($this->form_validation->run()) {
+       
+
+          if ($this->form_validation->run()) {
+
+                 $fornecedor_ativo = $this->input->post('fornecedor_ativo');
+                //o codigo abaixo verifica não permite a desativação de uma categoria, se a tabela produto estiver ultizando
+                if ($this->db->table_exists('fornecedores')) {
+                  
+                   if ($fornecedor_ativo == 0 && $this->core_model->get_by_id('produtos', 
+                     array('produto_fornecedor_id' => $fornecedor_id, 'produto_ativo' => 1))) {
+                           $this->session->set_flashdata('error','Esta fornecedor não poder ser desativado, pois está sendo ultilizado em produtos');
+                           redirect('fornecedores');
+                       }
+                }
          //o codigo abaixo permite que faça alteração no campo 
          $data = elements(
               array(

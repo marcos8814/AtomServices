@@ -98,7 +98,16 @@
 
             if ($this->form_validation->run()) {
 
-
+                 $categoria_ativa = $this->input->post('marca_ativa');
+                //o codigo abaixo verifica não permite a desativação de uma categoria, se a tabela produto estiver ultizando
+                if ($this->db->table_exists('marcas')) {
+                  
+                   if ($marca_ativa == 0 && $this->core_model->get_by_id('produtos', 
+                     array('produto_marca_id' => $marca_id, 'produto_ativo' => 1))) {
+                           $this->session->set_flashdata('error','Esta marca não poder ser desativada, pois está sendo ultilizada em produtos');
+                           redirect('marcas');
+                       }
+                }
         
              //o codigo abaixo permite que faça alteração no campo 
              $data = elements(
