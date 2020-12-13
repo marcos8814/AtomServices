@@ -99,12 +99,12 @@
             if ($this->form_validation->run()) {
             
                 $categoria_ativa = $this->input->post('categoria_ativa');
-                
+                //o codigo abaixo verifica não permite a desativação de uma categoria, se a tabela produto estiver ultizando
                 if ($this->db->table_exists('produtos')) {
                   
                    if ($categoria_ativa == 0 && $this->core_model->get_by_id('produtos', 
                      array('produto_categoria_id' => $categoria_id, 'produto_ativo' => 1))) {
-                           $this->session->set_flashdata('error','Esta categoria não poder ser desativada, pois está sendo ultilizada em produtos');
+                           $this->session->set_flashdata('info','Esta categoria não poder ser desativada, pois está sendo ultilizada em <i class="fab fa-product-hunt"></i> &nbsp; produtos');
                            redirect('categorias');
                        }
                 }

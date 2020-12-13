@@ -104,7 +104,7 @@
                   
                    if ($marca_ativa == 0 && $this->core_model->get_by_id('produtos', 
                      array('produto_marca_id' => $marca_id, 'produto_ativo' => 1))) {
-                           $this->session->set_flashdata('error','Esta marca não poder ser desativada, pois está sendo ultilizada em produtos');
+                           $this->session->set_flashdata('info','Esta marca não poder ser desativada, pois está sendo ultilizada em <i class="fab fa-product-hunt"></i> &nbsp; produtos');
                            redirect('marcas');
                        }
                 }
