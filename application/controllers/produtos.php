@@ -50,63 +50,31 @@
        }else{
 
 
-              $this->form_validation->set_rules('produto_nome_completo','','trim|required|max_length[200]');
+              $this->form_validation->set_rules('produto_descricao','','trim|required|max_length[145]|callback_check_produto_descricao');
 
-               $this->form_validation->set_rules('produto_cpf','','trim|required|exact_length[14]|callback_valida_cpf');
+               $this->form_validation->set_rules('produto_unidade','Unidade','trim|required|min_length[2]|max_length[5]');
 
-               $this->form_validation->set_rules('produto_rg','','trim|required|max_length[20]|callback_check_produto_rg');
+               $this->form_validation->set_rules('produto_preco_custo','Preço de custo','trim|required|max_length[45]');
+
+                $this->form_validation->set_rules('produto_preco_venda','Preço de venda','trim|required|max_length[45]|callback_check_produto_preco_venda');
+
+                $this->form_validation->set_rules(' produto_estoque_minimo','Estoque minimo','trim|greate_than_equal_to[0]');
+
+                 $this->form_validation->set_rules('produto_qtde_estoque','Quantidade em estoque','trim|greate_than_equal_to[0]|required');
+
+                  $this->form_validation->set_rules('produto_obs','Observação','trim|max_length[200]');
 
 
-               $this->form_validation->set_rules('produto_email','','trim|required|valid_email|max_length[50]|callback_check_email');
 
-               $this->form_validation->set_rules('produto_telefone','','trim|required|max_length[15] |callback_check_produto_telefone');
 
-               $this->form_validation->set_rules('produto_celular','','trim|required|max_length[16]|callback_check_produto_celular');
 
-               $this->form_validation->set_rules('produto_cep','','trim|required|exact_length[9]');
-
-               $this->form_validation->set_rules('produto_endereco','','trim|required|max_length[155]');
-               $this->form_validation->set_rules('produto_numero_endereco','','trim|max_length[20]');
-               $this->form_validation->set_rules('produto_bairro','','trim|required|max_length[45]');
-               $this->form_validation->set_rules('produto_complemento','','trim|max_length[145]');
-               $this->form_validation->set_rules('produto_cidade','','trim|required|max_length[50]');
-               $this->form_validation->set_rules('produto_estado','','trim|required|exact_length[2]');
-               $this->form_validation->set_rules('produto_obs','','max_length[500]');
-
+              
 
        if ($this->form_validation->run()) {
 
-
+       exit('Validado');
         
-         //o codigo abaixo permite que faça alteração no campo 
-         $data = elements(
-              array(
-                'produto_codigo',
-                'produto_nome_completo',
-                'produto_cpf',
-                'produto_rg',
-                'produto_email',
-                'produto_telefone',
-                'produto_celular',
-                'produto_endereco',
-                'produto_numero_endereco',
-                'produto_complemento',
-                'produto_bairro',
-                'produto_cep',
-                'produto_cidade',
-                'produto_estado',
-                'produto_ativo',
-                'produto_obs',
-
-              ),$this->input->post()
-            );
-           $data['produto_estado'] = strtoupper($this->input->post('produto_estado'));
-
-             $data = html_escape($data);
-
-             $this->core_model->update('produtos', $data, array('produto_id'=> $produto_id));
-
-             redirect('produtos');
+        
       }else{
                       // Erro de validação
 
@@ -133,10 +101,36 @@
                   $this->load->view('produtos/edit'); 
                   $this->load->view('layout/footer');
                 }
+       }
+     }
 
+     public function check_produto_descricao ($produto_descricao)
+    {
+      $produto_id = $this->input->post('produto_id');
 
+      if($this->core_model->get_by_id('produtos',array('produto_descricao'=>$produto_descricao,'produto_id !=' => $produto_id))){
 
+          $this->form_validation->set_message('check_produto_descricao', 'Este produto já existe');
+        
+        return FALSE; 
 
+      }else{
+        return TRUE; 
+
+      }
+    }
+    public function check_produto_preco_venda ($produto_preco_venda)
+    {
+      $produto_preco_custo = $this->input->post('produto_preco_custo');
+
+      if($produto_preco_custo > $produto_preco_venda){
+
+          $this->form_validation->set_message('check_produto_preco_venda', 'O preço de custo deve ser maior que o preço de venda');
+        
+        return FALSE; 
+
+      }else{
+        return TRUE; 
 
       }
     }
