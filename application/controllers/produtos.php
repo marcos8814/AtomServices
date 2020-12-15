@@ -43,14 +43,18 @@
         	     $this->load->view('layout/footer');	
        }
 
-          public function edit($produto_id = NULL){
+  public function edit($produto_id = NULL) {
+
         if (!$produto_id || !$this->core_model->get_by_id('produtos', array('produto_id' => $produto_id))) {
+         
           $this->session->set_flashdata('error', 'produto não encontrado');
+
           redirect('produtos');
+      
        }else{
 
 
-              $this->form_validation->set_rules('produto_descricao','','trim|required|max_length[145]|callback_check_produto_descricao');
+              $this->form_validation->set_rules('produto_descricao','','trim|required|min_length[3]|max_length[145]|callback_check_produto_descricao');
 
                $this->form_validation->set_rules('produto_unidade','Unidade','trim|required|min_length[2]|max_length[5]');
 
@@ -58,21 +62,41 @@
 
                 $this->form_validation->set_rules('produto_preco_venda','Preço de venda','trim|required|max_length[45]|callback_check_produto_preco_venda');
 
-                $this->form_validation->set_rules(' produto_estoque_minimo','Estoque minimo','trim|greate_than_equal_to[0]');
+                $this->form_validation->set_rules(' produto_estoque_minimo','Estoque minimo','trim|greater_than_equal_to[0]');
 
-                 $this->form_validation->set_rules('produto_qtde_estoque','Quantidade em estoque','trim|greate_than_equal_to[0]|required');
+                 $this->form_validation->set_rules('produto_qtde_estoque','Quantidade em estoque','trim|greater_than_equal_to[0]|required');
 
                   $this->form_validation->set_rules('produto_obs','Observação','trim|max_length[200]');
 
-
-
-
-
-              
-
        if ($this->form_validation->run()) {
 
-       exit('Validado');
+           $data = elements(
+              array(
+
+                'produto_codigo',
+                'produto_categoria_id',
+                'produto_marca_id',
+                'produto_fornecedor_id',
+                'produto_descricao',
+                'produto_unidade',
+                'produto_unidade',
+                'produto_preco_custo',
+                'produto_preco_venda',
+                'produto_estoque_minimo',
+                'produto_estoque_minimo',
+                'produto_qtde_estoque',
+                'produto_ativo',
+                'produto_obs',
+
+                
+              ),$this->input->post()
+            );
+
+             $data = html_escape($data);
+
+             $this->core_model->update('produtos', $data, array('produto_id' => $produto_id));
+
+             redirect('produtos');
         
         
       }else{
@@ -100,9 +124,9 @@
                   $this->load->view('layout/header', $data);  
                   $this->load->view('produtos/edit'); 
                   $this->load->view('layout/footer');
-                }
+          }
        }
-     }
+    }
 
      public function check_produto_descricao ($produto_descricao)
     {

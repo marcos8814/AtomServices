@@ -25,17 +25,16 @@
     <div class="card-body">
      <!--back end  -->
      <form class="user" method="POST" name="form_edit"> <!--metodo post reponsavel por proteger campo da url -->
-      <p><strong><i class="fas fa-tools"></i>&nbsp;&nbsp;Útima Alteração: </strong><?php echo formata_data_banco_com_hora( $produto->produto_data_alteracao);?></p>:
+      <p><strong><i class="far fa-clock"></i>&nbsp;&nbsp;Útima Alteração: </strong><?php echo formata_data_banco_com_hora( $produto->produto_data_alteracao);?></p>:
 
       <!--O codigo abaixo moldura dos dados pessoais   -->
       <fieldset class="mt-4 border p-2">          
        <!--O codigo abaixo se refere os iconis dos dados pessoais -->
-     <legend class="font-small"><i class="fab fa-product-hunt"></i></i>&nbsp;Dados do produto</legend>
-
+       <legend class="font-small"><i class="fab fa-product-hunt"></i></i>&nbsp;Dados do produto</legend>
 
 
        <div class="form-group row"> <!--altera o tamanho do campo nome  -->
-          <div class="col-md-2 mb-3 "> 
+         <div class="col-md-2 mb-3 "> 
            <label>Código do produto</label>
            <input type="text" class="form-control form-control-user" name="produto_codigo"  value="<?php echo $produto->produto_codigo; ?> " readonly=""> <!--first_name é o nome do campo da tabela que esta no banco de dados  -->
            
@@ -48,10 +47,12 @@
            <!-- O codigo verifica se o campo obirgatorio esta preechido-->
 
          </div>
+       </div>
 
-      </div>
-       <div class="form-group row"> 
-          <div class="col-md-3 mb-3 "> 
+
+       <div class="form-group row mb-3"> <!--altera o tamanho do campo nome  -->
+         <!-- O codigo abaixo busca na tabela categoria os campos categoria nome e tras para o formularia da tabela produtos-->
+         <div class="col-md-3 mb-3 "> 
            <label>Marca</label>
            <select class="custom-select" name="produto_marca_id">
             <?php foreach ($marcas as $marca):?>
@@ -86,10 +87,11 @@
      <!-- O codigo verifica se o campo obirgatorio esta preechido-->
 
    </div>
-          
-  </div>
-      
-      
+
+ </div>
+
+
+
 </fieldset>
 
 <fieldset class="mt-4 border p-2">          
@@ -162,7 +164,6 @@
 
 
 
-
  <div class="form-group row">  
    <input type="hidden" name="produto_id" value="<?php echo $produto->produto_id;?>"/>
  </div> 
@@ -177,5 +178,4 @@
 <!-- /.container-fluid -->
 
 </div>
-<!-- End of Main Content -->
-
+<!-- End of M

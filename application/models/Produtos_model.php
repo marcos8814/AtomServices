@@ -2,7 +2,7 @@
  defined('BASEPATH') OR exit ('Ação não permitida');
 
   
-  class Produtos_model extends CI_MOdel
+  class Produtos_model extends CI_Model
   {
   	
   	   public function get_all()
