@@ -83,7 +83,7 @@
                      <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">           <!-- o codigo em php abaixo carrega ação do btn -->
-              <a title="Cadastrar novo produto"href="<?php echo base_url('produtos/add'); ?>" class="btn btn-success btn-sm float-right"><i class="fab fa-product-hunt"></i>&nbsp;Novo</a>
+              <a title="Cadastrar novo categoria"href="<?php echo base_url('categorias/add'); ?>" class="btn btn-success btn-sm float-right"><i class="fas fa-user-tag"></i></i>&nbsp;Novo</a>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -91,52 +91,41 @@
                   <thead>
                     <tr>
                       <th>#</th>
-                      <th>Código do produto</th>
-                      <th>Nome do produto</th>
-                      <th>Marca</th>
-                      <th>produto</th>
-                      <th class="text-center">Estoque mininmo</th>
-                      <th class="text-center">Qtde estoque</th>
+                      <th>categorias</th>
                       <th class="text-center">Ativo</th>
                       <th class="text-right no-sort pr-2">Ações</th>
                     </tr>
                   </thead>
                  
                 <tbody>
-                    <?php foreach ($produtos as $produto): ?>
+                    <?php foreach ($categorias as $categoria): ?>
                     <tr>
-                      <td> <?php echo $produto->produto_id ?></td>
-                      <td> <?php echo $produto->produto_codigo ?></td>
-                      <td> <?php echo $produto->produto_descricao ?></td>
-                      <td> <?php echo $produto->produto_marca ?></td>
-                      <td> <?php echo $produto->produto_categoria ?></td>
-                      <td class="text-center pr-2"> <?php echo '<span class="badge badge-success btn-sm">'.$produto->produto_estoque_minimo.'</span>' ?></td>
-                      <td class="text-center pr-2"> <?php echo ($produto->produto_estoque_minimo == $produto->produto_qtde_estoque ? '<span class="badge badge-warning btn-sm text-gray-900">'.$produto->produto_qtde_estoque.'</span>':'<span class="badge badge-info btn-sm ">'.$produto->produto_qtde_estoque.'</span>') ?></td>
+                      <td> <?php echo $categoria->categoria_id ?></td>
+                      <td> <?php echo $categoria->categoria_nome ?></td>
                       
-                      
-                      <td class="text-center pr-4"> <?php echo ($produto->produto_ativo == 1 ? '<span class="badge badge-info btn-sm">Sim</span>' : '<span class="badge badge-danger btn-sm">Não</span>') ?>
+                      <td class="text-center pr-4"> <?php echo ($categoria->categoria_ativa == 1 ? '<span class="badge badge-info btn-sm">Sim</span>' : '<span class="badge badge-danger btn-sm">Não</span>') ?>
                       </td> <!-- o codigo acima colocar um campo sim para ativo em cor azul e não para não ativo em cor vermelho, e colocar o campo ATIVO centralizado com o campo abaixo-->
                       <td class="text-right">
                         
-                        <a title="Editar" href="<?php echo base_url('produtos/edit/'.$produto->produto_id); ?>" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
-                        <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#produto-<?php echo $produto->produto_id; ?>" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
+                        <a title="Editar" href="<?php echo base_url('categorias/edit/'.$categoria->categoria_id); ?>" class="btn btn-sm btn-primary"><i class="fas fa-user-plus"></i></a>
+                        <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#categoria-<?php echo $categoria->categoria_id; ?>" class="btn btn-sm btn-danger"><i class="fas fa-user-times"></i></a>
                       </td>
 
                     </tr>
                     <!-- Codigo que chama o Modal(Tela pergunta se o usuário tem certeza que deseja excluir)-->
-                      <div class="modal fade" id="produto-<?php echo $produto->produto_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal fade" id="categoria-<?php echo $categoria->categoria_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                           <div class="modal-content">
                             <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel">Tem certeza que deseja excluir este produto?</h5>
+                              <h5 class="modal-title" id="exampleModalLabel">Tem certeza que deseja excluir este categoria?</h5>
                               <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">×</span>
                               </button>
                             </div>
-                            <div class="modal-body">Para excluir este produto clique em <strong>"Sim"</strong></div>
+                            <div class="modal-body">Para excluir este categoria clique em <strong>"Sim"</strong></div>
                             <div class="modal-footer">
                               <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Não</button>
-                              <a class="btn btn-danger btn-sm" href="<?php echo base_url('produtos/del/'.$produto->produto_id);?>">Sim</a>
+                              <a class="btn btn-danger btn-sm" href="<?php echo base_url('categorias/del/'.$categoria->categoria_id);?>">Sim</a>
                             </div>
                           </div>
                         </div>

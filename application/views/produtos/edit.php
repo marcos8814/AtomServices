@@ -30,15 +30,13 @@
       <!--O codigo abaixo moldura dos dados pessoais   -->
       <fieldset class="mt-4 border p-2">          
        <!--O codigo abaixo se refere os iconis dos dados pessoais -->
-     <legend class="font-small"><i class="fab fa-product-hunt"></i></i>&nbsp;Dados do produto</legend>
-
+       <legend class="font-small"><i class="fab fa-product-hunt"></i>&nbsp;Dados do produto</legend>
 
 
        <div class="form-group row"> <!--altera o tamanho do campo nome  -->
-          <div class="col-md-2 mb-3 "> 
+         <div class="col-md-2"> 
            <label>Código do produto</label>
-           <input type="text" class="form-control form-control-user" name="produto_codigo"  value="<?php echo $produto->produto_codigo; ?> " readonly=""> <!--first_name é o nome do campo da tabela que esta no banco de dados  -->
-           
+           <input type="text" class="form-control form-control-user" name="produto_codigo"  value="<?php echo $produto->produto_codigo; ?>" readonly = ""> 
          </div>
 
          <div class="col-md-10"> 
@@ -48,9 +46,8 @@
            <!-- O codigo verifica se o campo obirgatorio esta preechido-->
 
          </div>
-
       </div>
-       <div class="form-group row"> 
+          <div class="form-group row"> 
           <div class="col-md-3 mb-3 "> 
            <label>Marca</label>
            <select class="custom-select" name="produto_marca_id">
@@ -88,11 +85,11 @@
    </div>
           
   </div>
+       
       
       
-</fieldset>
-
-<fieldset class="mt-4 border p-2">          
+  </fieldset>
+  <fieldset class="mt-4 border p-2">          
  <!--O codigo abaixo se refere os iconis dos dados pessoais -->
  <legend class="font-small"><i class="fas fa-funnel-dollar"></i></i>&nbsp;Precificação e estoque</legend>
 
@@ -101,7 +98,7 @@
    <div class="col-md-3"> 
      <label>Preço de custo</label>
      <input type="text" class="form-control form-control-user money" name=" produto_preco_custo" placeholder="Preço de custo" value="<?php echo $produto->produto_preco_custo; ?>"> <!--last_name é o sobrenome do campo da tabela que esta no banco de dados  -->
-     <?php echo form_error('  produto_preco_custo','<small class="form-text text-danger">','</small>'); ?>
+     <?php echo form_error('produto_preco_custo','<small class="form-text text-danger">','</small>'); ?>
      <!-- O codigo verifica se o campo obirgatorio esta preechido-->
 
    </div>
@@ -109,7 +106,7 @@
    <div class="col-md-3"> 
      <label>Preço venda</label>
      <input type="text" class="form-control form-control-user money" name=" produto_preco_venda" placeholder="Preço de venda" value="<?php echo $produto->produto_preco_venda; ?>"> <!--last_name é o sobrenome do campo da tabela que esta no banco de dados  -->
-     <?php echo form_error('  produto_preco_venda','<small class="form-text text-danger">','</small>'); ?>
+     <?php echo form_error('produto_preco_venda','<small class="form-text text-danger">','</small>'); ?>
      <!-- O codigo verifica se o campo obirgatorio esta preechido-->
 
    </div>
@@ -158,10 +155,6 @@
  </div> 
 
 </fieldset>
-
-
-
-
 
  <div class="form-group row">  
    <input type="hidden" name="produto_id" value="<?php echo $produto->produto_id;?>"/>
