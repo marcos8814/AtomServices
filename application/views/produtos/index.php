@@ -83,7 +83,7 @@
                      <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">           <!-- o codigo em php abaixo carrega ação do btn -->
-              <a title="Cadastrar novo produto"href="<?php echo base_url('produtos/add'); ?>" class="btn btn-success btn-sm float-right"><i class="fab fa-product-hunt"></i>&nbsp;Novo</a>
+              <a title="Cadastrar novo vendedor"href="<?php echo base_url('produtos/add'); ?>" class="btn btn-success btn-sm float-right"><i class="fas fa-plus"></i></i>&nbsp;Novo</a>
             </div>
             <div class="card-body">
               <div class="table-responsive">
