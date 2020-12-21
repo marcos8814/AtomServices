@@ -215,7 +215,7 @@
       
       if (!$produto_id||!$this->core_model->get_by_id('produtos',array('produto_id'=>$produto_id))) {
         
-        $this->session->set_flashdata('error,','produto não encontrado');
+        $this->session->set_flashdata('error','produto não encontrado');
         redirect('produtos');
       }else{
          $this->core_model->delete('produtos', array('produto_id'=>$produto_id));

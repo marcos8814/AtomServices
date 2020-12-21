@@ -17,7 +17,7 @@
         Cadastros
       </div>
 
-         <li class="nav-item">
+      <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
          
           <i class="fas fa-database"></i>
@@ -33,10 +33,8 @@
           </div>
         </div>
       </li>
-
       
-
-         <li class="nav-item">
+      <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTres" aria-expanded="true" aria-controls="collapseTres">
          
          <i class="fas fa-box-open"></i>
@@ -45,12 +43,26 @@
         <div id="collapseTres" class="collapse" aria-labelledby="headingTres" data-parent=" #accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Escolha uma opção:</h6>
-            <a  title="Gerenciar Marcas" class="collapse-item" href="<?php echo base_url('marcas') ?>"> <i class="fas fa-copyright"></i></i>&nbsp;&nbsp; Marcas</a>
-             <a  title="Gerenciar Produtos" class="collapse-item" href="<?php echo base_url('produtos') ?>"> <i class="fab fa-product-hunt"></i></i>&nbsp;&nbsp; Produtos</a>
+                <a  title="Gerenciar Marcas" class="collapse-item" href="<?php echo base_url('marcas') ?>"> <i class="fas fa-copyright"></i></i>&nbsp;&nbsp; Marcas</a>
+                 <a  title="Gerenciar Produtos" class="collapse-item" href="<?php echo base_url('produtos') ?>"> <i class="fab fa-product-hunt"></i></i>&nbsp;&nbsp; Produtos</a>
 
-            <a  title="Gerenciar Categorias" class="collapse-item" href="<?php echo base_url('categorias') ?>"> <i class="fas fa-layer-group"></i></i>&nbsp;&nbsp; Categorias</a>
+                <a  title="Gerenciar Categorias" class="collapse-item" href="<?php echo base_url('categorias') ?>"> <i class="fas fa-layer-group"></i></i>&nbsp;&nbsp; Categorias</a>
             
-          </div>
+         </div>
+        </div>
+      </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseQuatro" aria-expanded="true" aria-controls="collapseTres">
+         
+         <i class="fas fa-file-invoice-dollar"></i>
+          <span>Financeiro</span>
+        </a>
+        <div id="collapseQuatro" class="collapse" aria-labelledby="headingTres" data-parent=" #accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Escolha uma opção:</h6>
+                <a  title="Gerenciar contas a pagar" class="collapse-item" href="<?php echo base_url('pagar') ?>"> <i class="fas fa-money-bill-alt"></i></i>&nbsp;&nbsp; Contas a pagar</a>
+         </div>
         </div>
       </li>
        

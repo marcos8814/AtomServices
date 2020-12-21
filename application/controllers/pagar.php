@@ -13,6 +13,8 @@
  					   redirect('login');
 			    }
 
+          $this->load->model('financeiro_model');
+
 			 }
        //o codigo abaixo lista as pagar na tabela
       public function index(){
@@ -30,8 +32,11 @@
                 'vendor/datatables/app.js'
                 ),
     
-  			    'contas_pagar'=> $this->core_model->get_all('contas_pagar'),
+  			    'contas_pagar'=> $this->financeiro_model->get_all_pagar(),
   		        );
+                 //echo '<pre>';
+                 //print_r($data['contas_pagar']);
+                 //exit();
 
         	     $this->load->view('layout/header', $data);	
         	     $this->load->view('pagar/index');	
