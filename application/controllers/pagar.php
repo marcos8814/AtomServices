@@ -49,7 +49,49 @@
             $this->session->set_flashdata('erro', 'Conta não encotrada ');
             redirect('pagar');
          }else{
-                $data = array(
+           $this->form_validation->set_rules('conta_pagar_fornecedor_id','','required');
+
+           $this->form_validation->set_rules('conta_pagar_data_vencimento','','required');
+
+           $this->form_validation->set_rules('conta_pagar_valor','','required');
+           
+           $this->form_validation->set_rules('conta_pagar_obs','','max_length[100]');
+
+
+
+               if($this->form_validation->run()){
+                 
+                 $data = elements(
+                 
+                  array(
+                   'conta_pagar_fornecedor_id',
+                   'conta_pagar_data_vencimento',
+                   'conta_pagar_valor',
+                   'conta_pagar_status',
+                   'conta_pagar_obs',
+                  ), $this->input->post()
+            
+                 );
+
+                 $conta_pagar_status = $this->input->post('conta_pagar_status');
+                  if ($conta_pagar_status == 1) {
+                      $data['conta_pagar_data_pagamento']= date('Y-m-d h:i:s');
+                    }
+
+                    $data = html_escape($data);
+
+                    $this->core_model->update('contas_pagar',$data, array('conta_pagar_id'=>$conta_pagar_id));
+
+                    redirect('pagar');
+
+
+
+                //verificar se foi paga
+
+               }else{
+                  //erro de validação
+
+                  $data = array(
           
                'titulo'=>'Contas a pagar cadastrados',
 
@@ -74,6 +116,11 @@
                $this->load->view('layout/header', $data); 
                $this->load->view('pagar/edit');  
                $this->load->view('layout/footer');
+
+            }
+
+
+              
 
          }
        }
