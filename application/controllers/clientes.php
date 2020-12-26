@@ -193,7 +193,17 @@
              $this->form_validation->set_rules('cliente_obs','','max_length[500]');
              
              if ($this->form_validation->run()) {
+
+              $cliente_ativo = $this->input->post('cliente_ativo');
             
+             if ($this->db->table_exists('contas_receber')) {
+                  
+                   if ($cliente_ativo == 0 && $this->core_model->get_by_id('contas_receber', 
+                     array('conta_receber_cliente_id' => $cliente_id, 'conta_receber_status' => 0))) {
+                           $this->session->set_flashdata('info','Esta cliente não poder ser desativado, pois está sendo ultilizado em <i class="fas fa-hand-holding-usd"></i> &nbsp;Conta a receber');
+                           redirect('clientes');
+                       }
+                }
              
     
             $data = elements(
@@ -254,7 +264,12 @@
              }
 
        	  }
-       }
+
+        }
+
+
+       
+      
              public function check_rg_ie($cliente_rg_ie){
                $cliente_id = $this->input->post('cliente_id');
 

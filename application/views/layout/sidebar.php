@@ -58,10 +58,12 @@
          <i class="fas fa-file-invoice-dollar"></i>
           <span>Financeiro</span>
         </a>
-        <div id="collapseQuatro" class="collapse" aria-labelledby="headingTres" data-parent=" #accordionSidebar">
+      <div id="collapseQuatro" class="collapse" aria-labelledby="headingTres"  data-parent=" #accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Escolha uma opção:</h6>
                 <a  title="Gerenciar contas a pagar" class="collapse-item" href="<?php echo base_url('pagar') ?>"> <i class="fas fa-money-bill-alt"></i></i>&nbsp;&nbsp; Contas a pagar</a>
+
+                 <a  title="Gerenciar contas a receber" class="collapse-item" href="<?php echo base_url('receber') ?>"><i class="fas fa-hand-holding-usd"></i></i>&nbsp;&nbsp; Contas a receber</a>
          </div>
         </div>
       </li>
