@@ -64,6 +64,8 @@
                 <a  title="Gerenciar contas a pagar" class="collapse-item" href="<?php echo base_url('pagar') ?>"> <i class="fas fa-money-bill-alt"></i></i>&nbsp;&nbsp; Contas a pagar</a>
 
                  <a  title="Gerenciar contas a receber" class="collapse-item" href="<?php echo base_url('receber') ?>"><i class="fas fa-hand-holding-usd"></i></i>&nbsp;&nbsp; Contas a receber</a>
+
+                 <a  title="Gerenciar formas de pagamentos" class="collapse-item" href="<?php echo base_url('formas_pagamentos') ?>"><i class="fas fa-money-check-alt"></i></i>&nbsp;&nbsp; Formas de pagamento</a>
          </div>
         </div>
       </li>
