@@ -83,7 +83,7 @@
                      <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">           <!-- o codigo em php abaixo carrega ação do btn -->
-              <a title="Cadastrar nova forma de pagamento"href="<?php echo base_url('formas_pagamentos/add'); ?>" class="btn btn-success btn-sm float-right"><i class="fas fa-user-tag"></i></i>&nbsp;Nova</a>
+              <a title="Cadastrar nova forma de pagamento"href="<?php echo base_url('modulo/add'); ?>" class="btn btn-success btn-sm float-right"><i class="fas fa-user-tag"></i></i>&nbsp;Nova</a>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -111,7 +111,7 @@
                                             </td>
                       <td class="text-right">
                         
-                        <a title="Editar" href="<?php echo base_url('formas_pagamentos/edit/'.$forma->forma_pagamento_id); ?>" class="btn btn-sm btn-primary"><i class="fas fa-user-plus"></i></a>
+                        <a title="Editar" href="<?php echo base_url('modulo/edit/'.$forma->forma_pagamento_id); ?>" class="btn btn-sm btn-primary"><i class="fas fa-user-plus"></i></a>
                         <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#forma-<?php echo $forma->forma_pagamento_id; ?>" class="btn btn-sm btn-danger"><i class="fas fa-user-times"></i></a>
                       </td>
 
@@ -129,7 +129,7 @@
                             <div class="modal-body">Para excluir este forma clique em <strong>"Sim"</strong></div>
                             <div class="modal-footer">
                               <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Não</button>
-                              <a class="btn btn-danger btn-sm" href="<?php echo base_url('formas_pagamentos/del/'.$forma->forma_id);?>">Sim</a>
+                              <a class="btn btn-danger btn-sm" href="<?php echo base_url('formas_pagamentos/del/'.$forma->forma_pagamento_id);?>">Sim</a>
                             </div>
                           </div>
                         </div>

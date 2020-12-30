@@ -43,11 +43,47 @@
         	     $this->load->view('layout/footer');	
        }
 
+       public function add()
+       {
+         $this->form_validation->set_rules('forma_pagamento_nome','Nome da forma de pagamento','trim|required|min_length[4]|max_length[45]|is_unique[formas_pagamentos.forma_pagamento_nome]');
+
+                if ($this->form_validation->run()) {
+                  
+                    
+                   $data = elements(
+                        array(
+                            'forma_pagamento_nome',
+                            'forma_pagamento_ativa',
+                            'forma_pagamento_aceita_parc',
+                        ), $this->input->post()
+
+                   );
+
+                   $data = html_escape($data);
+
+                   $this->core_model->insert('formas_pagamentos', $data);
+                   redirect('modulo');
+
+                }else{
+
+                  $data = array(
+                   'titulo'=>'Cadastrar Formas de pagamento',
+                   
+                 );
+              
+                  $this->load->view('layout/header', $data); 
+                  $this->load->view('formas_pagamentos/add');  
+                  $this->load->view('layout/footer');
+                }
+
+                
+        }
+
        public function edit($forma_pagamento_id =NULL)
        {
          if (!$forma_pagamento_id || !$this->core_model->get_by_id('formas_pagamentos',array('forma_pagamento_id'=>$forma_pagamento_id))) {
-            $this->session->set_flashdata('erro', 'Forma de pagamento não encotrada ');
-            redirect('formas_pagamentos');
+            $this->session->set_flashdata('erro', 'Forma de pagamento não encontrada ');
+            redirect('modulo');
          }else{
 
                 $this->form_validation->set_rules('forma_pagamento_nome','Nome da forma de pagamento','trim|required|min_length[4]|max_length[45]|callback_check_pagamento_nome');
@@ -103,11 +139,6 @@
                   $this->load->view('formas_pagamentos/edit');  
                   $this->load->view('layout/footer');
                 }
-
-
-
-      
-
         }
     }
 
@@ -123,6 +154,24 @@
          return TRUE;
 
       }
+    }
+
+    public function del($forma_pagamento_id = NULL){
+
+      if (!$forma_pagamento_id || !$this->core_model->get_by_id('formas_pagamentos',array('forma_pagamento_id'=>$forma_pagamento_id))) {
+            $this->session->set_flashdata('erro', 'Forma de pagamento não encontrada ');
+            redirect('modulo');
+         }
+
+         if ($this->core_model->get_by_id('formas_pagamentos',array('forma_pagamento_id'=>$forma_pagamento_id, 'forma_pagamento_ativa'=> 1))) {
+            $this->session->set_flashdata('info', 'Não é possivel excluir uma forma de pagamento que está Ativa');
+            redirect('modulo');
+         }
+
+         $this->core_model->delete('formas_pagamentos', array('forma_pagamento_id' => $forma_pagamento_id));
+            redirect('modulo');
+
+
     }
   }
     
