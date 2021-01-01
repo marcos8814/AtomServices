@@ -26,10 +26,7 @@
         <div id="collapseOs" class="collapse" aria-labelledby="headingos" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Escolha uma opção:</h6>
-            <a  title="Gerenciar Clientes" class="collapse-item" href="<?php echo base_url('clientes') ?>"> <i class="fas fa-store-alt text-gray-900"></i>&nbsp;&nbsp; Clientes</a>
-            <a title="Gerenciar Fornecedores" class="collapse-item" href="<?php echo base_url('fornecedores') ?>"><i class="fas fa-user-tag text-gray-900 "></i>&nbsp;&nbsp;Fornecedores</a>
-            <a title="Gerenciar Vendedores" class="collapse-item" href="<?php echo base_url('vendedores') ?>"><i class="fas fa-id-card"></i></i></i>&nbsp;&nbsp;Vendedores</a>
-            <a title="Gerenciar Serviços" class="collapse-item" href="<?php echo base_url('servicos') ?>"><i class="fas fa-tools"></i></i></i></i>&nbsp;&nbsp;Serviços</a>
+            <a  title="Gerenciar ordem de Serviços" class="collapse-item" href="<?php echo base_url('os') ?>"> <i class="fas fa-shopping-basket text-gray-900"></i>&nbsp;&nbsp; Ordem de Serviços</a>
           </div>
         </div>
       </li>
