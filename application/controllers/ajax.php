@@ -54,5 +54,40 @@
                }
          }
        }
+
+       public function servicos()
+       {
+         
+         if (!$this->input>is_ajax_request()) {
+            exit('Ação não permitida!');
+         }else{
+            $busca = $this->input->post('tem');
+            $data['response'] = 'false';
+
+            $query = $this->core_model->auto_complete_servicos($busca);
+            
+             if ($query) {
+                 
+                 $data['response'] = 'true';
+                 $data['message'] = array();
+
+                 foreach ($query as $row) {
+                   
+                   $data['message'][]=array(
+                     'id' => $row->servico_id,
+                     'value'=> $row->servico_descrição,
+                     'servico_preco'=> $row->servico_preco,
+
+                   );
+
+                 }
+
+                 echo json_encode($data);
+               }else{
+                 echo json_encode($data);
+
+               }
+         }
+       }
      }
   ?>
