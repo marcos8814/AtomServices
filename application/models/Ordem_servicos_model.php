@@ -22,5 +22,31 @@
       return $this->db->get('ordens_servicos')->result();
 
     }
+
+    public function get_all_servicos_get_by_id($ordem_servico_id = NULL ) 
+    {
+       if ($ordem+servico_id) {
+           
+           $this->db->select([
+                  
+                   'ordem_tem_servicos.*',
+                   'sevicos.servico_descricao',
+           ]);
+
+           $this->db->join('servicos','servicos_id = ordem_ts_id_servicos','LEFT');
+
+           $this->db->where('ordem_ts_id_servicos',$ordem_servico_id);
+
+           return $this->db->get('ordem_tem_servicos')->result();
+       }
+    }
+
+    public function delete_old_services($ordem_servico_id = NULL)
+    {
+      if ($ordem_servico_id) {
+        
+        $this->db->delete('ordem_tem_servicos', array('ordem_ts_id_servico'));
+      }
+    }
   }
 ?>
