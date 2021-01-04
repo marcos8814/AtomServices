@@ -23,19 +23,19 @@
 
     }
 
-    public function get_all_servicos_get_by_id($ordem_servico_id = NULL ) 
+    public function get_all_servicos_get_by_ordem($ordem_servico_id = NULL ) 
     {
-       if ($ordem+servico_id) {
+       if ($ordem_servico_id) {
            
            $this->db->select([
                   
                    'ordem_tem_servicos.*',
-                   'sevicos.servico_descricao',
+                   'servicos.servico_descricao',
            ]);
 
-           $this->db->join('servicos','servicos_id = ordem_ts_id_servicos','LEFT');
+           $this->db->join('servicos','servico_id = ordem_ts_id_servico','LEFT');
 
-           $this->db->where('ordem_ts_id_servicos',$ordem_servico_id);
+           $this->db->where('ordem_ts_id_servico',$ordem_servico_id);
 
            return $this->db->get('ordem_tem_servicos')->result();
        }
@@ -54,7 +54,8 @@
     $this->db->select([
         'ordens_servicos.*',
         'clientes.cliente_id',
-        'clientes.cliente_nome',
+        'clientes.cliente_cpf_cnpj',
+        'CONCAT(clientes.cliente_nome,"",clientes.cliente_sobrenome) as cliente_nome_completo', 
         'formas_pagamentos.forma_pagamento_id',
         'formas_pagamentos.forma_pagamento_nome as forma_pagamento',
     ]);

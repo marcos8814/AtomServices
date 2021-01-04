@@ -49,8 +49,25 @@
             $this->session->set_flashdata('error', 'Ordem de serviço não encontrada');
             redirect('os');
          }else{
+            
+            $this->form_validation->set_rules('ordem_servico_cliente_id','','required');
+            $this->form_validation->set_rules('ordem_servico_forma_pagamento','','required');
+            $this->form_validation->set_rules('ordem_servico_equipamento','','trim|required');
+            $this->form_validation->set_rules('ordem_servico_marca_equipamento','Marca','trim|required|min_length[2]|max_length[80]');
+            $this->form_validation->set_rules('ordem_servico_modelo_equipamento','Modelo','trim|required|min_length[2]|max_length[80]');
+            $this->form_validation->set_rules('ordem_servico_acessorios','Acessorios','trim|required|min_length[2]|max_length[300]');
+            
+            
 
-          $data = array(
+
+
+          if ($this->form_validation->run()) {
+            exit('Validado');
+          }else{
+
+           //Erro de validação
+
+                   $data = array(
           
                'titulo'=>'Atualizar Ordem de Serviços',
 
@@ -72,15 +89,24 @@
             
             'clientes' => $this->core_model->get_all('clientes',array('cliente_ativo'=> 1)),
             'formas_pagamentos' => $this->core_model->get_all('formas_pagamentos',array('forma_pagamento_ativa'=>1)),
-
+            'os_tem_servicos'=> $this->ordem_servicos_model->get_all_servicos_get_by_ordem($ordem_servico_id),
           
               );
 
             $ordem_servico = $data[ 'ordem_servico'] = $this->ordem_servicos_model->get_by_id($ordem_servico_id);
 
             echo '<pre>';
-            print_r($ordem_servico);
+            print_r($data['os_tem_servicos']);
             exit();
+
+            $this->load->view('layout/header', $data);  
+            $this->load->view('ordem_servicos/edit'); 
+            $this->load->view('layout/footer');  
+
+
+          }
+
+   
         
          }
        }
