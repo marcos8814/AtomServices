@@ -122,7 +122,7 @@
                    }
 
                    //criar recusos pdf
-                   redirect('os');
+                   redirect('os/imprimir/'. $ordem_servico_id);
 
 
           }else{
@@ -172,6 +172,29 @@
    
         
          }
+       }
+
+       public function imprimir($ordem_servico_id = NULL)
+       {
+         if (!$ordem_servico_id || !$this->core_model->get_by_id('ordens_servicos', array('ordem_servico_id'=>$ordem_servico_id))) {
+            $this->session->set_flashdata('error', 'Ordem de serviço não encontrada');
+            redirect('os');
+          }else{
+
+            $data = array(
+
+                 'titulo' => 'Escolha uma opção',
+            );
+
+            $this->load->view('layout/header', $data);  
+            $this->load->view('ordem_servicos/imprimir'); 
+            $this->load->view('layout/footer');  
+
+
+
+
+
+          }
        }
     }
 
