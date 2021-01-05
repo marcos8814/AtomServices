@@ -63,7 +63,7 @@
                      <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">           <!-- o codigo em php abaixo carrega ação do btn -->
-              <a title="Cadastrar nova ordem de serviço"href="<?php echo base_url('os/add'); ?>" class="btn btn-success btn-sm float-right"><i class="fas fa-shopping-basket"></i></i>&nbsp;Novo</a>
+              <a title="Cadastrar nova ordem de serviço"href="<?php echo base_url('os/add'); ?>" class="btn btn-success btn-sm float-right"><i class="fas fa-shopping-basket"></i></i>&nbsp;Nova</a>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -86,10 +86,9 @@
                       <td> <?php echo $os->ordem_servico_id ?></td>
                       <td> <?php echo formata_data_banco_com_hora( $os->ordem_servico_data_emissao) ?></td>
                       <td> <?php echo $os->cliente_nome?></td>
-                       <td><?php echo ($os->ordem_servico_status == 1 ? $os->forma_pagamento : 'Em aberto'); ?></td>
-                      </td>
-                      <td> <?php echo 'R$&nbsp'.$os->ordem_servico_valor_total?></td>
-                      <td class="text-center pr-4"> <?php echo ($os->ordem_servico_status == 1 ? '<span class="badge badge-info btn-sm">Sim</span>' : '<span class="badge badge-danger btn-sm">Não</span>') ?>
+                      <td> <?php echo ($os->ordem_servico_status == 1 ? $os->forma_pagamento : 'Em aberto'); ?></td>
+                      <td> <?php echo 'R$&nbsp;'.$os->ordem_servico_valor_total?></td>
+                      <td class="text-center pr-4"><?php echo ($os->ordem_servico_status == 1 ? '<span class="badge badge-info btn-sm">Paga</span>' : '<span class="badge badge-warning btn-sm">Em aberto</span>') ?>
                       </td> <!-- o codigo acima colocar um campo sim para ativo em cor azul e não para não ativo em cor vermelho, e colocar o campo ATIVO centralizado com o campo abaixo-->
                       <td class="text-right">
                         

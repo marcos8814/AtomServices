@@ -1,7 +1,7 @@
 <?php
   defined('BASEPATH') OR exit('Ação não permitida');
 
-   class categorias extends CI_Controller{
+   class Ajax extends CI_Controller{
    	  
    	  public function __construct(){
 
@@ -22,10 +22,10 @@
        public function produtos()
        {
          
-         if (!$this->input>is_ajax_request()) {
+         if (! $this->input->is_ajax_request()) {
             exit('Ação não permitida!');
          }else{
-            $busca = $this->input->post('tem');
+            $busca = $this->input->post('term');
             $data['response'] = 'false';
 
             $query = $this->core_model->auto_complete_produtos($busca);
@@ -39,7 +39,7 @@
                    
                    $data['message'][]=array(
                      'id' => $row->produto_id,
-                     'value'=> $row->produto_descrição,
+                     'value'=> $row->produto_descricao,
                      'produto_preco_venda'=> $row->produto_preco_venda,
                      'produto_qtde_estoque' =>$row->produto_qtde_estoque,
 
@@ -58,10 +58,10 @@
        public function servicos()
        {
          
-         if (!$this->input>is_ajax_request()) {
+         if (!$this->input->is_ajax_request()) {
             exit('Ação não permitida!');
          }else{
-            $busca = $this->input->post('tem');
+            $busca = $this->input->post('term');
             $data['response'] = 'false';
 
             $query = $this->core_model->auto_complete_servicos($busca);
@@ -75,7 +75,7 @@
                    
                    $data['message'][]=array(
                      'id' => $row->servico_id,
-                     'value'=> $row->servico_descrição,
+                     'value'=> $row->servico_descricao,
                      'servico_preco'=> $row->servico_preco,
 
                    );

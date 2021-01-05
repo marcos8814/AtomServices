@@ -51,11 +51,13 @@
          }else{
             
             $this->form_validation->set_rules('ordem_servico_cliente_id','','required');
-            $this->form_validation->set_rules('ordem_servico_forma_pagamento','','required');
+            $this->form_validation->set_rules('ordem_servico_forma_pagamento_id','','required');
             $this->form_validation->set_rules('ordem_servico_equipamento','','trim|required');
             $this->form_validation->set_rules('ordem_servico_marca_equipamento','Marca','trim|required|min_length[2]|max_length[80]');
             $this->form_validation->set_rules('ordem_servico_modelo_equipamento','Modelo','trim|required|min_length[2]|max_length[80]');
-            $this->form_validation->set_rules('ordem_servico_acessorios','Acessorios','trim|required|min_length[2]|max_length[300]');
+            $this->form_validation->set_rules('ordem_servico_acessorios','Acessórios','trim|required|max_length[300]');
+            $this->form_validation->set_rules('ordem_servico_defeito','Defeito','trim|required|max_length[700]');
+            
             
             
 
@@ -67,37 +69,38 @@
 
            //Erro de validação
 
-                   $data = array(
+                $data = array(
           
-               'titulo'=>'Atualizar Ordem de Serviços',
+               'titulo'=>'Atualizar Ordem de Serviço',
 
                 'styles'=> array(
                 'vendor/select2/select2.min.css',
                 'vendor/autocomplete/jquery-ui.css',
-                'vendor/autocomplete/estilos.css',
+                'vendor/autocomplete/estilo.css',
                ),
 
                 'scripts'=> array(
-                'vendor/autocomplete/jquery-migrate.js',
-                'vendor/calx/jquery-calx-sample-2.2.8.min',
-                'vendor/calx/os.js',
+                'vendor/autocomplete/jquery-migrate.js',//vem primeiro
+                'vendor/calcx/jquery-calx-sample-2.2.8.min.js',
+                'vendor/calcx/os.js',
                 'vendor/select2/select2.min.js',
                 'vendor/select2/app.js',
-                'vendor/autocomplete/jquery-ui.js',
+                'vendor/sweetalert2/sweetalert2.js',
+                'vendor/autocomplete/jquery-ui.js',// Vem por ultimo
                 ),
     
             
             'clientes' => $this->core_model->get_all('clientes',array('cliente_ativo'=> 1)),
             'formas_pagamentos' => $this->core_model->get_all('formas_pagamentos',array('forma_pagamento_ativa'=>1)),
-            'os_tem_servicos'=> $this->ordem_servicos_model->get_all_servicos_get_by_ordem($ordem_servico_id),
+            'os_tem_servicos'=> $this->ordem_servicos_model->get_all_servicos_by_ordem($ordem_servico_id),
           
               );
 
-            $ordem_servico = $data[ 'ordem_servico'] = $this->ordem_servicos_model->get_by_id($ordem_servico_id);
+            $ordem_servico = $data['ordem_servico'] = $this->ordem_servicos_model->get_by_id($ordem_servico_id);
 
-            echo '<pre>';
-            print_r($data['os_tem_servicos']);
-            exit();
+            //echo '<pre>';
+            //print_r($data['os_tem_servicos']);
+            //exit();
 
             $this->load->view('layout/header', $data);  
             $this->load->view('ordem_servicos/edit'); 
