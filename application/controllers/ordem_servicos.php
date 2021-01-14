@@ -196,6 +196,64 @@
 
           }
        }
-    }
 
-  ?>
+       public function pdf($ordem_servico_id = NULL)
+       {
+         if (!$ordem_servico_id || !$this->core_model->get_by_id('ordens_servicos', array('ordem_servico_id'=>$ordem_servico_id))) {
+            $this->session->set_flashdata('error', 'Ordem de serviço não encontrada');
+            redirect('os');
+       }else{
+
+        $empresa = $this->core_model->get_by_id('sistema', array('sistema_id' =>1));
+
+        //echo'<pre>';
+        //print_r($empresa);
+        //exit();
+
+         $ordem_servico = $this->ordem_servicos_model->get_by_id($ordem_servico_id);
+        
+         // echo'<pre>';
+          //print_r($ordem_servico);
+          //exit();
+
+         $file_name = 'O.S&nbsp;'.$ordem_servico->ordem_servico_id;
+
+         $html ='<html>';
+
+         $html .='<head>';
+
+         $html .='<title>'.$empresa->sistema_nome_fantasia.'| Impressão de ordem de servicos</title>';
+
+
+
+        
+
+
+
+ 
+         $html .='</head>';
+
+          
+          $html .='<body style = "font-sizer: 12px">';
+
+          $html .='<h4>'. $empresa->sistema_razao_social.'</h4>';
+
+          
+
+           
+
+
+
+         $html .='</body>';
+
+         $html .='</html>';
+
+
+          echo'<pre>';
+          print_r($html);
+          exit();
+
+       }
+    }
+  }
+?>
