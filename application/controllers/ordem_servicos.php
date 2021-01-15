@@ -239,17 +239,32 @@
 
           $html .='<h4 align="center">
 
-               '. $empresa->sistema_razao_social.'</br>
-               '. 'CNPJ:'.$empresa->sistema_cnpj.'</br>
-               '.$empresa->sistema_endereco.',&nbsp;'.$empresa->sistema_numero. '</br>
-               '. 'Cep:'.$empresa->sistema_cep.',&nbsp;' .$empresa->sistema_cidade.',&nbsp;'.$empresa->sistema_estado.'</br>
-               '. 'Telefone:'.$empresa->sistema_telefone_fixo.'</br>
-               '. 'Email:'.$empresa->sistema_email.'</br>
+               '. $empresa->sistema_razao_social.'<br/>
+               '. 'CNPJ:'.$empresa->sistema_cnpj.'<br/>
+               '.$empresa->sistema_endereco.',&nbsp;'.$empresa->sistema_numero. '<br/>
+               '. 'Cep:'.$empresa->sistema_cep.',&nbsp;' .$empresa->sistema_cidade.',&nbsp;'.$empresa->sistema_estado.'<br/>
+               '. 'Telefone:'.$empresa->sistema_telefone_fixo.'<br/>
+               '. 'Email:'.$empresa->sistema_email.'<br/>
                </h4>';
 
                $html .='<hr>';
 
-               
+
+               //dados do cliente
+
+               $html.='<p align="right" style = "font-sizer: 12px">O.S N&nbsp;'.$ordem_servico->ordem_servico_id.'</p>';
+
+               $html.='<p>'
+                    .'<strong>Cliente:</strong>'. $ordem_servico->cliente_nome_completo.'<br/>'
+                    .'<strong>CPF:</strong>'. $ordem_servico->cliente_cpf_cnpj.'<br/>'
+                    .'<strong>Celular:</strong>'. $ordem_servico->cliente_celular.'<br/>'
+                    .'<strong>Data de emissão:</strong>'. formata_data_banco_com_hora($ordem_servico->ordem_servico_data_emissao).'<br/>'
+                    .'<strong>Forma de pagamento:</strong>'. ($ordem_servico->ordem_servico_status == 1 ? $ordem_servico->forma_pagamento : 'Emberto').'<br/>'
+
+                     .'</p>';
+
+                 $html .='<hr>';
+
                $html .='<table width="100%" borde: solid #addd 1px >';
                 
                $html .='<tr>';
