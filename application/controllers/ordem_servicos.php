@@ -217,12 +217,13 @@
           //exit();
 
          $file_name = 'O.S&nbsp;'.$ordem_servico->ordem_servico_id;
+         
 
          $html ='<html>';
 
          $html .='<head>';
 
-         $html .='<title>'.$empresa->sistema_nome_fantasia.'| Impressão de ordem de servicos</title>';
+         $html .='<title>'.$empresa->sistema_nome_fantasia.'| Impressão de ordem de serviços</title>';
 
 
 
@@ -236,22 +237,74 @@
           
           $html .='<body style = "font-sizer: 12px">';
 
-          $html .='<h4>'. $empresa->sistema_razao_social.'</h4>';
+          $html .='<h4 align="center">
 
-          
+               '. $empresa->sistema_razao_social.'</br>
+               '. 'CNPJ:'.$empresa->sistema_cnpj.'</br>
+               '.$empresa->sistema_endereco.',&nbsp;'.$empresa->sistema_numero. '</br>
+               '. 'Cep:'.$empresa->sistema_cep.',&nbsp;' .$empresa->sistema_cidade.',&nbsp;'.$empresa->sistema_estado.'</br>
+               '. 'Telefone:'.$empresa->sistema_telefone_fixo.'</br>
+               '. 'Email:'.$empresa->sistema_email.'</br>
+               </h4>';
 
-           
+               $html .='<hr>';
+
+               
+               $html .='<table width="100%" borde: solid #addd 1px >';
+                
+               $html .='<tr>';
+
+               $html .='<th>Serviço</th>';
+               $html .='<th>Quantidade</th>';
+               $html .='<th>Valor Unitário</th>';
+               $html .='<th>Desconto</th>';
+               $html .='<th>Valor Total</th>';
+              
+
+               $html .='</tr>';
 
 
+              
 
-         $html .='</body>';
+                $ordem_servico_id = $ordem_servico->ordem_servico_id;
 
-         $html .='</html>';
+                $servicos_ordem = $this->ordem_servicos_model->get_all_servicos($ordem_servico_id);
+
+                $valor_final_os = $this->ordem_servicos_model->get_valor_final_os($ordem_servico_id);
+
+                //echo'<pre>';
+                //print_r($valor_final_os);
+               //exit();
+
+                foreach ($servicos_ordem as $servico):
+                  $html.='<tr>';
+                  $html.='<td>'.$servico->servico_nome.'</td>';
+                  $html.='<td>'.$servico->ordem_ts_quantidade.'</td>';
+                  $html.='<td>'. 'R$&nbsp;'.$servico->ordem_ts_valor_unitario.'</td>';
+                  $html.='<td>'. '%&nbsp;'.$servico->ordem_ts_valor_desconto.'</td>';
+                  $html.='<td>'. 'R$&nbsp;'.$servico->ordem_ts_valor_total.'</td>';
+                  $html.='</tr>';
+                
+                 endforeach;
+                 
+                 $html.='<th colspan="3">';
+
+                 $html.='<td style="border-top: solid #ddd 1px"><strong>Valor Final</strong></td>';
+                 $html.='<td style="border-top: solid #ddd 1px">'.$valor_final_os->os_valor_total.'</td>';
+
+                 $html.='</th>';
+
+                $html .='</table>';
+
+                $html .='</body>';
+
+                $html .='</html>';
 
 
-          echo'<pre>';
-          print_r($html);
-          exit();
+          //echo'<pre>';
+          //print_r($html);
+          //exit();
+                $this->pdf->createPDF($html, $file_name, false);
 
        }
     }

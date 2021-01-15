@@ -78,7 +78,7 @@
              'FORMAT(SUM(REPLACE( ordem_ts_valor_unitario, ",","")),2) as ordem_ts_valor_unitario',
              'FORMAT(SUM(REPLACE( ordem_ts_valor_total, ",","")),2) as ordem_ts_valor_total',
              'servicos.servico_id',
-             'servicos.servico_descricao',
+             'servicos.servico_nome',
 
          ]);
 
@@ -106,7 +106,7 @@
         $this->db->where('ordem_ts_id_ordem_servico',$ordem_servico_id);
     }
 
-    return $this->db->get('ordem_tem_servico')->row();
+    return $this->db->get('ordem_tem_servicos')->row();
   }
 }
 
