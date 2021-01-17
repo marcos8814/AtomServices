@@ -122,7 +122,7 @@
 
                                 <div class="col-md-3">
                                     <label class="small my-0">Forma de pagamento <span class="text-danger">*</span></label>
-                                    <select id="id_pagamento" class="custom-select forma-pagamento" name="ordem_servico_forma_pagamento_id">
+                                    <select id="id_pagamento" class="custom-select forma-pagamento" name="ordem_servico_forma_pagamento_id" >
                                         <option value="">Escolha</option>
                                         <?php foreach ($formas_pagamentos as $forma_pagamento): ?>
                                             <option value="<?php echo $forma_pagamento->forma_pagamento_id; ?>" <?php echo ($forma_pagamento->forma_pagamento_id == $ordem_servico->ordem_servico_forma_pagamento_id ? 'selected' : '') ?> ><?php echo $forma_pagamento->forma_pagamento_nome; ?></option>
