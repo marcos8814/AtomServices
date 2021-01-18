@@ -26,6 +26,8 @@
         <div id="collapseOs" class="collapse" aria-labelledby="headingos" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Escolha uma opção:</h6>
+            <a  title="Gerenciar Vendas" class="collapse-item" href="<?php echo base_url('vendas') ?>"> <i class="fas fa-shopping-cart text-gray-900"></i>&nbsp;&nbsp; Vendas</a>
+
             <a  title="Gerenciar ordem de Serviços" class="collapse-item" href="<?php echo base_url('os') ?>"> <i class="fas fa-shopping-basket text-gray-900"></i>&nbsp;&nbsp; Ordem de Serviços</a>
           </div>
         </div>
