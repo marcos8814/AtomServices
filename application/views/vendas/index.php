@@ -84,7 +84,7 @@
                     <tr>
                       <td> <?php echo $venda->venda_id ?></td>
                       <td> <?php echo formata_data_banco_com_hora( $venda->venda_data_emissao) ?></td>
-                      <td> <?php echo $venda->cliente_nome?></td>
+                      <td> <?php echo $venda->cliente_nome_completo?></td>
                       <td> <?php echo $venda->forma_pagamento?></td>
                       <td> <?php echo 'R$&nbsp;'.$venda->venda_valor_total?></td>
                        <!-- o codigo acima colocar um campo sim para ativo em cor azul e não para não ativo em cor vermelho, e colocar o campo ATIVO centralizado com o campo abaixo-->
