@@ -52,22 +52,24 @@
 
     }
 
-    public function get_all_produtos_by_venda($venda_id = NULL ) 
+    public function get_all_produtos_by_venda($venda_id = NULL) 
     {
        if ($venda_id) {
            
            $this->db->select([
                   
                    'venda_produtos.*',
-                   'produtos.poduto_descricao',
+                   'produtos.produto_descricao',
            ]);
 
            $this->db->join('produtos','produto_id = venda_produto_id_produto','LEFT');
 
-           $this->db->where('venda_produto_id_venda',$venda_id);
-
+           $this->db->where('venda_produto_id_venda', $venda_id);
+            
+            
            return $this->db->get('venda_produtos')->result();
-       }
+         }
+       
     }
 
     public function delete_old_products($venda_id = NULL)
@@ -99,9 +101,10 @@
          $this->db->group_by('venda_produto_id_produto');
 
         
-     }
+     
 
       return $this->db->get('venda_produtos')->result();
+    }
    }
 
   public function get_valor_final_venda($venda_id = NULL)
@@ -109,7 +112,7 @@
     if ($venda_id) {
       $this->db->select([
             
-            'FORMAT(SUM(REPLACE( venda_produto_valor_total, ",","")),2) as venda_valor_total',
+            'FORMAT(SUM(REPLACE( venda_produto_valor_total, ",","")), 2) as venda_valor_total',
 
       ]);
 

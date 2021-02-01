@@ -114,7 +114,7 @@
    <div class="col-md-3"> 
      <label>Estoque minimo</label>
      <input type="text" class="form-control form-control-user " name="produto_estoque_minimo" placeholder="Estoque minimo" value="<?php echo $produto->produto_estoque_minimo; ?>"> <!--last_name é o sobrenome do campo da tabela que esta no banco de dados  -->
-     <?php echo form_error('    produto_estoque_minimo','<small class="form-text text-danger">','</small>'); ?>
+     <?php echo form_error('produto_estoque_minimo','<small class="form-text text-danger">','</small>'); ?>
      <!-- O codigo verifica se o campo obirgatorio esta preechido-->
 
    </div>
@@ -122,7 +122,7 @@
    <div class="col-md-3"> 
      <label>Quantidade de produto em estoque </label>
      <input type="text" class="form-control form-control-user " name=" produto_qtde_estoque" placeholder="Quantidade em estoque" value="<?php echo $produto->produto_qtde_estoque; ?>"> <!--last_name é o sobrenome do campo da tabela que esta no banco de dados  -->
-     <?php echo form_error('  produto_qtde_estoque','<small class="form-text text-danger">','</small>'); ?>
+     <?php echo form_error('produto_qtde_estoque','<small class="form-text text-danger">','</small>'); ?>
      <!-- O codigo verifica se o campo obirgatorio esta preechido-->
 
    </div>

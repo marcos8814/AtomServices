@@ -24,5 +24,12 @@
       return $this->db->get('produtos')->result();
 
     }
+    //este codigo abaixo referece a atualização de estoque 
+    public function update($produto_id, $diferenca)
+    {
+      $this->db->set('produto_qtde_estoque','produto_qtde_estoque -'. $diferenca, FALSE);
+      $this->db->where('produto_id', $produto_id);
+      $this->db->update('produtos');
+    }
   }
 ?>
