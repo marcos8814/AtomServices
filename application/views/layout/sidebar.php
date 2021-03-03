@@ -67,7 +67,10 @@
         </div>
       </li>
 
-       <li class="nav-item">
+       <!--  inicio do codigo abaixo verificar niveis de usuário no sistema-->
+      <?php if($this->ion_auth->is_admin()): ?>
+
+      <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseQuatro" aria-expanded="true" aria-controls="collapseQuatro">
          
             <i class="fas fa-file-invoice-dollar"></i>
@@ -83,9 +86,31 @@
                  <a  title="Gerenciar formas de pagamentos" class="collapse-item" href="<?php echo base_url('modulo') ?>"><i class="fas fa-money-check-alt"></i></i>&nbsp;&nbsp; Formas de pagamento</a>
           </div>
         </div>
-      </li>    
+      </li> 
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCinco" aria-expanded="true" aria-controls="collapseCinco">
+         
+            <i class="fas fa-search"></i>
+          <span>Relatórios</span>
+        </a>
+        <div id="collapseCinco" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Escolha uma opção:</h6>
+                 <a  title="Gerenciar relatório de vendas" class="collapse-item" href="<?php echo base_url('relatorios/vendas') ?>">  <i class="fas fa-shopping-cart text-gray-900"></i></i>&nbsp;&nbsp;  Vendas</a>
+
+                 <a  title="Gerenciar  relátorios de O.S" class="collapse-item" href="<?php echo base_url('relatorios/os') ?>"><i class="fas fa-shopping-basket text-gray-900"></i></i>&nbsp;&nbsp; Ordem de Serviços</a>
+
+                 <a  title="Gerenciar relatório de Contas a Receber " class="collapse-item" href="<?php echo base_url('relatorios/receber') ?>"><i class="fas fa-hand-holding-usd"></i></i>&nbsp;&nbsp; Contas a Receber</a>
+
+                 <a  title="Gerenciar relatório de Contas a Pagar " class="collapse-item" href="<?php echo base_url('relatorios/pagar') ?>"><i class="fas fa-money-bill-alt"></i></i>&nbsp;&nbsp; Contas a Pagar</a>
+          </div>
+        </div>
+      </li>     
       <!-- Divider -->
       <hr class="sidebar-divider">
+
+     
 
       <!-- Heading -->
       <div class="sidebar-heading">
@@ -111,6 +136,9 @@
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
+
+    <?php endif; ?>
+ <!-- Fim da verifica de nivel de usuário -->
 
       <!-- Sidebar Toggler (Sidebar) -->
       <div class="text-center d-none d-md-inline">

@@ -62,8 +62,8 @@
 
                        <div class="col-md-4"> 
                        <label>Ativo</label>
-                        
-                       <select class="custom-select" name="active">
+                                                                  <!-- O trecho de codigo abaixo desabilita o botão -->
+                       <select class="custom-select" name="active"<?php echo(!$this->ion_auth->is_admin()?'disabled':'') ; ?>>
                          <option value="0"<?php echo ($usuario->active == 0) ?'selected' :'' ?>>Não</option>
                          <!-- o codigo acima verifica no banco de dados se a opção esta ativo ou não -->
                          <option value="1"<?php echo ($usuario->active == 1) ?'selected' :'' ?>>Sim</option>
@@ -75,8 +75,8 @@
 
                      <div class="col-md-4"> 
                        <label>Perfil de acesso</label>
-                        
-                       <select  class="custom-select" name="perfil_usuario">
+                                                                           <!-- O trecho de codigo abaixo desabilita o botão -->
+                       <select  class="custom-select" name="perfil_usuario"<?php echo(!$this->ion_auth->is_admin()?'disabled':'') ; ?>>
                          <option value="2"<?php echo ($perfil_usuario->id == 2) ?'selected' :'' ?>>Vendedor</option>
                          <!-- o codigo acima verifica no banco de dados o perfil do usuário -->
                          <option value="1"<?php echo ($perfil_usuario->id == 1) ?'selected' :'' ?>>Administrador</option>

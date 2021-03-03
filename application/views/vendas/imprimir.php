@@ -48,33 +48,33 @@
      <div class="row">
 
         <div class="col-md-4">
-            <a href="<?php echo base_url('os/pdf/'. $ordem_servico->ordem_servico_id);  ?>" class="btn btn-dark btn-icon-split btn-lg">
+            <a href="<?php echo base_url('vendas/pdf/'. $venda->venda_id);  ?>" class="btn btn-dark btn-icon-split btn-lg">
                     <span class="icon text-white-50">
                      <i class="fas fa-print"></i>
                     </span>
-                    <span class="text">Imprimir ordem de Serviços</span>
+                    <span class="text">Imprimir Venda</span>
             </a>
 
 
         </div>
 
         <div class="col-md-4">
-            <a href="<?php echo base_url('os/add');  ?>" class="btn btn-success btn-icon-split btn-lg">
+            <a href="<?php echo base_url('vendas/add');  ?>" class="btn btn-success btn-icon-split btn-lg">
                     <span class="icon text-white-50">
                      <i class="fas fa-plus"></i>
                     </span>
-                    <span class="text">Nova ordem de Serviços</span>
+                    <span class="text">Nova Venda</span>
             </a>
 
 
         </div>
 
         <div class="col-md-4">
-            <a href="<?php echo base_url('os');  ?>" class="btn btn-info btn-icon-split btn-lg">
+            <a href="<?php echo base_url('vendas');  ?>" class="btn btn-info btn-icon-split btn-lg">
                     <span class="icon text-white-50">
                      <i class="far fa-list-alt"></i>
                     </span>
-                    <span class="text">Listar ordem de Serviços</span>
+                    <span class="text">Listar Venda</span>
             </a>
 
 

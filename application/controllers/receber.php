@@ -12,6 +12,11 @@
                   	   $this->session->set_flashdata('info','Sua sessão expirou!');
  					   redirect('login');
 			    }
+          // codigo abaixo verificar se o perfil e de admin, se for vendendor ele enibe a função 
+          if (!$this->ion_auth->is_admin()) {
+           $this->session->set_flashdata('info','Você não tem permissão para acessar este menu Financeiro!');
+           redirect('/');
+          }
 
           $this->load->model('financeiro_model');
 

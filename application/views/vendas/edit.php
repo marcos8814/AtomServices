@@ -14,7 +14,7 @@
 
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="<?php echo base_url('os'); ?>">Vendas de Produtos</a></li>
+          <li class="breadcrumb-item"><a href="<?php echo base_url('vendas'); ?>">Vendas de Produtos</a></li>
           <li class="breadcrumb-item active" aria-current="page"><?php  echo $titulo; ?></li>
       </ol>
   </nav>
@@ -162,7 +162,7 @@
                     <input type="hidden" name="venda_id" value="<?php echo $venda->venda_id ?>" />
 
                     <div class="mt-3">
-                        <button class="btn btn-primary btn-sm mr-2" id="btn-cadastrar-venda" form="form" <?php echo ($desabilitar == false ? 'disabled' : ''); ?>><?php echo ($desabilitar == false ? 'Encerrada' : 'Salvar'); ?></button>
+                        <button class="btn btn-primary btn-sm mr-2" id="btn-cadastrar-venda" form="form" <?php echo ($desabilitar == true ? 'disabled' : ''); ?>><?php echo ($desabilitar == true ? 'Encerrada' : 'Salvar'); ?></button>
                         <a href="<?php echo base_url('vendas'); ?>" class="btn btn-secondary btn-sm">Voltar</a>
                     </div>
                 </form>

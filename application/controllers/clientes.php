@@ -40,7 +40,7 @@
         	     $this->load->view('clientes/index');	
         	     $this->load->view('layout/footer');	
        }
-     public function add (){ 
+       public function add (){ 
 
         
              $this->form_validation->set_rules('cliente_nome','','trim|required|max_length[45]');
@@ -84,7 +84,7 @@
              if ($this->form_validation->run()) {
             
           
-            $data = elements(
+              $data = elements(
               array(
                 'cliente_nome',
                 'cliente_sobrenome',
@@ -103,24 +103,24 @@
                 'cliente_obs',
                 'cliente_tipo',
               ),$this->input->post()
-            );
-            if ($cliente_tipo == 1) {
+              );
+                if ($cliente_tipo == 1) {
               
                $data['cliente_cpf_cnpj'] = $this->input->post('cliente_cpf');
             
-            }else{
+                }else{
               
                $data['cliente_cpf_cnpj'] = $this->input->post('cliente_cnpj');
               //o campo abaixo coloca a sigla dos estado maiuscula no banco de dados. 
-            } $data['cliente_estado'] = strtoupper($this->input->post('cliente_estado'));
+                 } $data['cliente_estado'] = strtoupper($this->input->post('cliente_estado'));
               
-             $data = html_escape($data);
+               $data = html_escape($data);
 
-             $this->core_model->insert('clientes', $data);
+               $this->core_model->insert('clientes', $data);
 
-             redirect('clientes');
+               redirect('clientes');
 
-             }else{
+               }else{
               //erro de validação
                 $data = array(
           
@@ -130,10 +130,10 @@
                    'vendor/mask/jquery.mask.min.js',
                    'vendor/mask/app.js',
                    'js/clientes.js'
-               ),
+                ),
 
              
-            );
+               );
 
              // echo'<pre>';
               //print_r($data['cliente']);
@@ -142,17 +142,17 @@
                $this->load->view('layout/header', $data); 
                $this->load->view('clientes/add');  
                $this->load->view('layout/footer');
-             }
-       }
-      //o codigo abaixo e responsavel por editar o usuário 
-    public function edit ($cliente_id = NULL){ 
+            }
+          }
+                //o codigo abaixo e responsavel por editar o usuário 
+           public function edit ($cliente_id = NULL){ 
 
-       	  if (!$cliente_id || !$this->core_model->get_by_id('clientes', array('cliente_id '=> $cliente_id))) {
+       	        if (!$cliente_id || !$this->core_model->get_by_id('clientes', array('cliente_id '=> $cliente_id))) {
 
        	  	  $this->session->set_flashdata('error', 'Cliente não encontrado');
 
-               redirect('clientes');
-       	  }else{
+                redirect('clientes');
+       	       }else{
 
              $this->form_validation->set_rules('cliente_nome','','trim|required|max_length[45]');
              $this->form_validation->set_rules('cliente_sobrenome','','trim|required|max_length[150]');
@@ -206,7 +206,7 @@
                 }
              
     
-            $data = elements(
+              $data = elements(
               array(
                 'cliente_nome',
                 'cliente_sobrenome',
@@ -224,25 +224,25 @@
                 'cliente_ativo',
                 'cliente_obs',
                 'cliente_tipo',
-              ),$this->input->post()
-            );
-            if ($cliente_tipo == 1) {
+               ),$this->input->post()
+               );
+               if ($cliente_tipo == 1) {
               
                $data['cliente_cpf_cnpj'] = $this->input->post('cliente_cpf');
             
-            }else{
+               }else{
               
                $data['cliente_cpf_cnpj'] = $this->input->post('cliente_cnpj');
               //o campo abaixo coloca a sigla dos estado maiuscula no banco de dados. 
-            } $data['cliente_estado'] = strtoupper($this->input->post('cliente_estado'));
+               } $data['cliente_estado'] = strtoupper($this->input->post('cliente_estado'));
               
-             $data = html_escape($data);
+               $data = html_escape($data);
 
-             $this->core_model->update('clientes', $data, array('cliente_id'=> $cliente_id));
+               $this->core_model->update('clientes', $data, array('cliente_id'=> $cliente_id));
 
-             redirect('clientes');
+               redirect('clientes');
 
-             }else{
+                }else{
              	//erro de validação
              		$data = array(
           
@@ -251,17 +251,17 @@
                 'scripts'=> array(
               	   'vendor/mask/jquery.mask.min.js',
              	     'vendor/mask/app.js',
-               ),
+                 ),
 
-              'cliente' => $this->core_model->get_by_id('clientes', array('cliente_id' => $cliente_id)),
-  		      );
+                'cliente' => $this->core_model->get_by_id('clientes', array('cliente_id' => $cliente_id)),
+  		         );
 
   		       
 
         	     $this->load->view('layout/header', $data);	
         	     $this->load->view('clientes/edit');	
         	     $this->load->view('layout/footer');
-             }
+            }
 
        	  }
 
@@ -317,25 +317,25 @@
 
      public function valida_cpf($cpf) {
 
-        if ($this->input->post('cliente_id')) {
+              if ($this->input->post('cliente_id')) {
 
-            $cliente_id = $this->input->post('cliente_id');
+               $cliente_id = $this->input->post('cliente_id');
 
-            if ($this->core_model->get_by_id('clientes', array('cliente_id !=' => $cliente_id, 'cliente_cpf_cnpj' => $cpf))) {
+              if ($this->core_model->get_by_id('clientes', array('cliente_id !=' => $cliente_id, 'cliente_cpf_cnpj' => $cpf))) {
                 $this->form_validation->set_message('valida_cpf', 'Este CPF já existe');
                 return FALSE;
-            }
-        }
+                 }
+              }
 
-        $cpf = str_pad(preg_replace('/[^0-9]/', '', $cpf), 11, '0', STR_PAD_LEFT);
-        // Verifica se nenhuma das sequências abaixo foi digitada, caso seja, retorna falso
-        if (strlen($cpf) != 11 || $cpf == '00000000000' || $cpf == '11111111111' || $cpf == '22222222222' || $cpf == '33333333333' || $cpf == '44444444444' || $cpf == '55555555555' || $cpf == '66666666666' || $cpf == '77777777777' || $cpf == '88888888888' || $cpf == '99999999999') {
+                 $cpf = str_pad(preg_replace('/[^0-9]/', '', $cpf), 11, '0', STR_PAD_LEFT);
+                 // Verifica se nenhuma das sequências abaixo foi digitada, caso seja, retorna falso
+                 if (strlen($cpf) != 11 || $cpf == '00000000000' || $cpf == '11111111111' || $cpf == '22222222222' || $cpf == '33333333333' || $cpf == '44444444444' || $cpf == '55555555555' || $cpf == '66666666666' || $cpf == '77777777777' || $cpf == '88888888888' || $cpf == '99999999999') {
 
-            $this->form_validation->set_message('valida_cpf', 'Por favor digite um CPF válido');
-            return FALSE;
-        } else {
+                 $this->form_validation->set_message('valida_cpf', 'Por favor digite um CPF válido');
+                 return FALSE;
+                } else {
             // Calcula os números para verificar se o CPF é verdadeiro
-            for ($t = 9; $t < 11; $t++) {
+                for ($t = 9; $t < 11; $t++) {
                 for ($d = 0, $c = 0; $c < $t; $c++) {
                     //$d += $cpf{$c} * (($t + 1) - $c); // Para PHP com versão < 7.4
                     $d += $cpf[$c] * (($t + 1) - $c); 
@@ -347,8 +347,8 @@
                 }
             }
             return TRUE;
+           }
         }
-    }
 
      public function valida_cnpj($cnpj) {
 
@@ -431,10 +431,10 @@
             } else {
                 return true;
             }
-        }
-    }
+           }
+         }
 
-    public function del($cliente_id='NULL'){
+      public function del($cliente_id='NULL'){
       
       if (!$cliente_id||!$this->core_model->get_by_id('clientes',array('cliente_id'=>$cliente_id))) {
         
@@ -446,6 +446,5 @@
       }
     }
     
- }
-
+  }
 ?>

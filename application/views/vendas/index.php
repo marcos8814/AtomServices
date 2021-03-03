@@ -90,8 +90,8 @@
                        <!-- o codigo acima colocar um campo sim para ativo em cor azul e não para não ativo em cor vermelho, e colocar o campo ATIVO centralizado com o campo abaixo-->
                       <td class="text-right">
                         <a title="Imprimir" href="<?php echo base_url('vendas/pdf/'.$venda->venda_id); ?>" class="btn btn-sm btn-dark"><i class="fas fa-print"></i></a>
-                        <a title="Editar" href="<?php echo base_url('vendas/edit/'.$venda->venda_id); ?>" class="btn btn-sm btn-primary"><i class="fas fa-user-plus"></i></a>
-                        <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#venda-<?php echo $venda->venda_id; ?>" class="btn btn-sm btn-danger"><i class="fas fa-user-times"></i></a>
+                        <a title="Visualisar" href="<?php echo base_url('vendas/edit/'.$venda->venda_id); ?>" class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></a>
+                        <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#venda-<?php echo $venda->venda_id; ?>" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i></a>
                       </td>
 
                     </tr>
@@ -108,7 +108,7 @@
                             <div class="modal-body">Para excluir esta venda clique em <strong>"Sim"</strong></div>
                             <div class="modal-footer">
                               <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Não</button>
-                              <a class="btn btn-danger btn-sm" href="<?php echo base_url('venda/del/'.$venda->venda_id);?>">Sim</a>
+                              <a class="btn btn-danger btn-sm" href="<?php echo base_url('vendas/del/'.$venda->venda_id);?>">Sim</a>
                             </div>
                           </div>
                         </div>

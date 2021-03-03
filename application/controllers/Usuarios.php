@@ -15,6 +15,12 @@
   	}
 
   	public function index(){
+
+      //o codigo abaixo verificar de o perfil e de admin, se for vendendor ele enibe a função index
+          if (!$this->ion_auth->is_admin()) {
+           $this->session->set_flashdata('info','Você não tem permissão para acessar este menu Usuários!');
+           redirect('home');
+          }
   		$data = array(
           
          'titulo'=>'Usuários cadastrados',
@@ -39,7 +45,11 @@
   	}
      // a função abaixo adiciona um novo usuário no banco de dados
     public function add(){
-      
+      //o codigo abaixo verificar de o perfil e de admin, se for vendendor ele enibe a função add
+          if (!$this->ion_auth->is_admin()) {
+           $this->session->set_flashdata('info','Você não tem permissão para acessar este menu Usuários!');
+           redirect('/');
+          }
 
           //O CODIGO ABAIXO É RESPOSAVEL POR FAZER O ANTIGO  INSERT*FROM NO BANCO DE DADOS(Cadastrar)!!
         $this->form_validation->set_rules('first_name','','trim|required');//validando o campo nome do usuário
@@ -100,6 +110,18 @@
         
     
     public function edit($usuario_id = NULL) {
+     //Este codigo um usuário que não é admim não pode edita o usuário diferente do seu pelo http:
+      if (!$this->ion_auth->is_admin()) {
+        
+        if (($this->session->userdata('user_id') != $usuario_id)) {
+            $this->session->set_flashdata('info','Você não pode edital um usuário diferente do seu!');
+             redirect('/');
+         }
+
+
+      }
+      
+        //fim do codigo  
 
       if (!$usuario_id || !$this->ion_auth->user($usuario_id)->row()) {
         
@@ -107,7 +129,6 @@
         redirect('usuarios');
       } else {
 
-         
      
 
          //O CODIGO ABAIXO É RESPOSAVEL POR FAZER O ANTIGO SELECT*FROM NO BANCO DE DADOS(Alterar)!!
@@ -124,6 +145,10 @@
 
 
         if ($this->form_validation->run()) {
+
+          //echo'<pre>';
+          //print_r($this->input->post());
+          //exit();
           
             $data = elements(
                 
@@ -137,6 +162,10 @@
 
                    ), $this->input->post()
             );
+            //o codigo abaixo inibe active se o usuário não for admin
+            if (!$this->ion_auth->is_admin()) {
+              unset($data['active']);
+            }
 
                  $data = $this->security->xss_clean($data);
                   
@@ -153,15 +182,17 @@
                  $perfil_usuario_db = $this->ion_auth->get_users_groups($usuario_id)->row();
 
                  $perfil_usuario_post = $this ->input->post('perfil_usuario');
-              
-
-                //o codigo abaixo se for diferente, atualizar o grupo!
-                if($perfil_usuario_db->id != $perfil_usuario_post){
+                
+                if ($this->ion_auth->is_admin()) {
+                   //o codigo abaixo se for diferente, atualizar o grupo!
+                  if($perfil_usuario_db->id != $perfil_usuario_post){
 
                    $this->ion_auth->remove_from_group($perfil_usuario_db->id,$usuario_id);
                    $this->ion_auth->add_to_group($perfil_usuario_post, $usuario_id);
 
-                }
+                  }
+                 }
+              
 
                 $this->session->set_flashdata('sucesso','Dados salvos com sucesso');
            
@@ -170,7 +201,18 @@
                  $this->session->set_flashdata('Error','Error ao salvar os dados');
             }
 
-              redirect('usuarios');  
+            //o codigo abaixo verificar de o perfil e de admin, se for vendendor ele enibe a função 
+            if ($this->ion_auth->is_admin()) {
+            
+             redirect('usuarios'); 
+
+           }else{
+
+             redirect('home');
+
+           }
+
+              
          }else{
 
             
@@ -192,6 +234,13 @@
     }
        //Esta função e reposanvel por deletar os dados de um usuário. 
      public function del($usuario_id = NULL) {
+
+      //o codigo abaixo verificar de o perfil e de admin, se for vendendor ele enibe a função deletar
+          if (!$this->ion_auth->is_admin()) {
+           $this->session->set_flashdata('info','Você não tem permissão para acessar este menu Usuários!');
+           redirect('/');
+          }
+
 
       if (!$usuario_id || !$this->ion_auth->user($usuario_id)->row()) {
         

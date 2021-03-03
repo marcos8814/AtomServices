@@ -474,7 +474,7 @@
                  $html.='<th colspan="3">';
 
                  $html.='<td style="border-top: solid #ddd 1px"><strong>Valor Final</strong></td>';
-                 $html.='<td style="border-top: solid #ddd 1px">'.$valor_final_os->os_valor_total.'</td>';
+                 $html.='<td style="border-top: solid #ddd 1px">'.'R$&nbsp;'.$valor_final_os->os_valor_total.'</td>';
 
                  $html.='</th>';
 
