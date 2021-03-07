@@ -32,7 +32,25 @@
           'total_receber'=> $this->home_model->get_sum_receber(),
           'produtos_mais_vendidos' => $this->home_model->get_produtos_mais_vendidos(),
           'servicos_mais_vendidos' => $this->home_model->get_servicos_mais_vendidos(),
+
+          //central de notificação
+
+          
        );
+
+     $contador_notificacoes = 0;
+
+     if ($this->home_model->get_contas_receber_vencidas()) {
+       $contador_notificacoes ++;
+     }
+
+     $data['contas_receber_vencidas'] = TRUE;
+     $data['contador_notificacoes'] = $contador_notificacoes;
+
+     
+
+
+
     //echo '<pre>';
    // print_r($data['produtos_mais_vendidos']);
    // exit();

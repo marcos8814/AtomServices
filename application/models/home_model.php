@@ -156,5 +156,5 @@
 
     	return $this->db->get('contas_pagar')->row();
     }
-}
+ }
 ?>

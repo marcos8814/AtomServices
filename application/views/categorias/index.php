@@ -7,7 +7,7 @@
       <!-- Main Content -->
       <div id="content">
 
-       <?php $this->load->view('layout/navibar')  ?>
+       <?php $this->load->view('layout/navibar');  ?>
 
         <!-- Begin Page Content -->
         <div class="container-fluid">

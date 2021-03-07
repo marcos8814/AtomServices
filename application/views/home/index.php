@@ -7,10 +7,12 @@
 <!-- Main Content -->
 <div id="content">
 
- <?php $this->load->view('layout/navibar')  ?>
+ <?php $this->load->view('layout/navibar');  ?>
 
  <!-- Begin Page Content -->
  <div class="container-fluid">
+
+  
 
   <!-- Page Heading -->
   <h1 class="h3 mb-4 text-gray-800">Home</h1>
@@ -56,7 +58,8 @@
 <?php endif; ?>
 
 <!-- Content Row -->
-          <div class="row">
+          <?php if ($this->ion_auth->is_admin()): ?>
+            <div class="row">
 
             <!-- Earnings (Monthly) Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
@@ -126,8 +129,9 @@
                 </div>
               </div>
             </div>
+          <?php endif;  ?>
            
-            <div class="row">
+        <div class="row">
 
            <div class="col-lg-6 mb-4">
 
@@ -138,7 +142,7 @@
                 </div>
                 <div class="card-body">
                   <div class="text-center">
-                    <img class="img-fluid px-5 px-sm-5 mt-3 mb-9" style="width: 60rem;" src="<?php echo base_url('public/img/produtos_vendidos.svg')  ?>"alt="">
+                    <img class="img-fluid px-5 px-sm-5 mt-3 mb-9" style="width: 50rem;" src="<?php echo base_url('public/img/produtos_vendidos.svg')  ?>"alt="">
                   </div>
 
                 <div class="table-responsive">
@@ -182,7 +186,7 @@
                 </div>
                 <div class="card-body">
                   <div class="text-center">
-                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-9" style="width: 19rem;" src="<?php echo base_url('public/img/serviços.svg')  ?>" alt="">
+                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-9" style="width: 16rem;" src="<?php echo base_url('public/img/serviços.svg')  ?>" alt="">
                   </div>
 
 
