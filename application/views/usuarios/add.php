@@ -21,12 +21,15 @@
            
                      <!--  -->
           <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <a title="Voltar"href="<?php echo base_url('usuarios');?>" class="btn btn-success btn-sm float-right"><i class="fas fa-arrow-left"></i>&nbsp;Voltar</a> <!-- neste campo vc altera o incon de voltar -->
-            </div>
+            
             <div class="card-body">
              <!--back end  -->
-            <form class="user" method="POST" name="form_add"> <!--altera para o form-add -->
+            <form class="user" method="POST" name="form_add">
+
+              <fieldset class="mt-4 border p-2"> 
+
+                 <legend class="font-small"><i class="fas fa-users"></i>&nbsp;Dados do usuário</legend>
+             <!--altera para o form-add -->
                   <div class="form-group row"> <!--altera o tamanho do campo nome  -->
                      <div class="col-md-4"> 
                        <label>Nome *</label>
@@ -62,8 +65,10 @@
 
                        <div class="col-md-4"> 
                        <label>Ativo</label>
+
+
                         
-                       <select class="form-control form-control-user" name="active">
+                       <select class="custom-select" name="active">
                          <option value="0">Não</option>
                          <!-- o codigo acima verifica no banco de dados se a opção esta ativo ou não -->
                          <option value="1">Sim</option>
@@ -75,7 +80,7 @@
                      <div class="col-md-4"> 
                        <label>Perfil de acesso</label>
                         
-                       <select class="form-control form-control-user" name="perfil_usuario">
+                       <select class="custom-select" name="perfil_usuario">
                          <option value="2">Vendedor</option>
                          <!-- o codigo acima verifica no banco de dados o perfil do usuário -->
                          <option value="1">Administrador</option>
@@ -101,9 +106,17 @@
                     </div>
 
                     
-                 </div> 
+                 </fieldset>
 
-                  <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+               <div>
+
+
+
+                    <button type="submit" class="btn btn-primary btn-sm" >Salvar</button>
+
+                    <a title="Voltar"href="<?php echo base_url($this->router->fetch_class());?>" class="btn btn-success btn-sm ml-2">Voltar</a> <!-- neste campo vc altera o incon de voltar -->
+
+               </div>
             </form>
             </div>
           </div>

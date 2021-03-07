@@ -63,7 +63,7 @@
                      <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">           <!-- o codigo em php abaixo carrega ação do btn -->
-              <a title="Cadastrar novo servico"href="<?php echo base_url('servicos/add'); ?>" class="btn btn-success btn-sm float-right"><i class="fas fa-user-tag"></i></i>&nbsp;Novo</a>
+              <a title="Cadastrar novo servico"href="<?php echo base_url('servicos/add'); ?>" class="btn btn-success btn-sm float-right"><i class="fas fa-plus"></i></i>&nbsp;Novo</a>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -90,8 +90,8 @@
                       </td> <!-- o codigo acima colocar um campo sim para ativo em cor azul e não para não ativo em cor vermelho, e colocar o campo ATIVO centralizado com o campo abaixo-->
                       <td class="text-right">
                         
-                        <a title="Editar" href="<?php echo base_url('servicos/edit/'.$servico->servico_id); ?>" class="btn btn-sm btn-primary"><i class="fas fa-user-plus"></i></a>
-                        <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#servico-<?php echo $servico->servico_id; ?>" class="btn btn-sm btn-danger"><i class="fas fa-user-times"></i></a>
+                        <a title="Editar" href="<?php echo base_url('servicos/edit/'.$servico->servico_id); ?>" class="btn btn-sm btn-primary"><i class=" fas fa-edit"></i></a>
+                        <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#servico-<?php echo $servico->servico_id; ?>" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i></a>
                       </td>
 
                     </tr>

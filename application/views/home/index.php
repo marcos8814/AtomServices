@@ -15,7 +15,7 @@
   
 
   <!-- Page Heading -->
-  <h1 class="h3 mb-4 text-gray-800">Home</h1>
+  <h1 class="h3 mb-4 text-gray-800"></h1>
 
   <?php if($message = $this->session->flashdata('sucesso')): ?>
 
@@ -142,7 +142,7 @@
                 </div>
                 <div class="card-body">
                   <div class="text-center">
-                    <img class="img-fluid px-5 px-sm-5 mt-3 mb-9" style="width: 50rem;" src="<?php echo base_url('public/img/produtos_vendidos.svg')  ?>"alt="">
+                    <img class="img-fluid px-5 px-sm-5 mt-3 mb-9" style="width: 43rem;" src="<?php echo base_url('public/img/produtos_vendidos.svg')  ?>"alt="">
                   </div>
 
                 <div class="table-responsive">
@@ -186,7 +186,7 @@
                 </div>
                 <div class="card-body">
                   <div class="text-center">
-                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-9" style="width: 16rem;" src="<?php echo base_url('public/img/serviços.svg')  ?>" alt="">
+                    <img class="img-fluid px-5 px-sm-5 mt-3 mb-9" style="width: 18rem;" src="<?php echo base_url('public/img/serviços.svg')  ?>" alt="">
                   </div>
 
 

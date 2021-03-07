@@ -92,8 +92,8 @@
                       </td> <!-- o codigo acima colocar um campo sim para ativo em cor azul e não para não ativo em cor vermelho, e colocar o campo ATIVO centralizado com o campo abaixo-->
                       <td class="text-right">
                         <a title="Imprimir" href="<?php echo base_url('os/pdf/'.$os->ordem_servico_id); ?>" class="btn btn-sm btn-dark"><i class="fas fa-print"></i></a>
-                        <a title="Editar" href="<?php echo base_url('os/edit/'.$os->ordem_servico_id); ?>" class="btn btn-sm btn-primary"><i class="fas fa-user-plus"></i></a>
-                        <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#os-<?php echo $os->ordem_servico_id; ?>" class="btn btn-sm btn-danger"><i class="fas fa-user-times"></i></a>
+                        <a title="Visualizar" href="<?php echo base_url('os/edit/'.$os->ordem_servico_id); ?>" class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></a>
+                        <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#os-<?php echo $os->ordem_servico_id; ?>" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i></a>
                       </td>
 
                     </tr>

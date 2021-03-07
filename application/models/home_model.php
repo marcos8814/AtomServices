@@ -58,7 +58,7 @@
       
   	}
 
-  	public function get_sum_contas_pagar_vencen_hoje()
+  	public function get_contas_pagar_vencen_hoje()
   	{
     	
   		$this->db->select([
@@ -72,11 +72,11 @@
       
       $this->db->join('fornecedores','fornecedor_id = conta_pagar_fornecedor_id','LEFT');
 
-      return $this->db->get('contas_pagar')->result();
+      return $this->db->get('contas_pagar')->row();
       
   	}
 
-  	public function get_sum_contas_receber_vencen_hoje()
+  	public function get_contas_receber_vencen_hoje()
   	{
     	
   		$this->db->select([
@@ -86,12 +86,12 @@
   			'CONCAT(clientes.cliente_nome," ",clientes.cliente_sobrenome) as cliente_nome_completo', 
   		]);
 
-  		$this->db->where('conta_pagar_status',0);
-  		$this->db->where('conta_pagar_data_vencimento =',date('Y-m-d'));
+  		$this->db->where('conta_receber_status',0);
+  		$this->db->where('conta_receber_data_vencimento =',date('Y-m-d'));
 
   		$this->db->join('clientes','cliente_id = conta_receber_cliente_id','LEFT');
 
-  		return $this->db->get('contas_receber')->result();
+  		return $this->db->get('contas_receber')->row();
       
   	}
 
@@ -138,7 +138,7 @@
   	public function get_usuarios_desativados()
   	{
   		 $this->db->where('active',0);
-  		 $this->db->get('users')->row();
+  		 return $this->db->get('users')->row();
     }
 
     public function get_contas_receber_vencidas()
