@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
    
-   <?php echo (isset($titulo) ? '<title> Sytem Ordem | '.$titulo.'</title>' : '<title>System Ordem</title>')?>
+   <?php echo (isset($titulo) ? '<title> Esquina do peixe | '.$titulo.'</title>' : '<title>Esquina do peixe</title>')?>
   
 
 

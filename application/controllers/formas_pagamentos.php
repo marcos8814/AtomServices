@@ -62,7 +62,7 @@
                    $data = html_escape($data);
 
                    $this->core_model->insert('formas_pagamentos', $data);
-                   redirect('modulo');
+                   redirect('pagamento');
 
                 }else{
 
@@ -83,7 +83,7 @@
        {
          if (!$forma_pagamento_id || !$this->core_model->get_by_id('formas_pagamentos',array('forma_pagamento_id'=>$forma_pagamento_id))) {
             $this->session->set_flashdata('erro', 'Forma de pagamento não encontrada ');
-            redirect('modulo');
+            redirect('pagamento');
          }else{
 
                 $this->form_validation->set_rules('forma_pagamento_nome','Nome da forma de pagamento','trim|required|min_length[4]|max_length[45]|callback_check_pagamento_nome');
@@ -95,18 +95,18 @@
                     //Vendas
                    if($this->db->table_exists('vendas')){
 
-                    if($forma_pagamento_ativa == 0 && $this->core_model('ordem_servicos',array('venda_servico_forma_pagamento_id'=>$forma_pagamento_id,'vordem_servicos_status' =>0))){
-                        $this->session->set_flashdata('info','Forma de pagamento não pode ser desativada, pois está sendo utilizada em Ordem de serviço');
-                        redirect('modulo');
+                    if($forma_pagamento_ativa == 0 && $this->core_model('vendas',array('venda_forma_pagamento_id'=>$forma_pagamento_id,'venda_status' => 0))){
+                        $this->session->set_flashdata('info','Forma de pagamento não pode ser desativada, pois está sendo utilizada em Vendas');
+                        redirect('pagamento');
                     }
                    }
 
                     //Ordem de serviços
                    if($this->db->table_exists('ordem_servicos')){
 
-                    if($forma_pagamento_ativa == 0 && $this->core_model('vendas',array('venda_forma_pagamento_id'=>$forma_pagamento_id,'venda_status' =>0))){
-                        $this->session->set_flashdata('info','Forma de pagamento não pode ser desativada, pois está sendo utilizada em Vendas');
-                        redirect('modulo');
+                    if($forma_pagamento_ativa == 0 && $this->core_model('ordem_servicos',array('ordem_servico_forma_pagamento_id'=>$forma_pagamento_id,'ordem_servico_status' => 0))){
+                        $this->session->set_flashdata('info','Forma de pagamento não pode ser desativada, pois está sendo utilizada em Ordem de Serviço');
+                        redirect('pagamento');
                     }
                    }
 
@@ -122,7 +122,7 @@
                    $data = html_escape($data);
 
                    $this->core_model->update('formas_pagamentos', $data, array('forma_pagamento_id'=> $forma_pagamento_id));
-                   redirect('modulo');
+                   redirect('pagamento');
 
                 }else{
 
@@ -160,16 +160,16 @@
 
       if (!$forma_pagamento_id || !$this->core_model->get_by_id('formas_pagamentos',array('forma_pagamento_id'=>$forma_pagamento_id))) {
             $this->session->set_flashdata('erro', 'Forma de pagamento não encontrada ');
-            redirect('modulo');
+            redirect('pagamento');
          }
 
          if ($this->core_model->get_by_id('formas_pagamentos',array('forma_pagamento_id'=>$forma_pagamento_id, 'forma_pagamento_ativa'=> 1))) {
             $this->session->set_flashdata('info', 'Não é possivel excluir uma forma de pagamento que está Ativa');
-            redirect('modulo');
+            redirect('pagamento');
          }
 
          $this->core_model->delete('formas_pagamentos', array('forma_pagamento_id' => $forma_pagamento_id));
-            redirect('modulo');
+            redirect('pagamento');
 
 
     }

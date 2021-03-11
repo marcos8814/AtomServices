@@ -54,7 +54,7 @@
 
                 <?php endif; ?>
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Seja bem vindo!</h1>
+                    <h1 class="h4 text-gray-900 mb-4">Esquina do Peixe</h1>
                   </div>
                   <form class="user" name="form_autch" method="POST" action="<?php echo base_url('login/autch');  ?>">
                     <div class="form-group">

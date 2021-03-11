@@ -4,9 +4,9 @@
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?php echo base_url('/');?>">
         <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-laugh-wink"></i>
+        <i class="fas fa-fish"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">Ordem <sup></sup></div>
+        <div class="sidebar-brand-text mx-3">Esquina do Peixe<sup></sup></div>
       </a>
 
       <!-- Divider -->
@@ -83,7 +83,7 @@
 
                  <a  title="Gerenciar contas a receber" class="collapse-item" href="<?php echo base_url('receber') ?>"><i class="fas fa-hand-holding-usd"></i></i>&nbsp;&nbsp; Contas a receber</a>
 
-                 <a  title="Gerenciar formas de pagamentos" class="collapse-item" href="<?php echo base_url('modulo') ?>"><i class="fas fa-money-check-alt"></i></i>&nbsp;&nbsp; Formas de pagamento</a>
+                 <a  title="Gerenciar formas de pagamentos" class="collapse-item" href="<?php echo base_url('pagamento') ?>"><i class="fas fa-money-check-alt"></i></i>&nbsp;&nbsp; Formas de pagamento</a>
           </div>
         </div>
       </li> 

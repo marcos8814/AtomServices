@@ -59,7 +59,7 @@
 
 <!-- Content Row -->
           <?php if ($this->ion_auth->is_admin()): ?>
-            <div class="row">
+        <div class="row">
 
             <!-- Earnings (Monthly) Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
@@ -131,18 +131,20 @@
             </div>
           <?php endif;  ?>
            
-        <div class="row">
+         <div class="row">
+
+
 
            <div class="col-lg-6 mb-4">
 
              <!-- Illustrations -->
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">TOP 3 produtos mais vendidos</h6>
+                  <h6 class="m-0 font-weight-bold text-success">TOP 3 produtos mais vendidos</h6>
                 </div>
                 <div class="card-body">
                   <div class="text-center">
-                    <img class="img-fluid px-5 px-sm-5 mt-3 mb-9" style="width: 43rem;" src="<?php echo base_url('public/img/produtos_vendidos.svg')  ?>"alt="">
+                    <img class="img-fluid px-2 px-sm-3 mt-2 mb-3" style="width: 26rem;" src="<?php echo base_url('public/img/restaurante.svg')  ?>"alt="">
                   </div>
 
                 <div class="table-responsive">
@@ -177,33 +179,32 @@
     
            </div>
 
-           <div class="col-lg-6 mb-4">
+            <div class="col-lg-6 mb-4">
 
-              <!-- Illustrations -->
+             <!-- Illustrations -->
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
                   <h6 class="m-0 font-weight-bold text-primary">TOP 3 serviços mais vendidos</h6>
                 </div>
                 <div class="card-body">
                   <div class="text-center">
-                    <img class="img-fluid px-5 px-sm-5 mt-3 mb-9" style="width: 18rem;" src="<?php echo base_url('public/img/serviços.svg')  ?>" alt="">
+                    <img class="img-fluid px-2 px-sm-3 mt-2 mb-3" style="width: 50rem;" src="<?php echo base_url('public/img/serviços 2.svg')  ?>"alt="">
                   </div>
 
-
-                  <div class="table-responsive">
+                <div class="table-responsive">
                   
                   <table class="table table-striped table-borderless">
 
                     <thead>
                       <tr>
-                        <th>Nome serviço</th>
+                        <th>Nome serviços</th>
                         <th class="text-center">Vendidos</th>
 
                       </tr>
 
                     </thead>
                     <tbody>
-                      <?php foreach ($servicos_mais_vendidos as $servico):?>
+                       <?php foreach ($servicos_mais_vendidos as $servico):?>
                         <tr>
                       
                          <td> <?php echo $servico->servico_nome  ?></td> 
@@ -216,16 +217,19 @@
 
                 </div>
                   
-                                    
+                  
                 </div>
               </div>
     
            </div>
+     
+    
+         </div>
 
         </div>
 
 
-        </div>
+     
 
 
 

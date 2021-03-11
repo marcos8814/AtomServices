@@ -14,7 +14,7 @@
 
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="<?php echo base_url('modulo'); ?>">Formas de pagamento</a></li>
+      <li class="breadcrumb-item"><a href="<?php echo base_url('pagamento'); ?>">Formas de pagamento</a></li>
       <li class="breadcrumb-item active" aria-current="page"><?php  echo $titulo; ?></li>
     </ol>
   </nav>
@@ -71,7 +71,7 @@
       </fieldset>
 
  <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
- <a title="Voltar"href="<?php echo base_url('modulo');?>" class="btn btn-success btn-sm ml-2">Voltar</a> <!-- neste campo vc altera o incon de voltar -->
+ <a title="Voltar"href="<?php echo base_url('pagamento');?>" class="btn btn-success btn-sm ml-2">Voltar</a> <!-- neste campo vc altera o incon de voltar -->
 </form>
 </div>
 </div>

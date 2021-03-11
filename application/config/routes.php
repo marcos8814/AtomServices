@@ -7,10 +7,10 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 //rotas para forma de pagamentos 
-$route['modulo']='formas_pagamentos/index';
-$route['modulo/add']='formas_pagamentos/add';
-$route['modulo/edit/(:num)']='formas_pagamentos/edit/$1';
-$route['modulo/del/(:num)']='formas_pagamentos/del/$1';
+$route['pagamento']='formas_pagamentos/index';
+$route['pagamento/add']='formas_pagamentos/add';
+$route['pagamento/edit/(:num)']='formas_pagamentos/edit/$1';
+$route['pagamento/del/(:num)']='formas_pagamentos/del/$1';
 
 //rota para ordem de serviços
 $route['os']='ordem_servicos/index';
